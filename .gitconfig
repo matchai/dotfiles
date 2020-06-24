@@ -1,0 +1,39 @@
+[commit]
+	template = ~/.gitmessage
+	gpgsign = true
+[alias]
+	l = log --pretty=oneline -n 50 --graph --abbrev-commit
+	save = !git add -A && git commit -v -m 'SAVEPOINT'
+	undo = reset HEAD~1 --mixed
+	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard
+	findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+	findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[credential]
+	helper = osxkeychain
+[push]
+	default = current
+[branch]
+	autosetupmerge = true
+[advice]
+	detachedHead = false
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[fetch]
+	prune = true
+[include]
+	path = .gitconfig.local
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg
