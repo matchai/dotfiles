@@ -1,0 +1,114 @@
+{
+    /* ====== Configuration ====== */
+   
+    // Editor
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.snippetSuggestions": "top",
+    "editor.detectIndentation": true,
+    "editor.tabSize": 2,
+    "editor.folding": false,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "emmet.triggerExpansionOnTab": true,
+   
+    // Workbench
+    "files.exclude": {
+      "USE_GITIGNORE": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/coverage": true,
+      "**/dist": true,
+      "**/build": true
+    },
+    "explorer.confirmDragAndDrop": false,
+    "workbench.settings.editor": "json",
+   
+    // Terminal
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.lineHeight": 1.2,
+   
+    /* ====== Language-specific ====== */
+   
+    // Javascript
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue"
+    ],
+   
+    // Rust
+    "[rust]": {
+      "editor.tabSize": 4
+    },
+   
+    /* ====== Editor Styling ====== */
+   
+    // Editor
+    "editor.fontFamily": "'Fira Code', Monaco, monospace, 'Apple Color Emoji'",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 25,
+    "editor.fontLigatures": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [80],
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 3,
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "relative",
+    "breadcrumbs.enabled": false,
+    "amVim.smartRelativeLineNumbers": true,
+   
+    // Workbench
+    "explorer.openEditors.visible": 0,
+    "workbench.colorTheme": "Night Owl",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.activityBar.visible": false,
+    "workbench.list.automaticKeyboardNavigation": false,
+    "window.zoomLevel": 1,
+   
+    // Statusbar
+    "workbench.statusBar.visible": false,
+    "liveshare.showInStatusBar": "whileCollaborating",
+    "spellright.statusBarIndicator": false,
+   
+    // JSON5 theme support isn't great for now
+    "files.associations": {
+      "*.json5": "jsonc"
+    },
+   
+    /* ====== Code Spell Checker ====== */
+   
+    "spellright.language": ["en"],
+    "spellright.documentTypes": ["markdown", "plaintext"],
+   
+    /* ====== Miscellaneous ====== */
+   
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.suggestSelection": "first",
+    "liveshare.featureSet": "stable",
+    "discord.workspaceExcludePatterns": [
+      "/work/"
+    ],
+    "tabnine.experimentalAutoImports": true,
+   
+    /* ====== Display Modes ====== */
+   
+    // Talk
+    /*
+    "background.enabled": false,
+    "window.zoomLevel": 2,
+    "scm.diffDecorations": "none",
+    "editor.lineNumbers": "off",
+    "workbench.statusBar.visible": false,
+    "editor.cursorBlinking": "solid",
+    "workbench.colorTheme": "Night Owl Light",
+    /**/
+   }
