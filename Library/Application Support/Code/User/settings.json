@@ -4,13 +4,18 @@
     // Editor
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "editor.snippetSuggestions": "top",
     "editor.detectIndentation": true,
     "editor.tabSize": 2,
     "editor.folding": false,
     "editor.formatOnSave": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "emmet.triggerExpansionOnTab": true,
+
+    // Emmet
+    "emmet.showSuggestionsAsSnippets": true,
+    "editor.snippetSuggestions": "top",
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+    },
    
     // Workbench
     "files.exclude": {
