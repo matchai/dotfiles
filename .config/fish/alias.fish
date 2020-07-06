@@ -40,3 +40,4 @@ alias lt='ls --tree'
 
 # misc
 alias reload='exec fish'
+alias oo='open .'
