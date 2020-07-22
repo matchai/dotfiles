@@ -354,3 +354,18 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
+
+###############################################################################
+# Flux                                                                        #
+###############################################################################
+
+# Sync dark mode with night time
+defaults write org.herf.flux.darkTheme -int 1
+
+# Sleep in on weekends
+defaults write org.herf.flux.sleepLate -int 1
+
+# Wake up at 9am
+defaults write org.herf.flux.wakeTime -int 540
+
+
