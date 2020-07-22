@@ -53,10 +53,8 @@ cask "slack"
 cask "spotify"
 cask "visual-studio-code"
 cask "zoomus"
-mas "AdGuard for Safari", id: 1440147259
 mas "Deliveries", id: 924726344
 mas "NepTunes", id: 1006739057
 mas "Pixave", id: 924891282
 mas "Spark", id: 1176895641
-mas "Vimari", id: 1480933944
 mas "Xcode", id: 497799835
