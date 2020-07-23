@@ -15,7 +15,7 @@
 		<key>enabled</key>
 		<true/>
 		<key>predicate</key>
-		<string>URL LIKE "://*.zoom.us/j/*" OR URL LIKE "*://zoom.us/j/*"</string>
+		<string>URL LIKE "https://*.zoom.us/j/*" OR URL LIKE "https://zoom.us/j/*"</string>
 		<key>title</key>
 		<string>Zoom</string>
 	</dict>
