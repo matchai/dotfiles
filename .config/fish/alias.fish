@@ -1,7 +1,7 @@
 # apps... but better
 alias git=hub
 alias vim=nvim
-alias ls=lsd
+alias ls=exa
 
 # git
 abbr -a gs  git status -sb
@@ -34,8 +34,7 @@ abbr -a yds yadm diff --staged
 
 # ls
 alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+alias ll='ls -la'
 alias lt='ls --tree'
 
 # misc
