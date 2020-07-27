@@ -37,3 +37,5 @@
 	path = .gitconfig.local
 [gpg]
 	program = /usr/local/MacGPG2/bin/gpg
+[init]
+	defaultBranch = main
