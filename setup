@@ -1,0 +1,8 @@
+##!/bin/bash
+
+# Source YADM remotely
+source <(curl -L bootstrap.yadm.io)
+
+# YADM Bootstrap
+yadm clone https://github.com/matchai/dotfiles
+

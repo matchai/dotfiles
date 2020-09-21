@@ -9,6 +9,7 @@
 	findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 	findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 [core]
+  editor = nvim
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
@@ -39,3 +40,5 @@
 	program = /usr/local/MacGPG2/bin/gpg
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
