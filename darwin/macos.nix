@@ -20,6 +20,8 @@
   # Disable automatic termination of inactive apps
   system.defaults.NSGlobalDomain.NSDisableAutomaticTermination = true;
 
+  # ----- Mouse and Keyboard -----
+
   # Disable automatic capitalization as it’s annoying when typing code
   system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
 
@@ -35,18 +37,24 @@
   # Disable auto-correct
   system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
+  # Disable “natural” (Lion-style) scrolling
+  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+
+  # Enable full keyboard access for all controls
+  # (e.g. enable Tab in modal dialogs)
+  system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
+
+  # Disable press-and-hold for keys in favor of key repeat
+  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+
+  # Set a blazingly fast keyboard repeat rate
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
+  system.defaults.NSGlobalDomain.KeyRepeat = 1;
+
   # ----- Dock ----
 
   # Automatically hide and show the dock
   system.defaults.dock.autohide = true;
   # Don't show recent applications in the dock
   system.defaults.dock.show-recents = false;
-
-  # Enable full keyboard access for all controls
-  # (e.g. enable Tab in modal dialogs)
-  system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
-
-  # Set key repeat rate
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
-  system.defaults.NSGlobalDomain.KeyRepeat = 1;
 }
