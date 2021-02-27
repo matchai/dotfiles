@@ -1,6 +1,6 @@
 # Matan's Dotfiles
 
-My system configuration and setup using Nix and Nix-Darwin.
+My fully-declarative system configuration using Nix and Nix-Darwin.
 
 ## Installation
 

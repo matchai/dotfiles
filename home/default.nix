@@ -22,7 +22,6 @@
     tealdeer # rust implementation of `tldr`
 
     # Nix-related
-    comma # run software without installing it
     home-manager # system package manager
 
   ] ++ lib.optionals stdenv.isDarwin [
