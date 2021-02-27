@@ -77,7 +77,7 @@ clone_repository() {
     cd -
   else
     rm -rf "${clone_target}"
-    git clone https://github.com/TheOptimist/systemosaurus.git "${clone_target}"
+    git clone "${repository}" "${clone_target}"
   fi
 }
 
