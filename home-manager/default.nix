@@ -6,21 +6,19 @@
   home.packages = with pkgs; [
     home-manager
 
-    bat
+    bat # fancy version of `cat`
     cargo-edit
-    fd
-    fzf
-    exa
-    git-chglog
-    htop
-    jump
-    mosh
-    ripgrep
-    rustup
-    tealdeer
-    unzip
-    yadm
-    zip
+    fd # fancy version of `find`
+    exa # fancy version of `ls`
+    htop # fancy version of `top`
+    hyperfine # benchmarking tools
+    mosh # fancy version of `ssh`
+    procs # fancy version of `ps`
+    ripgrep # fancy version of `grep`
+    rustup # rust version manager
+    tealdeer # rust implementation of `tldr`
+  ] ++ lib.optionals stdenv.isDarwin [
+    m-cli # useful macos CLI commands
   ];
 
   # This value determines the Home Manager release that your
