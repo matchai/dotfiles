@@ -1,13 +1,16 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./shell.nix ./neovim.nix ./git ];
+  imports = [
+    ./git
+    ./neovim.nix
+    ./shell.nix
+    ];
 
   home.packages = with pkgs; [
-    home-manager
-
+    # CLIs
     bat # fancy version of `cat`
-    cargo-edit
+    cargo-edit # project package management with cargo
     fd # fancy version of `find`
     exa # fancy version of `ls`
     htop # fancy version of `top`
@@ -17,6 +20,11 @@
     ripgrep # fancy version of `grep`
     rustup # rust version manager
     tealdeer # rust implementation of `tldr`
+
+    # Nix-related
+    comma # run software without installing it
+    home-manager # system package manager
+
   ] ++ lib.optionals stdenv.isDarwin [
     m-cli # useful macos CLI commands
   ];

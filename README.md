@@ -18,9 +18,14 @@ curl -fsSL https://raw.githubusercontent.com/matchai/dotfiles/main/install | bas
 - [x] Clones this repo to the local machine
 - [x] Initiates the first `darwin-rebuild` to switch configurations
 
+## Layout
+- `darwin/` - Darwin-specific configuration
+- `home/` - Home-manager configuration and dotfile management
+
 ## Inspiration
 
 Heavily inspired by:
-- https://github.com/TheOptimist/systemosaurus
-- https://github.com/maksar/dotfiles
 - https://github.com/burke/b
+- https://github.com/maksar/dotfiles
+- https://github.com/malob/nixpkgs
+- https://github.com/TheOptimist/systemosaurus

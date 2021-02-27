@@ -11,7 +11,7 @@ in {
   programs.fish.enable = true;
   
   home-manager = {
-    users.${mainUser} = import ./home-manager;
+    users.${mainUser} = import ./home;
     useGlobalPkgs = true;
     useUserPackages = false;
   };
