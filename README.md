@@ -6,7 +6,7 @@ My system configuration and setup using Nix and Nix-Darwin.
 
 Run at your own risk:
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/matchai/dotfiles/main/install)"
+curl -fsSL https://raw.githubusercontent.com/matchai/dotfiles/main/install | bash
 ```
 
 ## Goals
