@@ -1,0 +1,113 @@
+#!/bin/bash
+
+{ # Prevent script from running if partially downloaded
+
+set -euo pipefail
+
+sudo_prompt() {
+  echo "Please enter your password for sudo authentication"
+  sudo -k
+  sudo echo "sudo authenticaion successful!"
+  while true ; do sudo -n true ; sleep 60 ; kill -0 "$$" || exit ; done 2>/dev/null &
+}
+
+install_command_line_tools() {
+  # Unattended installation of Command Line Tools
+  # Found on apple.stackexchange.com at https://apple.stackexchange.com/questions/107307/how-can-i-install-the-command-line-tools-completely-from-the-command-line/195963#195963
+  # Homebrew uses a similar technique https://github.com/Homebrew/install/blob/878b5a18b89ff73f2f221392ecaabd03c1e69c3f/install#L297
+  xcode-select -p >/dev/null || {
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    CLT=$( softwareupdate -l |
+      grep "\*.*Command Line Tools" |
+      head -n 1 |
+      awk -F ":" '{print $2}' |
+      sed -e 's/^ *//' |
+      tr -d '\n' )
+    softwareupdate -i "$CLT" --verbose
+    rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+  }
+  echo "Command Line Tools are installed at $(xcode-select -p)"
+}
+
+install_nix() {
+  command -v nix >/dev/null || {
+    sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+
+    # Update local shell
+    source /Users/matchai/.nix-profile/etc/profile.d/nix.sh
+  }
+}
+
+install_nix_darwin() {
+  command -v darwin-rebuild >/dev/null || {
+    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer --out-link /tmp/nix-darwin
+
+    # nix-darwin controls nix.conf
+    sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.backup-before-nix-darwin
+
+    # printf based on:
+    #   - Would you like to edit the configuration.nix before starting? n
+    #   - Would you like to manage <darwin> with nix-channel? y
+    #   - Would you like to load Darwin configuration in /etc/bashrc? y
+    #   - Would you like to load Darwin configuration in /etc/zshrc? y
+    #   - Would you like to create /run? y
+    printf "n\ny\ny\ny\ny" | /tmp/nix-darwin/bin/darwin-installer
+  }
+}
+
+install_home_manager() {
+  nix-channel --list | grep -q home-manager || {
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    nix-channel --update
+  }
+}
+
+install_homebrew() {
+  command -v brew || {
+    printf "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  }
+}
+
+clone_repository() {
+  repository="https://github.com/matchai/dotfiles.git"
+  clone_target="${HOME}/.config/nixpkgs"
+  if [ $( cat "${clone_target}/.git/config" | grep "${repository}" ) ]; then
+    cd "${clone_target}"
+    git status
+    cd -
+  else
+    rm -rf "${clone_target}"
+    git clone https://github.com/TheOptimist/systemosaurus.git "${clone_target}"
+  fi
+}
+
+darwin_build() {
+  for filename in shells bashrc zshrc; do
+    filepath="/etc/${filename}"
+    if [ -f "${filepath}" ] && [ ! -L "${filepath}" ]; then
+      sudo mv "${filepath}" "${filepath}.backup-before-nix-darwin"
+    fi
+  done
+
+  # Update local shell
+  set +u   # Allow unbound variable during sourcing
+  source /etc/static/bashrc
+  set -u
+  
+  # Rebuild darwin
+  export NIX_PATH=$HOME/.nix-defexpr/channels:$NIX_PATH
+  darwin-rebuild switch -I "darwin-config=$HOME/.config/nixpkgs/darwin.nix"
+}
+
+# Installation flow
+sudo_prompt
+install_command_line_tools
+install_nix
+install_nix_darwin
+install_home_manager
+install_homebrew
+clone_repository
+darwin_build
+
+} # Prevent script from running if partially downloaded
+
