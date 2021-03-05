@@ -50,7 +50,11 @@ in {
     enable = true;
 
     shellInit = ''
+      # Initialize homebrew
       eval (/opt/homebrew/bin/brew shellenv)
+
+      # Set NVM prefix
+      set -gx nvm_prefix /opt/homebrew/opt/nvm
       
       # Disable fish greeting
       set -g fish_greeting ""
@@ -92,6 +96,24 @@ in {
           repo = "fish-colored-man";
           rev = "master";
           sha256 = "16ar220pz8lmv58c8fj81mi7slk0qb20dh5zdwcyyw12dgzahsvr";
+        };
+      }
+      {
+        name = "nvm-fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "FabioAntunes";
+          repo = "fish-nvm";
+          rev = "master";
+          sha256 = "0q2bh9hpq1nkgjs9adsa8d8b5gh8c3k496xvnjsjfn7qdfgmbcil";
+        };
+      }
+      {
+        name = "bass";
+        src = pkgs.fetchFromGitHub {
+          owner = "edc";
+          repo = "bass";
+          rev = "master";
+          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";
         };
       }
     ];

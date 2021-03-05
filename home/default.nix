@@ -18,8 +18,11 @@
     mosh # fancy version of `ssh`
     procs # fancy version of `ps`
     ripgrep # fancy version of `grep`
-    rustup # rust version manager
     tealdeer # rust implementation of `tldr`
+
+    # Languages
+    rustup
+    go
 
     # Nix-related
     home-manager # system package manager
