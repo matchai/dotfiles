@@ -17,6 +17,7 @@ let
     tree = "exa --tree";
     reload = "exec fish";
     oo = "open .";
+    inflate="ruby -r zlib -e \"STDOUT.write Zlib::Inflate.inflate(STDIN.read)\"";
   };
 
   shellAbbrs = {
@@ -43,7 +44,36 @@ in {
     jump
   ];
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      aws.symbol = "  ";
+      conda.symbol = " ";
+      dart.symbol = " ";
+      directory.read_only = " ";
+      docker.symbol = " ";
+      elixir.symbol = " ";
+      elm.symbol = " ";
+      git_branch.symbol = " ";
+      golang.symbol = " ";
+      haskell.symbol = " ";
+      hg_branch.symbol = " ";
+      java.symbol = " ";
+      julia.symbol = " ";
+      memory_usage.symbol = " ";
+      nim.symbol = " ";
+      nix_shell.symbol = " ";
+      nodejs.symbol = " ";
+      package.symbol = " ";
+      perl.symbol = " ";
+      php.symbol = " ";
+      python.symbol = " ";
+      ruby.symbol = " ";
+      rust.symbol = " ";
+      scala.symbol = " ";
+      swift.symbol = "ﯣ ";
+    };
+  };
 
   programs.fish = {
     inherit shellAliases shellAbbrs;
@@ -52,9 +82,6 @@ in {
     shellInit = ''
       # Initialize homebrew
       eval (/opt/homebrew/bin/brew shellenv)
-
-      # Set NVM prefix
-      set -gx nvm_prefix /opt/homebrew/opt/nvm
       
       # Disable fish greeting
       set -g fish_greeting ""
@@ -86,7 +113,14 @@ in {
     interactiveShellInit = ''
       # Initialize Jump
       source (jump shell fish | psub)
+
+      # Add keys to SSH agent
+      ssh-add -A 2>/dev/null;
     '';
+
+    functions = {
+      nvm = "bass source /opt/homebrew/opt/nvm/nvm.sh --no-use ';' nvm $argv";
+    };
 
     plugins = [
       {
@@ -96,15 +130,6 @@ in {
           repo = "fish-colored-man";
           rev = "master";
           sha256 = "16ar220pz8lmv58c8fj81mi7slk0qb20dh5zdwcyyw12dgzahsvr";
-        };
-      }
-      {
-        name = "nvm-fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "FabioAntunes";
-          repo = "fish-nvm";
-          rev = "master";
-          sha256 = "0q2bh9hpq1nkgjs9adsa8d8b5gh8c3k496xvnjsjfn7qdfgmbcil";
         };
       }
       {

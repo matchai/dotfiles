@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     # CLIs
+    ncdu
     bat # fancy version of `cat`
     cargo-edit # project package management with cargo
     fd # fancy version of `find`
@@ -19,8 +20,10 @@
     procs # fancy version of `ps`
     ripgrep # fancy version of `grep`
     tealdeer # rust implementation of `tldr`
+    hexyl # hex viewer
 
     # Languages
+    nodejs yarn
     rustup
     go
 
