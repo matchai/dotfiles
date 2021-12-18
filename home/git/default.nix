@@ -5,6 +5,7 @@
     diff-so-fancy
     hub
     tig
+    gh
   ];
 
   programs.git = {

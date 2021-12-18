@@ -47,31 +47,37 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      aws.symbol = "  ";
-      conda.symbol = " ";
-      dart.symbol = " ";
+      format = "$battery$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$line_break$python$character";
+
       directory.read_only = " ";
-      docker.symbol = " ";
-      elixir.symbol = " ";
-      elm.symbol = " ";
-      git_branch.symbol = " ";
-      golang.symbol = " ";
-      haskell.symbol = " ";
-      hg_branch.symbol = " ";
-      java.symbol = " ";
-      julia.symbol = " ";
-      memory_usage.symbol = " ";
-      nim.symbol = " ";
-      nix_shell.symbol = " ";
-      nodejs.symbol = " ";
-      package.symbol = " ";
-      perl.symbol = " ";
-      php.symbol = " ";
-      python.symbol = " ";
-      ruby.symbol = " ";
-      rust.symbol = " ";
-      scala.symbol = " ";
-      swift.symbol = "ﯣ ";
+      battery = {
+        full_symbol = "•";
+        charging_symbol = "⇡";
+        discharging_symbol = "⇣";
+      };
+      git_branch = {
+        format = "[$branch]($style)";
+        style = "bright-black";
+      };
+      git_status = {
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218)( $ahead_behind$stashed)]($style) ";
+        style = "cyan";
+        conflicted = "​";
+        untracked = "​";
+        modified = "​";
+        staged = "​";
+        renamed = "​";
+        deleted = "​";
+        stashed = "≡";
+      };
+      git_state = {
+        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+        style = "bright-black";
+      };
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "yellow";
+      };
     };
   };
 
@@ -123,15 +129,6 @@ in {
     };
 
     plugins = [
-      {
-        name = "fish-colored-man";
-        src = pkgs.fetchFromGitHub {
-          owner = "decors";
-          repo = "fish-colored-man";
-          rev = "master";
-          sha256 = "16ar220pz8lmv58c8fj81mi7slk0qb20dh5zdwcyyw12dgzahsvr";
-        };
-      }
       {
         name = "bass";
         src = pkgs.fetchFromGitHub {

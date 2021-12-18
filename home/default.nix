@@ -3,34 +3,43 @@
 {
   imports = [
     ./git
-    ./neovim.nix
     ./shell.nix
     ];
 
   home.packages = with pkgs; [
     # CLIs
-    ncdu
-    bat # fancy version of `cat`
+    ncdu # disk usage
+    hexyl # hex viewer
     cargo-edit # project package management with cargo
+    hyperfine # benchmarking tools
+    watchman # file watching
+
+    # CLIs but better
+    bat # fancy version of `cat`
     fd # fancy version of `find`
     exa # fancy version of `ls`
     htop # fancy version of `top`
-    hyperfine # benchmarking tools
     mosh # fancy version of `ssh`
     procs # fancy version of `ps`
     ripgrep # fancy version of `grep`
+    httpie # fancy version of `curl`
     tealdeer # rust implementation of `tldr`
-    hexyl # hex viewer
 
     # Languages
     nodejs yarn
     rustup
     go
+    # zig – Currently broken
+    elixir
 
     # Nix-related
     home-manager # system package manager
 
-  ] ++ lib.optionals stdenv.isDarwin [
+  ] ++ (with nodePackages; [
+    # NPM Packages
+    pnpm # disk-efficient npm
+
+  ]) ++ lib.optionals stdenv.isDarwin [
     m-cli # useful macos CLI commands
   ];
 

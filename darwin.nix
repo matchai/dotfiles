@@ -16,9 +16,8 @@ in {
     useUserPackages = false;
   };
 
-  # Don't use daemon
-  services.nix-daemon.enable = false;
-  nix.useDaemon = false;
+  services.nix-daemon.enable = true;
+  nix.useDaemon = true;
 
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin.nix
   environment.darwinConfig = "$HOME/.config/nixpkgs/darwin.nix";
