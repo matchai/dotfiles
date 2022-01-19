@@ -4,7 +4,8 @@ let
   shellAliases = {
     # Apps... but better
     git = "hub";
-    vim = "nvim";
+    vim = "lvim";
+    v = "lvim";
     ls = "exa";
     cat = "bat";
     find = "fd";
@@ -41,8 +42,16 @@ let
 in {
   home.packages = with pkgs; [
     fzf
-    jump
+    zoxide
   ];
+
+  programs.zoxide = {
+    enable = true;
+    options = ["--cmd j"];
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
 
   programs.starship = {
     enable = true;
@@ -117,8 +126,8 @@ in {
     '';
 
     interactiveShellInit = ''
-      # Initialize Jump
-      source (jump shell fish | psub)
+      # Initialize Zoxide
+      # zoxide init --cmd j fish | source
 
       # Add keys to SSH agent
       ssh-add -A 2>/dev/null;
