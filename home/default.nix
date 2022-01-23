@@ -16,6 +16,7 @@
     ncdu       # disk usage
     watchman   # file watching
     wget       # download files
+    tokei      # code metrics
 
     # CLIs but better
     bat      # fancy version of `cat`
