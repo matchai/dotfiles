@@ -17,6 +17,7 @@
     watchman   # file watching
     wget       # download files
     tokei      # code metrics
+    tmux       # terminal multiplexer
 
     # CLIs but better
     bat      # fancy version of `cat`
@@ -27,6 +28,11 @@
     procs    # fancy version of `ps`
     ripgrep  # fancy version of `grep`
     httpie   # fancy version of `curl`
+    dog      # fancy version of `dig`
+    broot    # fancy version of `tree`
+    duf      # fancy version of `df`
+    dust     # fancy version of `du`
+    bottom   # fancy version of `top`
     tealdeer # rust implementation of `tldr`
 
     # Languages
@@ -38,6 +44,7 @@
 
     # Nix-related
     home-manager # system package manager
+    comma        # any cli you may need
 
   ] ++ (with nodePackages; [
     # NPM Packages
