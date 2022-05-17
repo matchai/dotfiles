@@ -57,7 +57,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format = "$battery$username$hostname$directory$git_branch( $git_state)$git_status$cmd_duration$line_break$python$character";
+      format = "$battery$username$hostname$directory$git_branch$git_status$git_state$cmd_duration$line_break$python$character";
 
       directory.read_only = " ";
       battery = {
@@ -81,7 +81,7 @@ in {
         stashed = "≡";
       };
       git_state = {
-        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+        format = "([$state( $progress_current/$progress_total)]($style) )";
         style = "bright-black";
       };
       cmd_duration = {

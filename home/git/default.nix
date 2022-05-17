@@ -24,9 +24,9 @@
       ".DS_Store"
       ".idea/"
       "*.swp"
-      "npm-debug.log*",
-      "yarn-debug.log*",
-      "yarn-error.log*",
+      "npm-debug.log*"
+      "yarn-debug.log*"
+      "yarn-error.log*"
       ".pnpm-debug.log*"
     ];
 
