@@ -4,8 +4,8 @@ let
   shellAliases = {
     # Apps... but better
     git = "hub";
-    vim = "lvim";
     v = "lvim";
+    vim = "lvim";
     ls = "exa";
     cat = "bat";
     find = "fd";
@@ -15,9 +15,10 @@ let
     ll = "ls -la";
 
     # misc
+    e = "emacs";
+    oo = "open .";
     tree = "exa --tree";
     reload = "exec fish";
-    oo = "open .";
     inflate="ruby -r zlib -e \"STDOUT.write Zlib::Inflate.inflate(STDIN.read)\"";
   };
 
@@ -56,7 +57,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format = "$battery$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$line_break$python$character";
+      format = "$battery$username$hostname$directory$git_branch( $git_state)$git_status$cmd_duration$line_break$python$character";
 
       directory.read_only = " ";
       battery = {
@@ -101,6 +102,10 @@ in {
       # Disable fish greeting
       set -g fish_greeting ""
 
+      # Set editor
+      set -x EDITOR lvim
+
+
       # Set fish syntax highlighting
       set -g fish_color_autosuggestion '555'  'brblack'
       set -g fish_color_cancel -r
@@ -126,11 +131,8 @@ in {
     '';
 
     interactiveShellInit = ''
-      # Initialize Zoxide
-      # zoxide init --cmd j fish | source
-
-      # Add keys to SSH agent
-      ssh-add -A 2>/dev/null;
+      # Initialize Starship
+      starship init fish | source
     '';
 
     functions = {
