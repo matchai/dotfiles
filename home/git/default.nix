@@ -24,7 +24,10 @@
       ".DS_Store"
       ".idea/"
       "*.swp"
-      "npm-debug.log"
+      "npm-debug.log*",
+      "yarn-debug.log*",
+      "yarn-error.log*",
+      ".pnpm-debug.log*"
     ];
 
     aliases = {
@@ -38,6 +41,7 @@
 
     extraConfig = {
       commit.template = builtins.toPath ./git-message;
+      hub.protocol = "ssh";
 
       # If no upstream branch is specified, push to the branch with the same
       # name as the current branch
