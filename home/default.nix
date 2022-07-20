@@ -27,16 +27,16 @@
     mosh     # fancy version of `ssh`
     procs    # fancy version of `ps`
     ripgrep  # fancy version of `grep`
-    httpie   # fancy version of `curl`
-    dog      # fancy version of `dig`
+    curlie   # fancy version of `curl`
+    dogdns   # fancy version of `dig`
     broot    # fancy version of `tree`
     duf      # fancy version of `df`
-    dust     # fancy version of `du`
+    du-dust  # fancy version of `du`
     bottom   # fancy version of `top`
     tealdeer # rust implementation of `tldr`
 
     # Languages
-    nodejs-16_x yarn
+    yarn
     rustup
     go
     elixir
@@ -49,11 +49,11 @@
   ] ++ (with nodePackages; [
     # NPM Packages
     neovim    # neovim nodejs provider
-    pnpm      # disk-efficient npm
     prettier  # code formatter
-    # @antfu/ni # use the right package manager
+
   ]) ++ lib.optionals stdenv.isDarwin [
     m-cli     # useful macos CLI commands
+
   ];
 
   # This value determines the Home Manager release that your

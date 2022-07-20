@@ -1,0 +1,5 @@
+/* .title-actions, */
+.sidebar .title-label,
+.editor-actions {
+  display: none;
+}
