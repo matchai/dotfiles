@@ -27,7 +27,6 @@
     mosh     # fancy version of `ssh`
     procs    # fancy version of `ps`
     ripgrep  # fancy version of `grep`
-    curlie   # fancy version of `curl`
     dogdns   # fancy version of `dig`
     broot    # fancy version of `tree`
     duf      # fancy version of `df`
