@@ -10,7 +10,7 @@
   # Expand print panel by default
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
- 
+
   # Save to disk (not to iCloud) by default
   system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = true;
 

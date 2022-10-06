@@ -19,7 +19,7 @@ let
     oo = "open .";
     tree = "exa --tree";
     reload = "exec fish";
-    inflate="ruby -r zlib -e \"STDOUT.write Zlib::Inflate.inflate(STDIN.read)\"";
+    inflate = "ruby -r zlib -e \"STDOUT.write Zlib::Inflate.inflate(STDIN.read)\"";
   };
 
   shellAbbrs = {
@@ -39,16 +39,19 @@ let
     gf = "git fetch";
     gfc = "git findcommit";
     gfm = "git findmessage";
+    gui = "gitui";
   };
-in {
+in
+{
   home.packages = with pkgs; [
     fzf
+    fnm
     zoxide
   ];
 
   programs.zoxide = {
     enable = true;
-    options = ["--cmd j"];
+    options = [ "--cmd j" ];
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
@@ -96,14 +99,12 @@ in {
     enable = true;
 
     shellInit = ''
-      # Initialize homebrew
-      eval (/opt/homebrew/bin/brew shellenv)
-      
-      # Disable fish greeting
-      set -g fish_greeting ""
-
       # Set editor
       set -x EDITOR lvim
+
+      # Configure PNPM
+      set -g PNPM_HOME "/Users/matchai/Library/pnpm"
+      set -g PATH "$PNPM_HOME" $PATH
 
       # Set fish syntax highlighting
       set -g fish_color_autosuggestion '555'  'brblack'
@@ -130,12 +131,16 @@ in {
     '';
 
     interactiveShellInit = ''
+      # Initialize homebrew
+      eval (/opt/homebrew/bin/brew shellenv)
+
       # Initialize Starship
       starship init fish | source
     '';
 
     functions = {
       idea = "open -a \"IntelliJ IDEA.app\" $argv";
+      fish_greeting = "";
     };
 
     plugins = [

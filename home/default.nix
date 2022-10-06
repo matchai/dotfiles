@@ -4,34 +4,34 @@
   imports = [
     ./git
     ./shell.nix
-    ];
+  ];
 
   home.packages = with pkgs; [
     # CLIs
     cargo-edit # project package management with cargo
     git-chglog # changelog generation
-    glow       # markdown preview
-    hexyl      # hex viewer
-    hyperfine  # benchmarking tools
-    ncdu       # disk usage
-    watchman   # file watching
-    wget       # download files
-    tokei      # code metrics
-    tmux       # terminal multiplexer
+    glow # markdown preview
+    hexyl # hex viewer
+    hyperfine # benchmarking tools
+    ncdu # disk usage
+    watchman # file watching
+    wget # download files
+    tokei # code metrics
+    tmux # terminal multiplexer
 
     # CLIs but better
-    bat      # fancy version of `cat`
-    fd       # fancy version of `find`
-    exa      # fancy version of `ls`
-    htop     # fancy version of `top`
-    mosh     # fancy version of `ssh`
-    procs    # fancy version of `ps`
-    ripgrep  # fancy version of `grep`
-    dogdns   # fancy version of `dig`
-    broot    # fancy version of `tree`
-    duf      # fancy version of `df`
-    du-dust  # fancy version of `du`
-    bottom   # fancy version of `top`
+    bat # fancy version of `cat`
+    fd # fancy version of `find`
+    exa # fancy version of `ls`
+    htop # fancy version of `top`
+    mosh # fancy version of `ssh`
+    procs # fancy version of `ps`
+    ripgrep # fancy version of `grep`
+    dogdns # fancy version of `dig`
+    broot # fancy version of `tree`
+    duf # fancy version of `df`
+    du-dust # fancy version of `du`
+    bottom # fancy version of `top`
     tealdeer # rust implementation of `tldr`
 
     # Languages
@@ -43,15 +43,15 @@
 
     # Nix-related
     home-manager # system package manager
-    comma        # any cli you may need
+    comma # any cli you may need
 
   ] ++ (with nodePackages; [
     # NPM Packages
-    neovim    # neovim nodejs provider
-    prettier  # code formatter
+    neovim # neovim nodejs provider
+    prettier # code formatter
 
   ]) ++ lib.optionals stdenv.isDarwin [
-    m-cli     # useful macos CLI commands
+    m-cli # useful macos CLI commands
 
   ];
 
