@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs.gitAndTools; [
     diff-so-fancy
+    gitui
     hub
     tig
     gh
@@ -15,7 +16,7 @@
     package = pkgs.gitAndTools.gitFull;
 
     signing = {
-      key = "780C95C86BF169E4E7D8665E01D4B591C43BE629";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
       signByDefault = true;
     };
 
@@ -40,6 +41,12 @@
     };
 
     extraConfig = {
+      # SSH signing
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      gpg.ssh.allowedSignersFile = builtins.toPath ./allowed-signers;
+
       commit.template = builtins.toPath ./git-message;
       hub.protocol = "ssh";
 
