@@ -44,10 +44,12 @@ let
 in
 {
   home.packages = with pkgs; [
-    fzf
+ #  fzf
     fnm
     zoxide
   ];
+
+  programs.atuin.enable = true;
 
   programs.zoxide = {
     enable = true;
@@ -103,8 +105,8 @@ in
       set -x EDITOR lvim
 
       # Configure PNPM
-      set -g PNPM_HOME "/Users/matchai/Library/pnpm"
-      set -g PATH "$PNPM_HOME" $PATH
+      set -gx PNPM_HOME "/Users/matchai/Library/pnpm"
+      set -gx PATH "$PNPM_HOME" $PATH
 
       # Set fish syntax highlighting
       set -g fish_color_autosuggestion '555'  'brblack'
@@ -133,9 +135,6 @@ in
     interactiveShellInit = ''
       # Initialize homebrew
       eval (/opt/homebrew/bin/brew shellenv)
-
-      # Initialize Starship
-      starship init fish | source
     '';
 
     functions = {
