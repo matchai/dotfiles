@@ -22,7 +22,7 @@
     # CLIs but better
     bat # fancy version of `cat`
     fd # fancy version of `find`
-    exa # fancy version of `ls`
+    eza # fancy version of `ls`
     htop # fancy version of `top`
     mosh # fancy version of `ssh`
     procs # fancy version of `ps`

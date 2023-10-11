@@ -6,7 +6,7 @@ let
     git = "hub";
     v = "lvim";
     vim = "lvim";
-    ls = "exa";
+    ls = "eza";
     cat = "bat";
     find = "fd";
 
@@ -17,9 +17,10 @@ let
     # misc
     e = "emacs";
     oo = "open .";
-    tree = "exa --tree";
+    tree = "eza --tree";
     reload = "exec fish";
     inflate = "ruby -r zlib -e \"STDOUT.write Zlib::Inflate.inflate(STDIN.read)\"";
+    dark = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
   };
 
   shellAbbrs = {
@@ -44,12 +45,14 @@ let
 in
 {
   home.packages = with pkgs; [
- #  fzf
     fnm
     zoxide
   ];
 
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    flags = ["--disable-up-arrow"];
+  };
 
   programs.zoxide = {
     enable = true;
