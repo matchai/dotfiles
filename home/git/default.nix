@@ -35,6 +35,7 @@
       l = "log --pretty=oneline -n 50 --graph --abbrev-commit";
       save = "!git add -A && git commit -v -m 'SAVEPOINT'";
       undo = "reset HEAD~1 --mixed";
+      root = "rev-parse --show-toplevel";
       wipe = "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
       findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
       findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";

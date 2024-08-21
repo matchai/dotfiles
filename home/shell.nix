@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   shellAliases = {
@@ -45,8 +45,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    fnm
-    zoxide
+    mise
   ];
 
   programs.atuin = {
@@ -57,9 +56,6 @@ in
   programs.zoxide = {
     enable = true;
     options = [ "--cmd j" ];
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
   };
 
   programs.starship = {
@@ -161,7 +157,7 @@ in
   programs.zsh = {
     inherit shellAliases;
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     history.extended = true;
   };
