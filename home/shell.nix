@@ -45,8 +45,16 @@ let
 in
 {
   home.packages = with pkgs; [
-    mise
+    # Packages not needing configuration
   ];
+
+  programs.mise = {
+    enable = true;
+
+    globalConfig.tools = {
+      node = "lts";
+    };
+  };
 
   programs.atuin = {
     enable = true;
