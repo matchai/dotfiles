@@ -41,20 +41,13 @@ let
     gfc = "git findcommit";
     gfm = "git findmessage";
     gui = "gitui";
+    gsu = "git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD)";
   };
 in
 {
   home.packages = with pkgs; [
     # Packages not needing configuration
   ];
-
-  programs.mise = {
-    enable = true;
-
-    globalConfig.tools = {
-      node = "lts";
-    };
-  };
 
   programs.atuin = {
     enable = true;
@@ -65,6 +58,15 @@ in
     enable = true;
     options = [ "--cmd j" ];
   };
+  programs.mise = {
+    enable = true;
+
+    globalConfig.tools = {
+      node = "lts";
+      usage = "latest";
+    };
+  };
+
 
   programs.starship = {
     enable = true;
@@ -78,11 +80,11 @@ in
         discharging_symbol = "⇣";
       };
       git_branch = {
-        format = "[$branch]($style)";
+        format = "([$branch]($style) )";
         style = "bright-black";
       };
       git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-black)( $ahead_behind$stashed)]($style) ";
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-black)($ahead_behind$stashed)]($style) ";
         style = "cyan";
         conflicted = "​";
         untracked = "​";
