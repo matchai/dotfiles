@@ -36,6 +36,11 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
+
+      users.users.matchai = {
+        home = "/Users/matchai";
+      };
     };
   in
   {

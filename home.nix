@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "matchai";
-  home.homeDirectory = "/Users/matchai";
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
