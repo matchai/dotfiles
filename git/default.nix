@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs.gitAndTools; [ diff-so-fancy gitui hub tig gh ];
