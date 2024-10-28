@@ -2,56 +2,52 @@
   description = "Matan's personal macOS Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Tap management
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-darwin, nix-homebrew, homebrew-core, homebrew-cask }: 
-    let user = "matchai"; in
-    {
-      darwinConfigurations."Matans-MacBook-Air" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./configuration.nix
-          home-manager.darwinModules.home-manager
-          {
-            useGlobalPkgs = true;
-            users.${user} = import ./home.nix;
-          }
-        ]
+  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  let
+    configuration = { pkgs, ... }: {
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      environment.systemPackages =
+        [ pkgs.vim
+        ];
 
-      # modules = [
-      #   ./configuration.nix
-      #   ./darwin.nix
-      #   home-manager.darwinModules.home-manager
-      #   nix-homebrew.darwinModules.nix-homebrew
-      #   {
-      #     nix-homebrew = {
-      #       enable = true;
-      #       taps = {
-      #         "homebrew/homebrew-core" = homebrew-core;
-      #         "homebrew/homebrew-cask" = homebrew-cask;
-      #       };
-      #       mutableTaps = false;
-      #       autoMigrate = true;
-      #     };
-      #   }
-      # ];
+      # Auto upgrade nix package and the daemon service.
+      services.nix-daemon.enable = true;
+      # nix.package = pkgs.nix;
+
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
+      # Create /etc/zshrc that loads the nix-darwin environment.
+      programs.zsh.enable = true;  # default shell on catalina
+      # programs.fish.enable = true;
+
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 5;
+
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
     };
-  }
+  in
+  {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#Matans-MacBook-Air
+    darwinConfigurations."Matans-MacBook-Air" = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
+    };
+
+    # Expose the package set, including overlays, for convenience.
+    darwinPackages = self.darwinConfigurations."Matans-MacBook-Air".pkgs;
+  };
 }
