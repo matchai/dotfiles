@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  imports = [ ./shell.nix ./git ];
+
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
@@ -8,5 +10,9 @@
   # environment.
   home.packages = with pkgs; [
     htop
+
+    # Nix related
+    nil
+    nixfmt
   ];
 }
