@@ -9,6 +9,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # CLIs
     bat # fancy version of `cat`
     fd # fancy version of `find`
     eza # fancy version of `ls`
@@ -20,12 +21,13 @@
     lunarvim # pre-configured vim
     tealdeer # rust implementation of `tldr`
 
+    # Workflow
+    _1password
+    doctl
+
     # Nix related
     nil
     nixfmt
-
-    # macOS related
-    m-cli
   ];
 
   # Setup dev tool version manager
