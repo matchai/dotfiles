@@ -1,3 +1,4 @@
-_:
-
-[ "macos-trash" ]
+[
+  # CLIs
+  "macos-trash"
+]

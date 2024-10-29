@@ -4,8 +4,15 @@ let user = "matchai";
 in {
   homebrew = {
     enable = true;
-    brews = pkgs.callPackage ./apps/brews.nix { };
-    casks = pkgs.callPackage ./apps/casks.nix { };
+
+    onActivation = {
+      cleanup = "zap";
+      autoUpdate = true;
+    };
+
+    brews = import ./apps/brews.nix;
+    casks = import ./apps/casks.nix;
+    masApps = import ./apps/mas.nix;
   };
 
   home-manager = {

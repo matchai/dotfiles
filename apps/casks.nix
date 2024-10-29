@@ -1,5 +1,3 @@
-_:
-
 [
   # macOS Must-Haves
   "bartender"
@@ -13,6 +11,7 @@ _:
   "1password"
   "anki"
   "cleanshot"
+  "fantastical"
   "mullvadvpn"
 
   # Productivity
