@@ -35,7 +35,7 @@ in {
 
       # Have some default packages pre-installed
       home.file.".default-npm-packages".text =
-        lib.strings.concatLines [ "@antfu/ni" "playwright" "prettier" ];
+        lib.strings.concatLines (import ./apps/npm-packages.nix);
     };
   };
 }
