@@ -7,4 +7,5 @@ A fully declarative Nix configuration for my laptop.
 - [x] Manage mise runtimes
 - [ ] Manage brew packages
 - [ ] Manage mas packages
+- [ ] Manage macOS defaults configuration
 - [ ] Manage dmgs directly downloaded
