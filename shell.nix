@@ -145,18 +145,6 @@ in
       idea = "open -a \"IntelliJ IDEA.app\" $argv";
       fish_greeting = "";
     };
-
-    plugins = [
-      {
-        name = "bass";
-        src = pkgs.fetchFromGitHub {
-          owner = "edc";
-          repo = "bass";
-          rev = "master";
-          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";
-        };
-      }
-    ];
   };
 
   programs.zsh = {
