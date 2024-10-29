@@ -11,6 +11,10 @@
 
     # nix-homebrew and its taps
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -22,7 +26,7 @@
   };
 
   outputs = inputs@{ self, nix-darwin, home-manager, nix-homebrew, homebrew-core
-    , homebrew-cask, nixpkgs }:
+    , homebrew-bundle, homebrew-cask, nixpkgs }:
     let
       user = "matchai";
       configuration = { pkgs, ... }: {
@@ -58,22 +62,26 @@
       darwinConfigurations."Matans-MacBook-Air" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
               enable = true;
               user = user;
-              # casks = import ./apps/casks.nix;
               taps = {
                 "homebrew/homebrew-core" = homebrew-core;
                 "homebrew/homebrew-cask" = homebrew-cask;
+                "homebrew/homebrew-bundle" = homebrew-bundle;
               };
               autoMigrate = true;
               mutableTaps = false;
             };
           }
+
+          # Align homebrew taps with nix-homebrew's taps
+          ({ config, ... }: {
+            homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+          })
 
           ./home.nix
         ];
