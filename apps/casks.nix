@@ -23,6 +23,7 @@
   # Entertainment
   "spotify"
   "stremio"
+  "iina"
 
   # Browsers
   "arc"
