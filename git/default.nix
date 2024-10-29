@@ -45,7 +45,6 @@
       gpg.format = "ssh";
       gpg.ssh.program =
         "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      gpg.ssh.allowedSignersFile = builtins.toPath ./allowed-signers;
 
       commit.template = builtins.toPath ./git-message;
       hub.protocol = "ssh";
