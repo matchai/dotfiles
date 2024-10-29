@@ -4,6 +4,7 @@ let user = "matchai";
 in {
   homebrew = {
     enable = true;
+    brews = pkgs.callPackage ./apps/brews.nix { };
     casks = pkgs.callPackage ./apps/casks.nix { };
   };
 

@@ -13,8 +13,12 @@ with pkgs; [
   lunarvim # pre-configured vim
   tealdeer # rust implementation of `tldr`
 
+  # macOS
+  mas
+  duti
+
   # Workflow
-  _1password
+  _1password # The CLI for 1Password
   doctl
 
   # Nix related
