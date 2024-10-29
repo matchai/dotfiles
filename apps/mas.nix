@@ -1,3 +1,4 @@
+# Gotten from running `mas list`
 {
   HandMirror = 1502839586;
   AutoMute = 1118136179;
