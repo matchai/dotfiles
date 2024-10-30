@@ -14,6 +14,10 @@
   "fantastical"
   "mullvadvpn"
 
+  # Design
+  "ogdesign-eagle"
+  "figma"
+
   # Productivity
   "linear-linear"
   "notion"

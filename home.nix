@@ -3,7 +3,7 @@ _:
 let user = "matchai";
 in {
   homebrew = {
-    enable = false;
+    enable = true;
 
     onActivation = {
       cleanup = "zap";

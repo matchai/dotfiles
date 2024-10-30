@@ -5,4 +5,5 @@
   # Commonly used CLIs
   "playwright"
   "prettier"
+  "turbo"
 ]
