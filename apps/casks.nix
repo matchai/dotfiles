@@ -6,6 +6,7 @@
   "karabiner-elements"
   "music-decoy"
   "raycast"
+  "yellowdot"
 
   # Personal
   "1password"
