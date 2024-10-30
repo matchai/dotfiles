@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
+_:
 
 let user = "matchai";
 in {
   homebrew = {
-    enable = true;
+    enable = false;
 
     onActivation = {
       cleanup = "zap";
@@ -18,24 +18,8 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     users.${user} = {
-      imports = [ ./shell.nix ./git ];
-
+      imports = [ ./shell.nix ./git ./apps/packages.nix ];
       home.stateVersion = "24.05";
-
-      home.packages = pkgs.callPackage ./apps/packages.nix { };
-
-      # Setup dev tool version manager
-      programs.mise = {
-        enable = true;
-        globalConfig.tools = {
-          node = "lts";
-          usage = "latest";
-        };
-      };
-
-      # Have some default packages pre-installed
-      home.file.".default-npm-packages".text =
-        lib.strings.concatLines (import ./apps/npm-packages.nix);
     };
   };
 }
