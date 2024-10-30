@@ -9,7 +9,6 @@
     ripgrep # fancy version of `grep`
     procs # fancy version of `ps`
     bottom # fancy version of `top`
-    lunarvim # pre-configured vim
 
     # Blocked by https://nixpk.gs/pr-tracker.html?pr=350035
     # mosh # fancy version of `ssh`
@@ -25,6 +24,11 @@
     # Nix related
     nil
     nixfmt
+
+    (pkgs.lunarvim.override {
+      # Remove the vim background color, making it transparent
+      globalConfig = "lvim.transparent_window = true";
+    })
   ];
 
   programs = {
