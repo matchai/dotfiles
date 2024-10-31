@@ -32,6 +32,8 @@
 
   # Browsers
   "arc"
+  "google-chrome"
+  "firefox"
 
   # Development
   "cursor"

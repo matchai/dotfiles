@@ -18,12 +18,12 @@
     duti
 
     # Workflow
-    _1password # The CLI for 1Password
+    _1password-cli
     doctl
 
     # Nix related
     nil
-    nixfmt
+    nixfmt-rfc-style
 
     (pkgs.lunarvim.override {
       # Remove the vim background color, making it transparent
