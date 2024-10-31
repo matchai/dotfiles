@@ -1,7 +1,13 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs.gitAndTools; [ diff-so-fancy gitui hub tig gh ];
+  home.packages = with pkgs.gitAndTools; [
+    diff-so-fancy
+    gitui
+    hub
+    tig
+    gh
+  ];
 
   programs.git = {
     enable = true;
@@ -10,8 +16,7 @@
     package = pkgs.gitAndTools.gitFull;
 
     signing = {
-      key =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
       signByDefault = true;
     };
 
@@ -31,20 +36,16 @@
       save = "!git add -A && git commit -v -m 'SAVEPOINT'";
       undo = "reset HEAD~1 --mixed";
       root = "rev-parse --show-toplevel";
-      wipe =
-        "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
-      findcommit =
-        "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
-      findmessage =
-        "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";
+      wipe = "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
+      findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
+      findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";
     };
 
     extraConfig = {
       # SSH signing
       commit.gpgsign = true;
       gpg.format = "ssh";
-      gpg.ssh.program =
-        "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
       commit.template = builtins.toPath ./git-message;
       hub.protocol = "ssh";

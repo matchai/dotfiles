@@ -1,7 +1,9 @@
 _:
 
-let user = "matchai";
-in {
+let
+  user = "matchai";
+in
+{
   homebrew = {
     enable = true;
 
@@ -18,7 +20,11 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     users.${user} = {
-      imports = [ ./shell.nix ./git ./apps/packages.nix ];
+      imports = [
+        ./shell.nix
+        ./git
+        ./apps/packages.nix
+      ];
       home.stateVersion = "24.05";
     };
   };

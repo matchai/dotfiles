@@ -47,6 +47,5 @@
   };
 
   # Setup mise's default npm packages
-  home.file.".default-npm-packages".text =
-    lib.strings.concatLines (import ./npm-packages.nix);
+  home.file.".default-npm-packages".text = lib.strings.concatLines (import ./npm-packages.nix);
 }

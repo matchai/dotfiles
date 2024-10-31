@@ -19,10 +19,8 @@ let
     oo = "open .";
     tree = "eza --tree";
     reload = "exec fish";
-    inflate =
-      ''ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'';
-    dark =
-      "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
+    inflate = ''ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'';
+    dark = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
   };
 
   shellAbbrs = {
@@ -43,10 +41,10 @@ let
     gfc = "git findcommit";
     gfm = "git findmessage";
     gui = "gitui";
-    gsu =
-      "git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD)";
+    gsu = "git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD)";
   };
-in {
+in
+{
   programs.atuin = {
     enable = true;
     flags = [ "--disable-up-arrow" ];
@@ -68,8 +66,7 @@ in {
   programs.starship = {
     enable = true;
     settings = {
-      format =
-        "$battery$username$hostname$directory$git_branch$git_status$git_state$cmd_duration$line_break$character";
+      format = "$battery$username$hostname$directory$git_branch$git_status$git_state$cmd_duration$line_break$character";
 
       directory.read_only = " ";
       battery = {
@@ -82,8 +79,7 @@ in {
         style = "bright-black";
       };
       git_status = {
-        format =
-          "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-black)($ahead_behind$stashed)]($style) ";
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-black)($ahead_behind$stashed)]($style) ";
         style = "cyan";
         conflicted = "​";
         untracked = "​";
