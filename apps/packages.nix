@@ -9,6 +9,9 @@
     ripgrep # fancy version of `grep`
     procs # fancy version of `ps`
     bottom # fancy version of `top`
+    xh # fancy version of `httpie`
+    yt-dlp # fancy version of `youtube-dl`
+    killport
 
     # Blocked by https://nixpk.gs/pr-tracker.html?pr=350035
     # mosh # fancy version of `ssh`

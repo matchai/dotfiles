@@ -154,4 +154,6 @@ in
     enableCompletion = true;
     history.extended = true;
   };
+
+  home.file.".hushlogin".text = "";
 }

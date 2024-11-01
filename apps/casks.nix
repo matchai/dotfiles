@@ -12,7 +12,11 @@
   "1password"
   "anki"
   "cleanshot"
+  "coconutbattery"
+  "daisydisk"
   "fantastical"
+  "jdownloader"
+  "keka"
   "mullvadvpn"
 
   # Design
