@@ -17,6 +17,7 @@
   "fantastical"
   "jdownloader"
   "keka"
+  "kekaexternalhelper"
   "mullvadvpn"
 
   # Design
