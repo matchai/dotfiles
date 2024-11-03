@@ -10,6 +10,7 @@ in
     onActivation = {
       cleanup = "zap";
       autoUpdate = true;
+      upgrade = true;
     };
 
     brews = import ./apps/brews.nix;

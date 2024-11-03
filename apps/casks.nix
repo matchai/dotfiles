@@ -13,6 +13,7 @@
   "anki"
   "cleanshot"
   "coconutbattery"
+  "crossover"
   "daisydisk"
   "fantastical"
   "jdownloader"
@@ -34,6 +35,7 @@
   "spotify"
   "stremio"
   "iina"
+  "nvidia-geforce-now"
 
   # Browsers
   "arc"
