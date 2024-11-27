@@ -25,8 +25,13 @@
     _1password-cli
     doctl
 
+    # Languages
+    php
+    php82Packages.composer
+
     # Nix related
     nil
+    nix-search-cli
     nixfmt-rfc-style
 
     (pkgs.lunarvim.override {
@@ -40,7 +45,9 @@
       enable = true;
       globalConfig.tools = {
         node = "lts";
+        deno = "latest";
         usage = "latest";
+        python = "latest";
       };
     };
 

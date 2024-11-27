@@ -4,13 +4,16 @@
   "discord"
   "flux"
   "karabiner-elements"
-  "music-decoy"
+  # Trying out Apple Music
+  # "music-decoy"
   "raycast"
   "yellowdot"
 
   # Personal
   "1password"
   "anki"
+  "automattic-texts"
+  "betterdisplay"
   "cleanshot"
   "coconutbattery"
   "crossover"
@@ -20,12 +23,15 @@
   "keka"
   "kekaexternalhelper"
   "mullvadvpn"
+  "pingplotter"
+  "replacicon"
 
   # Design
   "ogdesign-eagle"
   "figma"
 
   # Productivity
+  "deskpad"
   "linear-linear"
   "notion"
   "readdle-spark"
@@ -44,10 +50,13 @@
 
   # Development
   "cursor"
+  "get-api"
+  "httpie"
   "iterm2"
   "orbstack"
   "tableplus"
   "visual-studio-code"
+  "zed"
 
   # Fonts
   "font-fira-code-nerd-font"
