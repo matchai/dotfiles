@@ -27,6 +27,7 @@
   "replacicon"
 
   # Design
+  "adobe-creative-cloud"
   "ogdesign-eagle"
   "figma"
 
@@ -50,6 +51,7 @@
 
   # Development
   "cursor"
+  "cyberduck"
   "get-api"
   "httpie"
   "iterm2"
