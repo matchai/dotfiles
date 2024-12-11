@@ -19,8 +19,9 @@
   Xcode = 497799835;
 
   # Personal
+  Clay = 1463073824;
   Deliveries = 290986013;
-  Parcel = 639968404;
   Flighty = 1358823008;
   HiCoffee = 1507361706;
+  Parcel = 639968404;
 }

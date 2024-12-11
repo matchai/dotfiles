@@ -19,6 +19,7 @@
   "crossover"
   "daisydisk"
   "fantastical"
+  "imageoptim"
   "jdownloader"
   "keka"
   "kekaexternalhelper"
@@ -42,6 +43,7 @@
   "spotify"
   "stremio"
   "iina"
+  "league-of-legends"
   "nvidia-geforce-now"
 
   # Browsers
