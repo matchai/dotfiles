@@ -48,6 +48,7 @@
         deno = "latest";
         usage = "latest";
         python = "latest";
+        uv = "latest";
       };
     };
 

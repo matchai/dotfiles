@@ -13,7 +13,6 @@
     enable = true;
     userName = "Matan Kushner";
     userEmail = "hello@matchai.dev";
-    package = pkgs.gitAndTools.gitFull;
 
     signing = {
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
