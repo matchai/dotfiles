@@ -15,6 +15,7 @@
   "automattic-texts"
   "betterdisplay"
   "cleanshot"
+  "cloudflare-warp"
   "coconutbattery"
   "crossover"
   "daisydisk"
