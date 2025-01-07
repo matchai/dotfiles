@@ -27,7 +27,7 @@
 
     # Languages
     php
-    php82Packages.composer
+    php83Packages.composer
 
     # Nix related
     nil
