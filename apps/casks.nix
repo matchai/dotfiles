@@ -4,8 +4,7 @@
   "discord"
   "flux"
   "karabiner-elements"
-  # Trying out Apple Music
-  # "music-decoy"
+  "music-decoy"
   "raycast"
   "yellowdot"
 
