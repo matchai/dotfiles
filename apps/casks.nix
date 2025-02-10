@@ -14,7 +14,6 @@
   "automattic-texts"
   "betterdisplay"
   "cleanshot"
-  "cloudflare-warp"
   "coconutbattery"
   "crossover"
   "daisydisk"
@@ -27,6 +26,7 @@
   "mullvadvpn"
   "pingplotter"
   "replacicon"
+  "zen-browser"
 
   # Design
   "adobe-creative-cloud"
@@ -53,12 +53,14 @@
   "firefox"
 
   # Development
+  "android-studio"
   "cursor"
   "cyberduck"
   "get-api"
   "ghostty"
   "httpie"
   "iterm2"
+  "lens"
   "orbstack"
   "tableplus"
   "visual-studio-code"

@@ -11,11 +11,9 @@
     bottom # fancy version of `top`
     xh # fancy version of `httpie`
     yt-dlp # fancy version of `youtube-dl`
+    mosh # fancy version of `ssh`
     killport
     hexyl
-
-    # Blocked by https://nixpk.gs/pr-tracker.html?pr=350035
-    # mosh # fancy version of `ssh`
 
     # macOS
     mas
@@ -48,6 +46,7 @@
         deno = "latest";
         usage = "latest";
         python = "latest";
+        rust = "latest";
         uv = "latest";
       };
     };
