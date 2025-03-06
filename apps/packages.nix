@@ -47,6 +47,7 @@
         usage = "latest";
         python = "latest";
         rust = "latest";
+        ruby = "latest";
         uv = "latest";
       };
     };

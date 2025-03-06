@@ -3,4 +3,5 @@
   "macos-trash"
   # Development
   "cocoapods"
+  "llvm"
 ]

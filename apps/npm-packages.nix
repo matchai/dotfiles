@@ -4,6 +4,6 @@
 
   # Commonly used CLIs
   "playwright"
-  "prettier"
+  # "prettier"
   "turbo"
 ]

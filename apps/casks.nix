@@ -1,12 +1,18 @@
 [
   # macOS Must-Haves
+  "AppCleaner"
   "bartender"
-  "discord"
   "flux"
   "karabiner-elements"
   "music-decoy"
   "raycast"
   "yellowdot"
+
+  # Communication
+  "discord"
+  "zoom"
+  "readdle-spark"
+  "slack"
 
   # Personal
   "1password"
@@ -37,15 +43,13 @@
   "deskpad"
   "linear-linear"
   "notion"
-  "readdle-spark"
-  "slack"
 
   # Entertainment
   "spotify"
+  "steam"
   "stremio"
   "iina"
   "league-of-legends"
-  "nvidia-geforce-now"
 
   # Browsers
   "arc"
@@ -64,6 +68,8 @@
   "orbstack"
   "tableplus"
   "visual-studio-code"
+  "windsurf"
+  "yaak"
   "zed"
 
   # Fonts

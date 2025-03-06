@@ -3,7 +3,6 @@ _:
 let
   shellAliases = {
     # Apps... but better
-    git = "hub";
     v = "lvim";
     vim = "lvim";
     ls = "eza";

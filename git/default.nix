@@ -4,7 +4,6 @@
   home.packages = with pkgs.gitAndTools; [
     diff-so-fancy
     gitui
-    hub
     tig
     gh
   ];
@@ -38,6 +37,11 @@
       wipe = "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
       findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
       findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";
+
+      # gh aliases
+      sync = "!gh repo sync";
+      browse = "!gh browse";
+      cl = "!f() { gh repo clone $1; }; f";
     };
 
     extraConfig = {
@@ -47,18 +51,32 @@
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
       commit.template = builtins.toPath ./git-message;
-      hub.protocol = "ssh";
-
-      # If no upstream branch is specified, push to the branch with the same
-      # name as the current branch
-      push.default = "current";
 
       core = {
         editor = "lvim";
         pager = "diff-so-fancy | less --tabs=4 -RFX";
       };
 
+      push = {
+        default = "simple";
+        autoSetupRemote = true;
+        followTags = true;
+      };
+
+      fetch = {
+        prune = true;
+        pruneTags = true;
+        all = true;
+      };
+
+      rebase = {
+        autoSquash = true;
+        autoStash = true;
+        updateRefs = true;
+      };
+
       init.defaultBranch = "main";
+      branch.sort = "-committerdate";
       pull.rebase = true;
       color.ui = true;
 
@@ -76,5 +94,4 @@
         whitespace = "red reverse";
       };
     };
-  };
-}
+  };}
