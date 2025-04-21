@@ -1,25 +1,27 @@
 [
   # macOS Must-Haves
   "AppCleaner"
-  "bartender"
   "flux"
+  "jordanbaird-ice"
   "karabiner-elements"
-  "music-decoy"
+  # Using Apple Music
+  # "music-decoy"
   "raycast"
   "yellowdot"
 
   # Communication
+  "automattic-texts"
   "discord"
-  "zoom"
   "readdle-spark"
   "slack"
+  "zoom"
 
   # Personal
   "1password"
   "anki"
-  "automattic-texts"
   "betterdisplay"
   "cleanshot"
+  "cloudflare-warp"
   "coconutbattery"
   "crossover"
   "daisydisk"

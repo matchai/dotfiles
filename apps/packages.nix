@@ -14,6 +14,7 @@
     mosh # fancy version of `ssh`
     killport
     hexyl
+    jujutsu
 
     # macOS
     mas
@@ -24,7 +25,7 @@
     doctl
 
     # Languages
-    php
+    php83
     php83Packages.composer
 
     # Nix related
