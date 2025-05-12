@@ -33,7 +33,6 @@
   "mullvadvpn"
   "pingplotter"
   "replacicon"
-  "zen-browser"
 
   # Design
   "adobe-creative-cloud"
@@ -50,7 +49,6 @@
   "steam"
   "stremio"
   "iina"
-  "league-of-legends"
 
   # Browsers
   "arc"
@@ -58,10 +56,8 @@
   "firefox"
 
   # Development
-  "android-studio"
   "cursor"
   "cyberduck"
-  "get-api"
   "ghostty"
   "httpie"
   "iterm2"
