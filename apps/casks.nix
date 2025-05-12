@@ -4,8 +4,7 @@
   "flux"
   "jordanbaird-ice"
   "karabiner-elements"
-  # Using Apple Music
-  # "music-decoy"
+  "music-decoy"
   "raycast"
   "yellowdot"
 
