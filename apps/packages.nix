@@ -15,6 +15,7 @@
     killport
     hexyl
     jujutsu
+    mysql80
 
     # macOS
     mas
@@ -42,14 +43,17 @@
   programs = {
     mise = {
       enable = true;
-      globalConfig.tools = {
-        node = "lts";
-        deno = "latest";
-        usage = "latest";
-        python = "latest";
-        rust = "latest";
-        ruby = "latest";
-        uv = "latest";
+      globalConfig = {
+        tools = {
+          node = "lts";
+          deno = "latest";
+          usage = "latest";
+          python = "latest";
+          rust = "latest";
+          ruby = "latest";
+          uv = "latest";
+        };
+        settings.idiomatic_version_file_enable_tools = ["node"];
       };
     };
 
