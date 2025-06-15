@@ -15,7 +15,6 @@
     killport
     hexyl
     jujutsu
-    mysql80
 
     # macOS
     mas
@@ -24,10 +23,6 @@
     # Workflow
     _1password-cli
     doctl
-
-    # Languages
-    php83
-    php83Packages.composer
 
     # Nix related
     nil

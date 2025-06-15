@@ -12,7 +12,6 @@
   "automattic-texts"
   "discord"
   "readdle-spark"
-  "slack"
   "zoom"
 
   # Personal
@@ -29,19 +28,16 @@
   "jdownloader"
   "keka"
   "kekaexternalhelper"
-  "lm-studio"
-  "mullvadvpn"
-  "pingplotter"
+  "mullvad-vpn"
   "replacicon"
+  "syncthing"
 
   # Design
-  "adobe-creative-cloud"
   "ogdesign-eagle"
   "figma"
 
   # Productivity
   "deskpad"
-  "linear-linear"
   "notion"
 
   # Entertainment
@@ -54,14 +50,15 @@
   "arc"
   "google-chrome"
   "firefox"
+  "thebrowsercompany-dia"
 
   # Development
   "cursor"
   "cyberduck"
+  "dash"
   "ghostty"
   "httpie"
   "iterm2"
-  "lens"
   "orbstack"
   "tableplus"
   "visual-studio-code"

@@ -4,6 +4,7 @@ let
   user = "matchai";
 in
 {
+  system.primaryUser = user;
   homebrew = {
     enable = true;
 

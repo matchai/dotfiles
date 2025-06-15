@@ -8,15 +8,14 @@ let
     ls = "eza";
     cat = "bat";
     find = "fd";
+    tree = "eza --tree";
 
     # ls
     l = "ls -l";
     ll = "ls -la";
 
     # misc
-    e = "emacs";
     oo = "open .";
-    tree = "eza --tree";
     reload = "exec fish";
     inflate = ''ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'';
     dark = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
@@ -141,6 +140,7 @@ in
     '';
 
     functions = {
+      tableplus = ''open -a TablePlus $argv'';
       idea = ''open -a "IntelliJ IDEA.app" $argv'';
       fish_greeting = "";
     };
