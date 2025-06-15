@@ -26,6 +26,7 @@ in
       imports = [
         ./shell.nix
         ./git
+        ./config/ssh.nix
         ./apps/packages.nix
       ];
       home.stateVersion = "24.05";
