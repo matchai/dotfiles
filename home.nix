@@ -4,7 +4,8 @@ let
   user = "matchai";
 in
 {
-  system.primaryUser = user;
+  nix.enable = false;
+
   homebrew = {
     enable = true;
 
@@ -28,6 +29,15 @@ in
         ./apps/packages.nix
       ];
       home.stateVersion = "24.05";
+    };
+  };
+
+  system = {
+    primaryUser = user;
+    defaults.dock = {
+      show-recents = false;
+      persistent-apps = [];
+      persistent-others = [ "/Users/${user}/Downloads" ];
     };
   };
 }

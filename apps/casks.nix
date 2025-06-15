@@ -19,7 +19,6 @@
   "anki"
   "betterdisplay"
   "cleanshot"
-  "cloudflare-warp"
   "coconutbattery"
   "crossover"
   "daisydisk"
