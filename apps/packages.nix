@@ -48,7 +48,12 @@
           ruby = "latest";
           uv = "latest";
         };
-        settings.idiomatic_version_file_enable_tools = ["node"];
+        settings = {
+          # Required for hooks to work
+          experimental = true;
+          idiomatic_version_file_enable_tools = ["node"];
+        };
+        hooks.postinstall = "npx corepack enable";
       };
     };
 

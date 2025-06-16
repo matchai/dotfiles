@@ -52,6 +52,7 @@ in
     enable = true;
     options = [ "--cmd j" ];
   };
+
   programs.mise = {
     enable = true;
 

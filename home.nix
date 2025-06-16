@@ -5,6 +5,9 @@ let
 in
 {
   nix.enable = false;
+  system.primaryUser = user;
+
+  imports = [ ./config/defaults.nix ];
 
   homebrew = {
     enable = true;
@@ -30,18 +33,6 @@ in
         ./apps/packages.nix
       ];
       home.stateVersion = "24.05";
-    };
-  };
-
-  system = {
-    primaryUser = user;
-    defaults.dock = {
-      tilesize = 48;
-      autohide-time-modifier = 0.7;
-      autohide = true;
-      show-recents = false;
-      persistent-apps = [];
-      persistent-others = [ "/Users/${user}/Downloads" ];
     };
   };
 }
