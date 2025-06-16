@@ -36,6 +36,9 @@ in
   system = {
     primaryUser = user;
     defaults.dock = {
+      tilesize = 48;
+      autohide-time-modifier = 0.7;
+      autohide = true;
       show-recents = false;
       persistent-apps = [];
       persistent-others = [ "/Users/${user}/Downloads" ];
