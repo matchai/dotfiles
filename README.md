@@ -24,5 +24,5 @@ sudo darwin-rebuild switch --flake ~/.config/nixpkgs
 - [x] Manage mise runtimes
 - [x] Manage brew packages
 - [x] Manage mas packages
-- [ ] Manage macOS defaults configuration
+- [x] Manage macOS defaults configuration
 - [ ] Manage dmgs directly downloaded

@@ -26,7 +26,7 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nix-darwin,
       home-manager,
@@ -34,63 +34,27 @@
       homebrew-core,
       homebrew-bundle,
       homebrew-cask,
-      nixpkgs,
+      ...
     }:
     let
       user = "matchai";
-      configuration =
-        { pkgs, ... }:
-        {
-          # List packages installed in system profile. To search by name, run:
-          # $ nix-env -qaP | grep wget
-          environment.systemPackages = [ pkgs.vim ];
-          environment.shells = [pkgs.fish];
 
-          # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
+      # Define the entire system configuration once and store it in a variable.
+      darwinSystem = nix-darwin.lib.darwinSystem {
+        # This makes the `user` variable available to all modules.
+        specialArgs = { inherit self user; };
 
-          # Create /etc/zshrc that loads the nix-darwin environment.
-          # programs.zsh.enable = true; # default shell on catalina
-          programs.fish.enable = true;
-
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 5;
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = "aarch64-darwin";
-          nixpkgs.config.allowUnfree = true;
-
-          # nixpkgs.overlays =
-          #   # Apply each overlay found in the /overlays directory
-          #   let path = ./overlays;
-          #   in with builtins;
-          #   map (n: import (path + ("/" + n))) (filter (n:
-          #     match ".*\\.nix" n != null
-          #     || pathExists (path + ("/" + n + "/default.nix")))
-          #     (attrNames (readDir path)));
-
-          users.knownUsers = [ user ];
-          users.users.${user} = {
-            home = "/Users/${user}";
-            shell = pkgs.fish;
-            uid = 501;
-          };
-        };
-    in
-    {
-      darwinConfigurations."Matans-MacBook-Air" = nix-darwin.lib.darwinSystem {
         modules = [
-          configuration
+          # Import the main system configuration
+          ./configuration.nix
+
+          # Import modules for home-manager and nix-homebrew
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
               enable = true;
-              user = user;
+              inherit user; # Use the user variable defined above
               taps = {
                 "homebrew/homebrew-core" = homebrew-core;
                 "homebrew/homebrew-cask" = homebrew-cask;
@@ -109,11 +73,16 @@
             }
           )
 
+          # Import your main home.nix configuration
           ./home.nix
         ];
       };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Matans-MacBook-Air".pkgs;
+    in
+    {
+      darwinConfigurations."Matans-MacBook-Air-M2" = darwinSystem;
+      darwinConfigurations."Matans-MacBook-Air-M4" = darwinSystem;
+
+      darwinPackages = darwinSystem.pkgs;
     };
 }
