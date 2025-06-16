@@ -4,6 +4,7 @@
   user,
   ...
 }:
+
 {
   # List packages installed in system profile.
   environment.systemPackages = [ pkgs.vim ];

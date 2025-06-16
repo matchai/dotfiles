@@ -1,8 +1,5 @@
-_:
+{ user, ... }:
 
-let
-  user = "matchai";
-in
 {
   nix.enable = false;
   system.primaryUser = user;
