@@ -18,6 +18,9 @@
       # Speed up the key repeat rate
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
+
+      # Disable "Natural Scrolling" (i.e. scroll the page, rather than the scrollbar)
+      "com.apple.swipescrolldirection" = false;
     };
   };
 }

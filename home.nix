@@ -4,7 +4,10 @@
   nix.enable = false;
   system.primaryUser = user;
 
-  imports = [ ./config/defaults.nix ];
+  imports = [
+    ./config/defaults.nix
+    ./config/karabiner.nix
+  ];
 
   homebrew = {
     enable = true;

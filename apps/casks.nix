@@ -3,7 +3,6 @@
   "AppCleaner"
   "flux"
   "jordanbaird-ice"
-  "karabiner-elements"
   "music-decoy"
   "raycast"
   "yellowdot"
