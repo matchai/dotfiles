@@ -40,23 +40,23 @@ let
     ];
   };
 
-  karabinerDir = pkgs.runCommand "karabiner-config-dir" {} ''
-    # Create the output directory ($out is a special variable for the store path)
-    mkdir -p $out
+  # Generate the Karabiner config JSON file.
+  karabinerJsonFile = pkgs.writeText "karabiner-config.json" (builtins.toJSON karabinerConfig);
 
-    cat <<EOF > $out/karabiner.json
-    ${builtins.toJSON karabinerConfig}
-    EOF
-  '';
+  # Karabiner requires the config dir to be the symlink, not the file.
+  karabinerDir = pkgs.linkFarm "karabiner-config-dir" [
+    {
+      name = "karabiner.json";
+      path = karabinerJsonFile;
+    }
+  ];
 
 in
 {
-  homebrew.casks = [
-    "karabiner-elements"
-  ];
+  homebrew.casks = [ "karabiner-elements" ];
 
   home-manager.users.${user} = {
-    home.file.".config/karabiner" = {
+    xdg.configFile."karabiner" = {
       source = karabinerDir;
     };
   };
