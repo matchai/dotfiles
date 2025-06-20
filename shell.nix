@@ -43,6 +43,8 @@ let
   };
 in
 {
+  # Merge abbreviations with aliases for non-fish shells
+  home.shellAliases = shellAliases // shellAbbrs;
   programs.atuin = {
     enable = true;
     flags = [ "--disable-up-arrow" ];
@@ -91,8 +93,8 @@ in
   };
 
   programs.fish = {
-    inherit shellAliases shellAbbrs;
     enable = true;
+    inherit shellAbbrs;
 
     shellInit = ''
       # Set editor
@@ -135,7 +137,6 @@ in
   };
 
   programs.zsh = {
-    inherit shellAliases;
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
