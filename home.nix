@@ -7,6 +7,7 @@
   imports = [
     ./config/defaults.nix
     ./config/karabiner.nix
+    ./config/iterm2
   ];
 
   homebrew = {
