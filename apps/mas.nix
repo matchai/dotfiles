@@ -23,5 +23,4 @@
   Deliveries = 290986013;
   Flighty = 1358823008;
   HiCoffee = 1507361706;
-  Parcel = 639968404;
 }
