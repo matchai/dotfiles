@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, user, ... }:
 
 {
   system.defaults = {
@@ -7,7 +7,7 @@
       autohide-time-modifier = 0.7;
       autohide = true;
       show-recents = false;
-      persistent-apps = [];
+      persistent-apps = [ ];
       persistent-others = [ "/Users/${config.system.primaryUser}/Downloads" ];
     };
 
@@ -21,6 +21,14 @@
 
       # Disable "Natural Scrolling" (i.e. scroll the page, rather than the scrollbar)
       "com.apple.swipescrolldirection" = false;
+    };
+  };
+
+  # User-specific defaults
+  home-manager.users.${user}.targets.darwin.defaults = {
+    # Hide the date from the menu bar clock. It's shown in Fantastical's icon
+    "com.apple.menuextra.clock" = {
+      ShowDate = 2;
     };
   };
 }
