@@ -100,6 +100,10 @@ in
       # Set editor
       set -x EDITOR lvim
 
+      # Set a PNPM home shared across versions
+      set -gx PNPM_HOME "/Users/matchai/Library/pnpm"
+      set -gx PATH "$PNPM_HOME" $PATH
+
       # Set fish syntax highlighting
       set -g fish_color_autosuggestion '555'  'brblack'
       set -g fish_color_cancel -r
