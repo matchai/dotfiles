@@ -1,4 +1,5 @@
 [
+  "granola"
   "slack"
   "linear-linear"
 ]
