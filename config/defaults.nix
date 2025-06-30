@@ -43,5 +43,9 @@
     "com.apple.menuextra.clock" = {
       ShowDate = 2;
     };
+
+    "com.apple.TextEdit" = {
+      RichText = false;
+    };
   };
 }
