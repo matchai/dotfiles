@@ -44,6 +44,7 @@
       ShowDate = 2;
     };
 
+    # New documents in TextEdit are plain text
     "com.apple.TextEdit" = {
       RichText = false;
     };
