@@ -40,9 +40,9 @@
       user = "matchai";
 
       # Define the entire system configuration once and store it in a variable.
-      darwinSystem = nix-darwin.lib.darwinSystem {
+      mkDarwinSystem = hostname: nix-darwin.lib.darwinSystem {
         # This makes the `user` variable available to all modules.
-        specialArgs = { inherit self user; };
+        specialArgs = { inherit self user hostname; };
 
         modules = [
           # Import the main system configuration
@@ -80,9 +80,9 @@
 
     in
     {
-      darwinConfigurations."Matans-MacBook-Air-M2" = darwinSystem;
-      darwinConfigurations."Matans-MacBook-Air-M4" = darwinSystem;
+      darwinConfigurations."Matans-MacBook-Air-M2" = mkDarwinSystem "Matans-MacBook-Air-M2";
+      darwinConfigurations."Matans-MacBook-Air-M4" = mkDarwinSystem "Matans-MacBook-Air-M4";
 
-      darwinPackages = darwinSystem.pkgs;
+      darwinPackages = (mkDarwinSystem "Matans-MacBook-Air-M2").pkgs;
     };
 }

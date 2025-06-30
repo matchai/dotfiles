@@ -1,5 +1,15 @@
-{ user, ... }:
+{
+  user,
+  hostname,
+  ...
+}:
 
+let
+  commonCasks = import ./apps/casks.nix;
+  # Load host-specific casks if they exist
+  hostCasksFile = ./apps/hosts/${hostname}/casks.nix;
+  hostCasks = if builtins.pathExists hostCasksFile then import hostCasksFile else [ ];
+in
 {
   nix.enable = false;
   system.primaryUser = user;
@@ -20,7 +30,7 @@
     };
 
     brews = import ./apps/brews.nix;
-    casks = import ./apps/casks.nix;
+    casks = commonCasks ++ hostCasks;
     masApps = import ./apps/mas.nix;
   };
 

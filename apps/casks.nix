@@ -8,8 +8,7 @@
   "yellowdot"
 
   # Communication
-  "automattic-texts"
-  "discord"
+  "beeper"
   "readdle-spark"
   "zoom"
 
@@ -19,11 +18,9 @@
   "betterdisplay"
   "cleanshot"
   "coconutbattery"
-  "crossover"
   "daisydisk"
   "fantastical"
   "imageoptim"
-  "jdownloader"
   "keka"
   "kekaexternalhelper"
   "mullvad-vpn"
@@ -35,13 +32,10 @@
   "figma"
 
   # Productivity
-  "deskpad"
   "notion"
 
   # Entertainment
   "spotify"
-  "steam"
-  "stremio"
   "iina"
 
   # Browsers
