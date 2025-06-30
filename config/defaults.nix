@@ -14,6 +14,19 @@
     NSGlobalDomain = {
       # Disable the press-and-hold feature for accented characters
       ApplePressAndHoldEnabled = false;
+      # Enable keyboard navigation to move focus between controls
+      AppleKeyboardUIMode = 2;
+
+      # Disable the automatic capitalization of words
+      NSAutomaticCapitalizationEnabled = false;
+      # Disable the automatic period substitution
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      # Disable the automatic quote substitution
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      # Disable the automatic dash substitution
+      NSAutomaticDashSubstitutionEnabled = false;
+      # Disable the automatic spelling correction
+      NSAutomaticSpellingCorrectionEnabled = false;
 
       # Speed up the key repeat rate
       InitialKeyRepeat = 15;
