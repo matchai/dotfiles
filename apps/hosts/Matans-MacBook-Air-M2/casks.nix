@@ -1,8 +1,16 @@
 [
-  "crossover"
-  "deskpad"
+  # Communication
   "discord"
-  "jdownloader"
+
+  # Development
+  "zed"
+
+  # Entertainment
   "steam"
   "stremio"
+
+  # Personal
+  "crossover"
+  "deskpad"
+  "jdownloader"
 ]

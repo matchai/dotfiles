@@ -1,4 +1,5 @@
 [
+  # Productivity
   "chatgpt"
   "granola"
   "slack"

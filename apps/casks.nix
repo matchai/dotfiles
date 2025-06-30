@@ -7,10 +7,39 @@
   "raycast"
   "yellowdot"
 
+  # Browsers
+  "arc"
+  "google-chrome"
+  "firefox"
+  "thebrowsercompany-dia"
+
   # Communication
   "beeper"
   "readdle-spark"
   "zoom"
+
+  # Entertainment
+  "spotify"
+  "iina"
+
+  # Design
+  "ogdesign-eagle"
+  "figma"
+
+  # Development
+  "cursor"
+  "cyberduck"
+  "dash"
+  "ghostty"
+  "httpie"
+  "orbstack"
+  "tableplus"
+  "visual-studio-code"
+  "windsurf"
+  "yaak"
+
+  # Fonts
+  "font-fira-code-nerd-font"
 
   # Personal
   "1password"
@@ -27,36 +56,7 @@
   "replacicon"
   "syncthing"
 
-  # Design
-  "ogdesign-eagle"
-  "figma"
-
   # Productivity
   "notion"
 
-  # Entertainment
-  "spotify"
-  "iina"
-
-  # Browsers
-  "arc"
-  "google-chrome"
-  "firefox"
-  "thebrowsercompany-dia"
-
-  # Development
-  "cursor"
-  "cyberduck"
-  "dash"
-  "ghostty"
-  "httpie"
-  "orbstack"
-  "tableplus"
-  "visual-studio-code"
-  "windsurf"
-  "yaak"
-  "zed"
-
-  # Fonts
-  "font-fira-code-nerd-font"
 ]
