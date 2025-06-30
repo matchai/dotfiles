@@ -14,6 +14,7 @@
     mosh # fancy version of `ssh`
     killport
     hexyl
+    graphite-cli
     jujutsu
 
     # macOS
