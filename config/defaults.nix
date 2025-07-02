@@ -39,7 +39,7 @@
       KeyRepeat = 2;
 
       # Disable "Natural Scrolling" (i.e. scroll the page, rather than the scrollbar)
-      "com.apple.swipescrolldirection" = false;
+      "com.apple.swipescrolldirection" = true;
     };
   };
 

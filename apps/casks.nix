@@ -15,6 +15,7 @@
 
   # Communication
   "beeper"
+  "discord"
   "readdle-spark"
   "zoom"
 

@@ -1,7 +1,4 @@
 [
-  # Communication
-  "discord"
-
   # Development
   "zed"
 
