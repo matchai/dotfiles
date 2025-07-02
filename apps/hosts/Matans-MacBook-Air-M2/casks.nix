@@ -10,4 +10,5 @@
   "crossover"
   "deskpad"
   "jdownloader"
+  "syncthing-app"
 ]

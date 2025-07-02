@@ -1,7 +1,7 @@
 [
   # macOS Must-Haves
-  "AppCleaner"
-  "flux"
+  "appcleaner"
+  "flux-app"
   "jordanbaird-ice"
   "music-decoy"
   "raycast"
@@ -32,7 +32,6 @@
   "cyberduck"
   "dash"
   "ghostty"
-  "httpie"
   "orbstack"
   "tableplus"
   "visual-studio-code"
@@ -55,7 +54,6 @@
   "kekaexternalhelper"
   "mullvad-vpn"
   "replacicon"
-  "syncthing"
 
   # Productivity
   "notion"

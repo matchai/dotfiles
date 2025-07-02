@@ -50,6 +50,11 @@
       ShowDate = 2;
     };
 
+    # Disable the "reveal desktop" feature when clicking on the desktop
+    "com.apple.WindowManager" = {
+      EnableStandardClickToShowDesktop = false;
+    };
+
     # New documents in TextEdit are plain text
     "com.apple.TextEdit" = {
       RichText = false;
