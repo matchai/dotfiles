@@ -13,6 +13,8 @@
     userName = "Matan Kushner";
     userEmail = "hello@matchai.dev";
 
+    lfs.enable = true;
+
     signing = {
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
       signByDefault = true;
