@@ -4,4 +4,5 @@
   "granola"
   "slack"
   "linear-linear"
+  "notion-calendar"
 ]

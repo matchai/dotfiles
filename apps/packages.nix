@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    # CLIs
+    # CLIs but better
     bat # fancy version of `cat`
     fd # fancy version of `find`
     eza # fancy version of `ls`
@@ -12,18 +12,17 @@
     xh # fancy version of `httpie`
     yt-dlp # fancy version of `youtube-dl`
     mosh # fancy version of `ssh`
-    killport
+
+    # Development
+    biome
     hexyl
     graphite-cli
     jujutsu
+    killport
 
     # macOS
     mas
     duti
-
-    # Workflow
-    _1password-cli
-    doctl
 
     # Nix related
     nil
@@ -52,7 +51,7 @@
         settings = {
           # Required for hooks to work
           experimental = true;
-          idiomatic_version_file_enable_tools = ["node"];
+          idiomatic_version_file_enable_tools = [ "node" ];
         };
         hooks.postinstall = "npx corepack enable";
       };
