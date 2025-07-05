@@ -14,6 +14,7 @@
     mosh # fancy version of `ssh`
 
     # Development
+    ast-grep
     biome
     hexyl
     graphite-cli
