@@ -17,6 +17,11 @@
       wvous-tr-corner = 1;
     };
 
+    finder = {
+      # Open Finder in the home directory by default
+      NewWindowTarget = "Home";
+    };
+
     NSGlobalDomain = {
       # Disable the press-and-hold feature for accented characters
       ApplePressAndHoldEnabled = false;
@@ -45,6 +50,11 @@
 
   # User-specific defaults
   home-manager.users.${user}.targets.darwin.defaults = {
+    # Display Finder in list view by default
+    "com.apple.finder" = {
+      FXPreferredViewStyle = "Nlsv";
+    };
+
     # Hide the date from the menu bar clock. It's shown in Fantastical's icon
     "com.apple.menuextra.clock" = {
       ShowDate = 2;

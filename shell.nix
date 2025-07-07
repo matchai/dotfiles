@@ -9,6 +9,7 @@ let
     cat = "bat";
     find = "fd";
     tree = "eza --tree";
+    code = "cursor";
 
     # ls
     l = "ls -l";
