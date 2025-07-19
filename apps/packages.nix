@@ -35,9 +35,7 @@ in
     duti
 
     # Nix related
-    nil
     nix-search-cli
-    nixfmt-rfc-style
 
     (pkgs.lunarvim.override {
       # Remove the vim background color, making it transparent
