@@ -1,14 +1,17 @@
-{
-  user,
-  hostname,
-  ...
-}:
+{ user, hostname, ... }:
 
 let
   commonCasks = import ./apps/casks.nix;
-  # Load host-specific casks if they exist
   hostCasksFile = ./apps/hosts/${hostname}/casks.nix;
   hostCasks = if builtins.pathExists hostCasksFile then import hostCasksFile else [ ];
+
+  commonBrews = import ./apps/brews.nix;
+  hostBrewsFile = ./apps/hosts/${hostname}/brews.nix;
+  hostBrews = if builtins.pathExists hostBrewsFile then import hostBrewsFile else [ ];
+
+  commonMasApps = import ./apps/mas.nix;
+  hostMasAppsFile = ./apps/hosts/${hostname}/mas.nix;
+  hostMasApps = if builtins.pathExists hostMasAppsFile then import hostMasAppsFile else [ ];
 in
 {
   nix.enable = false;
@@ -36,6 +39,8 @@ in
 
   home-manager = {
     useGlobalPkgs = true;
+    extraSpecialArgs = { inherit hostname; };
+
     users.${user} = {
       imports = [
         ./shell.nix

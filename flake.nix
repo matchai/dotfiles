@@ -34,15 +34,17 @@
       homebrew-core,
       homebrew-bundle,
       homebrew-cask,
+      nixpkgs,
       ...
     }:
     let
       user = "matchai";
+      lib = nixpkgs.lib;
 
       # Define the entire system configuration once and store it in a variable.
       mkDarwinSystem = hostname: nix-darwin.lib.darwinSystem {
         # This makes the `user` variable available to all modules.
-        specialArgs = { inherit self user hostname; };
+        specialArgs = { inherit self user hostname lib; };
 
         modules = [
           # Import the main system configuration

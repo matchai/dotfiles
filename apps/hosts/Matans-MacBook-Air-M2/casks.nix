@@ -3,7 +3,6 @@
   "zed"
 
   # Entertainment
-  "steam"
   "stremio"
 
   # Personal

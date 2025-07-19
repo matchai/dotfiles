@@ -21,6 +21,7 @@
 
   # Entertainment
   "spotify"
+  "steam"
   "iina"
 
   # Design
@@ -35,7 +36,6 @@
   "orbstack"
   "tableplus"
   "visual-studio-code"
-  "windsurf"
   "yaak"
 
   # Fonts
