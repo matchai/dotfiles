@@ -22,10 +22,14 @@ in
     yt-dlp # fancy version of `youtube-dl`
     mosh # fancy version of `ssh`
 
+    # Productivity
+    ffmpeg
+
     # Development
     ast-grep
     biome
     hexyl
+    hyperfine
     graphite-cli
     jujutsu
     killport
