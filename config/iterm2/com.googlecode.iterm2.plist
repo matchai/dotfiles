@@ -358,6 +358,22 @@
 	<false/>
 	<key>FocusFollowsMouse</key>
 	<true/>
+	<key>GlobalKeyMap</key>
+	<dict>
+		<key>0xd-0x20000-0x24</key>
+		<dict>
+			<key>Action</key>
+			<integer>12</integer>
+			<key>Keycode</key>
+			<integer>13</integer>
+			<key>Modifiers</key>
+			<integer>131072</integer>
+			<key>Text</key>
+			<string>\n</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideActivityIndicator</key>
@@ -1541,7 +1557,7 @@
 				<key>action</key>
 				<string>editor</string>
 				<key>editor</key>
-				<string>com.microsoft.VSCode</string>
+				<string>com.todesktop.230313mzl4w4u92</string>
 				<key>text</key>
 				<string></string>
 			</dict>
@@ -1654,6 +1670,8 @@
 	<integer>50</integer>
 	<key>TerminalVMargin</key>
 	<integer>20</integer>
+	<key>URLHandlersByGuid</key>
+	<dict/>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>

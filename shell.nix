@@ -9,7 +9,6 @@ let
     cat = "bat";
     find = "fd";
     tree = "eza --tree";
-    code = "cursor";
 
     # ls
     l = "ls -l";
@@ -137,6 +136,7 @@ in
     functions = {
       tableplus = ''open -a TablePlus $argv'';
       idea = ''open -a "IntelliJ IDEA.app" $argv'';
+      code = ''if test (count $argv) -eq 0; command cursor (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command cursor $argv[1]; end;'';
       fish_greeting = "";
     };
   };

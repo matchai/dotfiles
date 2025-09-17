@@ -3,14 +3,16 @@
   "appcleaner"
   "flux-app"
   "jordanbaird-ice"
-  "music-decoy"
+  # Using Apple Music
+  # "music-decoy"
   "raycast"
   "yellowdot"
 
   # Browsers
   "arc"
-  "google-chrome"
   "firefox"
+  "google-chrome"
+  "orion"
   "thebrowsercompany-dia"
 
   # Communication
@@ -22,6 +24,7 @@
   # Entertainment
   "spotify"
   "steam"
+  "stremio"
   "iina"
 
   # Design
@@ -29,6 +32,7 @@
   "figma"
 
   # Development
+  "claude-code"
   "cursor"
   "cyberduck"
   "dash"
@@ -37,6 +41,7 @@
   "tableplus"
   "visual-studio-code"
   "yaak"
+  "zed"
 
   # Fonts
   "font-fira-code-nerd-font"
