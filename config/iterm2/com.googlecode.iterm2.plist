@@ -1473,7 +1473,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>5000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Alpha Component</key>
