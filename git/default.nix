@@ -1,18 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs.gitAndTools; [
-    diff-so-fancy
-    gitui
-    tig
-    gh
-  ];
-
   programs.git = {
     enable = true;
-    userName = "Matan Kushner";
-    userEmail = "hello@matchai.dev";
-
     lfs.enable = true;
 
     signing = {
@@ -31,23 +21,28 @@
       ".pnpm-debug.log*"
     ];
 
-    aliases = {
-      l = "log --pretty=oneline -n 50 --graph --abbrev-commit";
-      save = "!git add -A && git commit -v -m 'SAVEPOINT'";
-      undo = "reset HEAD~1 --mixed";
-      root = "rev-parse --show-toplevel";
-      wipe = "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
-      findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
-      findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";
+    settings = {
+      user = {
+        name = "Matan Kushner";
+        email = "hello@matchai.dev";
+      };
 
-      # gh aliases
-      sync = "!gh repo sync";
-      browse = "!gh browse";
-      cl = "!f() { gh repo clone $1; }; f";
-    };
+      aliases = {
+        l = "log --pretty=oneline -n 50 --graph --abbrev-commit";
+        save = "!git add -A && git commit -v -m 'SAVEPOINT'";
+        undo = "reset HEAD~1 --mixed";
+        root = "rev-parse --show-toplevel";
+        wipe = "!git add -A && git commit --no-gpg-sign -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard";
+        findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f";
+        findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f";
 
-    extraConfig = {
-      # SSH signing
+        # gh aliases
+        sync = "!gh repo sync";
+        browse = "!gh browse";
+        cl = "!f() { gh repo clone $1; }; f";
+      };
+
+            # SSH signing
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";

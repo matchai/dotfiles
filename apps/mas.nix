@@ -13,11 +13,11 @@
   LINE = 539883307;
 
   # Entertainment
-  Reeder = 1529445840;
+  Reeder = 1529448980;
   SteamLink = 1246969117;
 
   # Development
-  Xcode = 497799835;
+  # Xcode = 497799835;
 
   # Personal
   Clay = 1463073824;

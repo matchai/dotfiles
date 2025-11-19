@@ -3,8 +3,6 @@
   "appcleaner"
   "flux-app"
   "jordanbaird-ice"
-  # Using Apple Music
-  # "music-decoy"
   "raycast"
   "yellowdot"
 
@@ -53,6 +51,7 @@
   "cleanshot"
   "coconutbattery"
   "daisydisk"
+  "elgato-control-center"
   "fantastical"
   "imageoptim"
   "keka"

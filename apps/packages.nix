@@ -34,6 +34,12 @@ in
     jujutsu
     killport
 
+    # Git
+    diff-so-fancy
+    # gitui
+    tig
+    gh
+
     # macOS
     mas
     duti
@@ -68,10 +74,10 @@ in
       };
     };
 
-    tealdeer = {
-      enable = true;
-      settings.updates.auto_update = true;
-    };
+    # tealdeer = {
+    #   enable = true;
+    #   settings.updates.auto_update = true;
+    # };
   };
 
   # Setup mise's default npm packages
