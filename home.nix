@@ -34,7 +34,8 @@ in
 
     brews = import ./apps/brews.nix;
     casks = commonCasks ++ hostCasks;
-    masApps = import ./apps/mas.nix;
+    # Disable until mas v4 is released
+    # masApps = import ./apps/mas.nix;
   };
 
   home-manager = {

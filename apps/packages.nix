@@ -74,10 +74,10 @@ in
       };
     };
 
-    # tealdeer = {
-    #   enable = true;
-    #   settings.updates.auto_update = true;
-    # };
+    tealdeer = {
+      enable = true;
+      settings.updates.auto_update = true;
+    };
   };
 
   # Setup mise's default npm packages
