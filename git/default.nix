@@ -27,7 +27,7 @@
         email = "hello@matchai.dev";
       };
 
-      aliases = {
+      alias = {
         l = "log --pretty=oneline -n 50 --graph --abbrev-commit";
         save = "!git add -A && git commit -v -m 'SAVEPOINT'";
         undo = "reset HEAD~1 --mixed";
@@ -42,7 +42,7 @@
         cl = "!f() { gh repo clone $1; }; f";
       };
 
-            # SSH signing
+      # SSH signing
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
