@@ -7,7 +7,6 @@ let
     vim = "lvim";
     ls = "eza";
     cat = "bat";
-    find = "fd";
     tree = "eza --tree";
 
     # ls
