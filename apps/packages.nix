@@ -1,4 +1,4 @@
-{ pkgs, lib, hostname, ... }:
+{ pkgs, lib, hostname, inputs, ... }:
 
 let
   hostPackagesFile = ./packages/hosts/${hostname}/packages.nix;
@@ -78,7 +78,14 @@ in
       enable = true;
       settings.updates.auto_update = true;
     };
+
+    try = {
+      enable = true;
+      path = "~/dev/tries";
+    };
   };
+
+  imports = [ inputs.try.homeModules.default ];
 
   # Setup mise's default npm packages
   home.file.".default-npm-packages".text = lib.strings.concatLines (commonNpmPackages ++ hostNpmPackages);

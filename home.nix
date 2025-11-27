@@ -1,4 +1,4 @@
-{ user, hostname, ... }:
+{ user, hostname, inputs, ... }:
 
 let
   commonCasks = import ./apps/casks.nix;
@@ -40,7 +40,7 @@ in
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit hostname; };
+    extraSpecialArgs = { inherit hostname inputs; };
 
     users.${user} = {
       imports = [

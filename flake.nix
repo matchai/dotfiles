@@ -23,10 +23,13 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+
+    # others
+    try.url = "github:tobi/try";
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nix-darwin,
       home-manager,
@@ -43,8 +46,8 @@
 
       # Define the entire system configuration once and store it in a variable.
       mkDarwinSystem = hostname: nix-darwin.lib.darwinSystem {
-        # This makes the `user` variable available to all modules.
-        specialArgs = { inherit self user hostname lib; };
+        # This makes these variables available to all modules.
+        specialArgs = { inherit self inputs user hostname lib; };
 
         modules = [
           # Import the main system configuration

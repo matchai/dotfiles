@@ -17,6 +17,7 @@
   "beeper"
   "discord"
   "readdle-spark"
+  "whatsapp"
   "zoom"
 
   # Entertainment
@@ -30,7 +31,6 @@
   "figma"
 
   # Development
-  "claude-code"
   "cursor"
   "cyberduck"
   "dash"
