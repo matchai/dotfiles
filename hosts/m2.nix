@@ -8,9 +8,6 @@
         # Development
         "zed"
 
-        # Entertainment
-        "stremio"
-
         # Personal
         "crossover"
         "deskpad"

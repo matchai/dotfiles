@@ -35,8 +35,9 @@
       "zoom"
 
       # Entertainment
-      "steam"
       "iina"
+      "steam"
+      "stremio"
 
       # Design
       "ogdesign-eagle"
@@ -50,7 +51,6 @@
       "iterm2"
       "orbstack"
       "tableplus"
-      "visual-studio-code"
       "yaak"
       "zed"
 
