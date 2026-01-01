@@ -47,6 +47,7 @@ in
         ./shell.nix
         ./git
         ./config/ssh.nix
+        ./config/claude.nix
         ./apps/packages.nix
       ];
       home.stateVersion = "24.05";
