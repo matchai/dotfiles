@@ -21,6 +21,12 @@
 
   programs.fish.enable = true;
 
+  # Use Touch ID for sudo authentication
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;
+    reattach = true;  # Works in tmux/screen
+  };
+
   users.users.${user} = {
     home = "/Users/${user}";
     shell = pkgs.fish;

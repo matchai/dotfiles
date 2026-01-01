@@ -17,7 +17,6 @@ nix-darwin.lib.darwinSystem {
     {
       home-manager = {
         useGlobalPkgs = true;
-        useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs user npmPackages; };
         users.${user} = import ../home;
