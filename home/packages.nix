@@ -1,14 +1,8 @@
-{ pkgs, lib, hostname, inputs, ... }:
+{ pkgs, lib, inputs, npmPackages ? [], ... }:
 
 let
-  hostPackagesFile = ./packages/hosts/${hostname}/packages.nix;
-  hostPackages = if builtins.pathExists hostPackagesFile then import hostPackagesFile else [ ];
-
   commonNpmPackages = import ./npm-packages.nix;
-  hostNpmPackagesFile = ./npm-packages/hosts/${hostname}/npm-packages.nix;
-  hostNpmPackages = if builtins.pathExists hostNpmPackagesFile then import hostNpmPackagesFile else [ ];
 in
-
 {
   home.packages = with pkgs; [
     # CLIs but better
@@ -51,7 +45,7 @@ in
       # Remove the vim background color, making it transparent
       globalConfig = "lvim.transparent_window = true";
     })
-  ] ++ hostPackages;
+  ];
 
   programs = {
     mise = {
@@ -86,8 +80,6 @@ in
     };
   };
 
-  imports = [ inputs.try.homeModules.default ];
-
   # Setup mise's default npm packages
-  home.file.".default-npm-packages".text = lib.strings.concatLines (commonNpmPackages ++ hostNpmPackages);
+  home.file.".default-npm-packages".text = lib.concatLines (commonNpmPackages ++ npmPackages);
 }

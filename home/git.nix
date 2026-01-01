@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 {
   programs.git = {
@@ -47,7 +47,7 @@
       gpg.format = "ssh";
       gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
-      commit.template = builtins.toPath ./git-message;
+      commit.template = "${config.home.homeDirectory}/.config/nixpkgs/files/git-message";
 
       core = {
         editor = "lvim";
@@ -91,4 +91,5 @@
         whitespace = "red reverse";
       };
     };
-  };}
+  };
+}

@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, ... }:
 
 let
   karabinerConfig = {
@@ -53,11 +53,7 @@ let
 
 in
 {
-  homebrew.casks = [ "karabiner-elements" ];
-
-  home-manager.users.${user} = {
-    xdg.configFile."karabiner" = {
-      source = karabinerDir;
-    };
+  xdg.configFile."karabiner" = {
+    source = karabinerDir;
   };
 }

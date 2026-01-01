@@ -1,7 +1,7 @@
-_:
+{ user, ... }:
 
 let
-  shellAliases = {
+  aliases = {
     # Apps... but better
     v = "lvim";
     vim = "lvim";
@@ -20,7 +20,7 @@ let
     dark = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
   };
 
-  shellAbbrs = {
+  gitAbbrs = {
     gs = "git status -sb";
     ga = "git add";
     gc = "git commit";
@@ -42,8 +42,11 @@ let
   };
 in
 {
+  imports = [ ./starship.nix ];
+
   # Merge abbreviations with aliases for non-fish shells
-  home.shellAliases = shellAliases // shellAbbrs;
+  home.shellAliases = aliases // gitAbbrs;
+
   programs.atuin = {
     enable = true;
     flags = [ "--disable-up-arrow" ];
@@ -54,57 +57,27 @@ in
     options = [ "--cmd j" ];
   };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      format = "$battery$username$hostname$directory$git_branch$git_status$git_state$cmd_duration$line_break$character";
-
-      directory.read_only = " ";
-      battery = {
-        full_symbol = "•";
-        charging_symbol = "⇡";
-        discharging_symbol = "⇣";
-      };
-      git_branch = {
-        format = "([$branch]($style) )";
-        style = "bright-black";
-      };
-      git_status = {
-        format = "([[(*$conflicted$untracked$modified$staged$renamed$deleted)](bright-black)($ahead_behind$stashed)]($style) )";
-        style = "cyan";
-        conflicted = "​";
-        untracked = "​";
-        modified = "​";
-        staged = "​";
-        renamed = "​";
-        deleted = "​";
-        stashed = "≡";
-      };
-      git_state = {
-        format = "([$state( $progress_current/$progress_total)]($style) )";
-        style = "bright-black";
-      };
-      cmd_duration = {
-        format = "[$duration]($style) ";
-        style = "yellow";
-      };
-    };
-  };
-
   programs.fish = {
     enable = true;
-    inherit shellAbbrs;
+    shellAbbrs = gitAbbrs;
 
     shellInit = ''
       # Set editor
-      set -x EDITOR lvim
+      set -gx EDITOR lvim
 
       # Set a PNPM home shared across versions
-      set -gx PNPM_HOME "/Users/matchai/Library/pnpm"
-      set -gx PATH "$PNPM_HOME" $PATH
+      set -gx PNPM_HOME "/Users/${user}/Library/pnpm"
 
+      # Initialize homebrew (needed for scripts too)
+      eval (/opt/homebrew/bin/brew shellenv)
+
+      # Add PNPM to PATH
+      fish_add_path $PNPM_HOME
+    '';
+
+    interactiveShellInit = ''
       # Set fish syntax highlighting
-      set -g fish_color_autosuggestion '555'  'brblack'
+      set -g fish_color_autosuggestion '555' 'brblack'
       set -g fish_color_cancel -r
       set -g fish_color_command --bold
       set -g fish_color_comment red
@@ -112,7 +85,7 @@ in
       set -g fish_color_cwd_root red
       set -g fish_color_end brmagenta
       set -g fish_color_error brred
-      set -g fish_color_escape 'bryellow'  '--bold'
+      set -g fish_color_escape 'bryellow' '--bold'
       set -g fish_color_history_current --bold
       set -g fish_color_host normal
       set -g fish_color_match --background=brblue
@@ -121,15 +94,10 @@ in
       set -g fish_color_param cyan
       set -g fish_color_quote yellow
       set -g fish_color_redirection brblue
-      set -g fish_color_search_match 'bryellow'  '--background=brblack'
-      set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
+      set -g fish_color_search_match 'bryellow' '--background=brblack'
+      set -g fish_color_selection 'white' '--bold' '--background=brblack'
       set -g fish_color_user brgreen
       set -g fish_color_valid_path --underline
-    '';
-
-    interactiveShellInit = ''
-      # Initialize homebrew
-      eval (/opt/homebrew/bin/brew shellenv)
     '';
 
     functions = {
@@ -146,6 +114,4 @@ in
     enableCompletion = true;
     history.extended = true;
   };
-
-  home.file.".hushlogin".text = "";
 }

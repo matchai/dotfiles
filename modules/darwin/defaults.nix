@@ -1,4 +1,4 @@
-{ config, user, ... }:
+{ user, ... }:
 
 {
   system.defaults = {
@@ -8,7 +8,7 @@
       autohide = true;
       show-recents = false;
       persistent-apps = [ ];
-      persistent-others = [ "/Users/${config.system.primaryUser}/Downloads" ];
+      persistent-others = [ "/Users/${user}/Downloads" ];
 
       # Disable hot corners
       wvous-bl-corner = 1;

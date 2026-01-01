@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  claudeConfigPath = "${config.home.homeDirectory}/.config/nixpkgs/config/claude";
+  claudeConfigPath = "${config.home.homeDirectory}/.config/nixpkgs/files/claude";
 in
 {
   home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigPath}/CLAUDE.md";
