@@ -101,10 +101,14 @@ in
     '';
 
     functions = {
-      tableplus = ''open -a TablePlus $argv'';
-      idea = ''open -a "IntelliJ IDEA.app" $argv'';
-      code = ''if test (count $argv) -eq 0; command cursor (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command cursor $argv[1]; end;'';
+      tableplus = "open -a TablePlus $argv";
+      idea = ''open -a "IntelliJ IDEA.app" $argv'';  # needs '' for embedded quotes
+      code = "if test (count $argv) -eq 0; command cursor (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command cursor $argv[1]; end";
       fish_greeting = "";
+
+      # Nix helpers
+      nix-switch = "darwin-rebuild switch --flake ~/.config/nixpkgs";
+      nix-update = "nix flake update --flake ~/.config/nixpkgs";
     };
   };
 
