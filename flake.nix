@@ -25,7 +25,10 @@
     };
 
     # others
-    try.url = "github:tobi/try";
+    try = {
+      url = "github:tobi/try";
+      flake = false;
+    };
   };
 
   outputs =

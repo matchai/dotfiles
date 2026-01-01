@@ -21,7 +21,6 @@
   "zoom"
 
   # Entertainment
-  "spotify"
   "steam"
   "stremio"
   "iina"

@@ -58,6 +58,7 @@ in
       enable = true;
       globalConfig = {
         tools = {
+          bun = "latest";
           node = "lts";
           deno = "latest";
           usage = "latest";
