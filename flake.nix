@@ -19,7 +19,7 @@
     homebrew-core = { url = "github:homebrew/homebrew-core"; flake = false; };
     homebrew-cask = { url = "github:homebrew/homebrew-cask"; flake = false; };
 
-    try = { url = "github:tobi/try"; flake = false; };
+    try.url = "github:tobi/try";
   };
 
   outputs = inputs@{ nixpkgs, ... }:
