@@ -1,8 +1,9 @@
-{ ... }:
+{ config, ... }:
 
+let
+  claudeConfigPath = "${config.home.homeDirectory}/.config/nixpkgs/config/claude";
+in
 {
-  home.file.".claude" = {
-    source = ./claude;
-    recursive = true;
-  };
+  home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigPath}/CLAUDE.md";
+  home.file.".claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigPath}/rules";
 }
