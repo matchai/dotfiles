@@ -19,6 +19,7 @@
       "yarn-debug.log*"
       "yarn-error.log*"
       ".pnpm-debug.log*"
+      ".opencode"
     ];
 
     settings = {
