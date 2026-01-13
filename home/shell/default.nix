@@ -18,6 +18,7 @@ let
     reload = "exec fish";
     inflate = ''ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'';
     dark = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'";
+    wtc = "wt switch --create";
     wsc = "wt switch --create --execute \"opencode run\"";
   };
 

@@ -59,6 +59,7 @@
 
       # Personal
       "1password"
+      "1password-cli"
       "anki"
       "betterdisplay"
       "cleanshot"
