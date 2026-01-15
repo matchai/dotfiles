@@ -378,6 +378,8 @@
 	<false/>
 	<key>DimOnlyText</key>
 	<false/>
+	<key>EnableDivisionView</key>
+	<true/>
 	<key>FlashTabBarInFullscreen</key>
 	<false/>
 	<key>FocusFollowsMouse</key>
@@ -418,6 +420,8 @@
 	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524576</integer>
+	<key>IRMemory</key>
+	<integer>4</integer>
 	<key>MaxVertically</key>
 	<false/>
 	<key>NeverBlockSystemShutdown</key>
@@ -428,6 +432,8 @@
 			<key>ASCII Anti Aliased</key>
 			<true/>
 			<key>ASCII Ligatures</key>
+			<true/>
+			<key>Allow Title Setting</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
 			<false/>

@@ -7,11 +7,11 @@
         "CONTEXT7_API_KEY": "{{ op://Personal/ozdyzsa2buq6mmg73cm6l7dyme/credential }}"
       }
     },
-    "exa": {
+    "websearch": {
       "type": "http",
       "url": "https://mcp.exa.ai/mcp?exaApiKey={{ op://Personal/y5uckhh2ancjsisspuqbflsoci/credential }}"
     },
-    "grep": {
+    "grep-app": {
       "type": "http",
       "url": "https://mcp.grep.app"
     }

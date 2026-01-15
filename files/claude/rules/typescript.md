@@ -23,11 +23,11 @@ description: "TypeScript/JavaScript coding rules"
 
 ## TypeScript
 
-- No unnecessary ⁠try/⁠catch
-- No ⁠any casts
+- No unnecessary try/catch
+- No any casts
 - Use end-to-end types
 
 ## JSDoc
 
 - Only for unclear functions, descriptions only (TS handles types)
-- Prefer one-line `⁠/** */`
+- Prefer one-line `/** */`
