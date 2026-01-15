@@ -11,7 +11,7 @@
       "type": "http",
       "url": "https://mcp.exa.ai/mcp?exaApiKey={{ op://Personal/y5uckhh2ancjsisspuqbflsoci/credential }}"
     },
-    "grep-app": {
+    "grep_app": {
       "type": "http",
       "url": "https://mcp.grep.app"
     }
