@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, npmPackages ? [], ... }:
+{ pkgs, lib, npmPackages ? [], ... }:
 
 let
   commonNpmPackages = import ./npm-packages.nix;
@@ -72,11 +72,6 @@ in
     tealdeer = {
       enable = true;
       settings.updates.auto_update = true;
-    };
-
-    try = {
-      enable = true;
-      path = "~/dev/tries";
     };
   };
 

@@ -19,7 +19,11 @@
   environment.systemPackages = [ pkgs.vim ];
   environment.shells = [ pkgs.fish ];
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    # Disable brew shellenv injection - already cached in home-manager fish config
+    interactiveShellInit = "";
+  };
 
   # Use Touch ID for sudo authentication
   security.pam.services.sudo_local = {

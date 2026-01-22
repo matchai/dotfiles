@@ -9,7 +9,7 @@
     ./claude.nix
     ./iterm2.nix
     ./karabiner.nix
-    inputs.try.homeModules.default
+    # try: removed HM module, lazy-loaded in shell config instead
   ];
 
   home.stateVersion = "24.05";

@@ -51,6 +51,7 @@
       "iterm2"
       "orbstack"
       "tableplus"
+      "visual-studio-code"
       "yaak"
       "zed"
 

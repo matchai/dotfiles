@@ -70,12 +70,11 @@ in
       # Set a PNPM home shared across versions
       set -gx PNPM_HOME "/Users/${user}/Library/pnpm"
 
-      # Initialize homebrew (needed for scripts too)
-      eval (/opt/homebrew/bin/brew shellenv)
-
-      # Setup worktrunk
-      command wt config shell init fish | source
-      complete --keep-order --exclusive --command {cmd} --arguments "(test -n \"\$WORKTRUNK_BIN\"; or set -l WORKTRUNK_BIN (type -P {cmd}); COMPLETE=fish \$WORKTRUNK_BIN -- (commandline --current-process --tokenize --cut-at-cursor) (commandline --current-token))"
+      # Initialize homebrew - cached env vars (faster than eval)
+      set -gx HOMEBREW_PREFIX "/opt/homebrew"
+      set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
+      set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
+      fish_add_path -gP /opt/homebrew/bin /opt/homebrew/sbin
 
       # Add PNPM to PATH
       fish_add_path $PNPM_HOME

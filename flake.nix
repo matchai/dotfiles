@@ -18,8 +18,6 @@
     homebrew-bundle = { url = "github:homebrew/homebrew-bundle"; flake = false; };
     homebrew-core = { url = "github:homebrew/homebrew-core"; flake = false; };
     homebrew-cask = { url = "github:homebrew/homebrew-cask"; flake = false; };
-
-    try.url = "github:tobi/try";
   };
 
   outputs = inputs@{ nixpkgs, ... }:
