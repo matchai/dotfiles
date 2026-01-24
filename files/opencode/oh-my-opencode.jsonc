@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false,
+  },
+  "model": "vercel/anthropic/claude-sonnet-4.5",
+  "agents": {
+    "sisyphus": {
+      "model": "vercel/anthropic/claude-opus-4.5",
+      "variant": "max",
+      "permission": {
+        "bash": "allow",
+      },
+    },
+    "oracle": {
+      "model": "vercel/openai/gpt-5.2",
+      "variant": "high",
+    },
+    "prometheus": {
+      "model": "vercel/anthropic/claude-opus-4.5",
+      "variant": "max",
+      "permission": {
+        "bash": "allow",
+      },
+    },
+    "metis": {
+      "model": "vercel/anthropic/claude-sonnet-4.5",
+      "variant": "max",
+    },
+    "momus": {
+      "model": "vercel/openai/gpt-5.2",
+      "variant": "medium",
+    },
+    "atlas": {
+      "model": "vercel/anthropic/claude-sonnet-4.5",
+    },
+    "librarian": {
+      "model": "vercel/anthropic/claude-sonnet-4.5",
+    },
+    "explore": {
+      "model": "vercel/anthropic/claude-haiku-4.5",
+    },
+    "multimodal-looker": {
+      "model": "vercel/google/gemini-3-flash",
+    },
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "vercel/google/gemini-3-pro-preview",
+    },
+    "ultrabrain": {
+      "model": "vercel/openai/gpt-5.2-codex",
+      "variant": "xhigh",
+    },
+    "artistry": {
+      "model": "vercel/google/gemini-3-pro-preview",
+      "variant": "max",
+    },
+    "quick": {
+      "model": "vercel/anthropic/claude-haiku-4.5",
+    },
+    "unspecified-low": {
+      "model": "vercel/anthropic/claude-sonnet-4.5",
+    },
+    "unspecified-high": {
+      "model": "vercel/anthropic/claude-opus-4.5",
+      "variant": "max",
+    },
+    "writing": {
+      "model": "vercel/google/gemini-3-flash",
+    },
+  },
+}
