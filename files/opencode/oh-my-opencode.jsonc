@@ -1,10 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "browser_automation_engine": {
+    "provider": "agent-browser"
+  },
   "git_master": {
     "commit_footer": false,
     "include_co_authored_by": false,
   },
-  "model": "vercel/anthropic/claude-sonnet-4.5",
+  "disabled_skills": ["playwright"],
   "agents": {
     "sisyphus": {
       "model": "vercel/anthropic/claude-opus-4.5",

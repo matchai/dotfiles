@@ -31,3 +31,7 @@ description: "TypeScript/JavaScript coding rules"
 
 - Only for unclear functions, descriptions only (TS handles types)
 - Prefer one-line `/** */`
+
+## Dependencies
+
+- Install packages via the package manager CLI rather than editing package.json directly
