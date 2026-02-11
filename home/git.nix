@@ -20,6 +20,7 @@
       "yarn-error.log*"
       ".pnpm-debug.log*"
       ".opencode"
+      ".sisyphus"
     ];
 
     settings = {
