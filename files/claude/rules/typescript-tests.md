@@ -15,4 +15,6 @@ description: "TypeScript testing rules"
 - Accessible selectors > class names/implementation details
 - When an accesible selector is unavailable, use a data-testid
 - Keep explicit timeouts to a minimum
-
+- Use `resolves` and `rejects` assertions instead of try/catch
+- Use `@total-typescript/shoehorn` to pass partial data in tests
+- Pass the function or class in `describe` instead of its name as a string

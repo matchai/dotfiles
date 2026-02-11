@@ -35,3 +35,7 @@ description: "TypeScript/JavaScript coding rules"
 ## Dependencies
 
 - Install packages via the package manager CLI rather than editing package.json directly
+
+## General
+
+- When moving things, don't re-export for backwards-compatibility
