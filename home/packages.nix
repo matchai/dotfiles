@@ -30,9 +30,10 @@ in
 
     # Git
     diff-so-fancy
-    # gitui
+    gitui
     tig
     gh
+    lazygit
 
     # macOS
     mas

@@ -23,6 +23,7 @@ let
   };
 
   gitAbbrs = {
+    lg = "lazygit";
     gs = "git status -sb";
     ga = "git add";
     gc = "git commit";
