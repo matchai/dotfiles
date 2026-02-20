@@ -60,6 +60,7 @@ in
           python = "latest";
           rust = "latest";
           uv = "latest";
+          go = "latest";
         };
         settings = {
           # Required for hooks to work
