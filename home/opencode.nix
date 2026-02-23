@@ -10,6 +10,7 @@ in
   home.file.".config/opencode/oh-my-opencode.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${opencodeConfigPath}/oh-my-opencode.jsonc";
 
   home.activation.claudeMcp = config.lib.dag.entryAfter ["writeBoundary"] ''
-    $DRY_RUN_CMD ${pkgs._1password-cli}/bin/op inject -f -i ${claudeConfigPath}/mcp.json -o ~/.claude/.mcp.json
+    $DRY_RUN_CMD /opt/homebrew/bin/op inject -f -i ${claudeConfigPath}/mcp.json -o ~/.claude/.mcp.json || echo "WARNING: op inject failed -- ~/.claude/.mcp.json not updated"
+    $DRY_RUN_CMD rm -f ~/.config/opencode/.mcp.json
   '';
 }

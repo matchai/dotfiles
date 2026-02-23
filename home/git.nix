@@ -92,6 +92,8 @@
         new = "green bold";
         whitespace = "red reverse";
       };
+
+      "credential \"https://github.com\"".helper = "!/opt/homebrew/bin/gh auth git-credential";
     };
   };
 }

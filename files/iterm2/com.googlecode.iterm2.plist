@@ -422,6 +422,8 @@
 	<integer>524576</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
+	<key>LeftTabBarWidth</key>
+	<real>229</real>
 	<key>MaxVertically</key>
 	<false/>
 	<key>NeverBlockSystemShutdown</key>

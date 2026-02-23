@@ -10,7 +10,12 @@
       upgrade = true;
     };
 
-    brews = [ "macos-trash" ];
+    brews = [ "macos-trash" "jnsahaj/lumen/lumen" ];
+
+    taps = [
+      "manaflow-ai/cmux"
+      "jnsahaj/lumen"
+    ];
 
     casks = [
       # macOS Must-Haves
@@ -44,6 +49,7 @@
       "figma"
 
       # Development
+      "cmux"
       "cursor"
       "cyberduck"
       "dash"
@@ -57,8 +63,6 @@
 
       # Fonts
       "font-fira-code-nerd-font"
-
-      # Personal
       "1password"
       "1password-cli"
       "anki"
