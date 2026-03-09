@@ -109,7 +109,7 @@ in
     functions = {
       tableplus = "open -a TablePlus $argv";
       idea = ''open -a "IntelliJ IDEA.app" $argv'';  # needs '' for embedded quotes
-      code = "if test (count $argv) -eq 0; command cursor (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command cursor $argv[1]; end";
+      code = "if test (count $argv) -eq 0; command zed (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command zed $argv[1]; end";
       fish_greeting = "";
 
       # Nix helpers

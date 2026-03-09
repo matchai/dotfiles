@@ -6,15 +6,15 @@ in
 {
   home.packages = with pkgs; [
     # CLIs but better
-    bat # fancy version of `cat`
-    fd # fancy version of `find`
-    eza # fancy version of `ls`
-    ripgrep # fancy version of `grep`
-    procs # fancy version of `ps`
-    bottom # fancy version of `top`
-    xh # fancy version of `httpie`
-    yt-dlp # fancy version of `youtube-dl`
-    mosh # fancy version of `ssh`
+    bat # cat replacement
+    fd # find replacement
+    eza # ls replacement
+    ripgrep # grep replacement
+    procs # ps replacement
+    bottom # top replacement
+    xh # httpie replacement
+    yt-dlp # youtube-dl replacement
+    mosh # ssh replacement
 
     # Productivity
     ffmpeg
