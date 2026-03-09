@@ -40,6 +40,7 @@ in
     duti
 
     # Nix related
+    nil
     nix-search-cli
 
     (pkgs.lunarvim.override {

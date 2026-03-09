@@ -80,6 +80,7 @@
 
       # Productivity
       "notion"
+      "obsidian"
       "voiceink"
     ];
   };
