@@ -4,6 +4,7 @@
 - Left align the happy path. Early returns over nesting
 - Prefer small, well-scoped files
 - Be extremely concise. Sacrifice grammar for the sake of concision
+- Don't remove existing comments or docstrings when editing code
 - When asked to change a feature, consider what can be removed or simplified as a result
 - Prefer the following CLIs:
   - find -> fd

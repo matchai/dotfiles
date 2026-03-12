@@ -7,6 +7,7 @@ in
 {
   home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigPath}/CLAUDE.md";
   home.file.".claude/rules".source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigPath}/rules";
+  home.file.".config/opencode/opencode.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${opencodeConfigPath}/opencode.jsonc";
   home.file.".config/opencode/oh-my-opencode.jsonc".source = config.lib.file.mkOutOfStoreSymlink "${opencodeConfigPath}/oh-my-opencode.jsonc";
 
   home.activation.claudeMcp = config.lib.dag.entryAfter ["writeBoundary"] ''

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "lsp": {
+    "deno": {
+      "disabled": true
+    }
+  },
+  "model": "vercel/anthropic/claude-sonnet-4.6",
+  "plugin": ["oh-my-opencode@latest", "opencode-cmux@latest"],
+  "experimental": {
+    "disable_paste_summary": true
+  },
+  "formatter": {
+    "prettier": {
+      "disabled": true
+    }
+  }
+}
