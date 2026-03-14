@@ -10,7 +10,7 @@ let
         complex_modifications = {
           rules = [
             {
-              description = "Tap Caps Lock to Escape, hold for Control";
+              description = "Tap Caps Lock to Escape, hold for Hyper Key";
               manipulators = [
                 {
                   type = "basic";
@@ -22,7 +22,12 @@ let
                   };
                   to = [
                     {
-                      key_code = "left_control";
+                      key_code = "left_shift";
+                      modifiers = [
+                        "left_control"
+                        "left_option"
+                        "left_command"
+                      ];
                       lazy = true;
                     }
                   ];
