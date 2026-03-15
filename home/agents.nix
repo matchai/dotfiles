@@ -49,16 +49,12 @@ in
   home.activation = {
     # Inject MCP secrets via 1Password (shared via oh-my-opencode bridge)
     injectMcpSecrets = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD /opt/homebrew/bin/op inject -f -i ${filesPath}/mcp.json -o ~/.claude/.mcp.json || echo "WARNING: op inject failed -- ~/.claude/.mcp.json not updated"
+      $DRY_RUN_CMD /opt/homebrew/bin/op inject -f -i ${filesPath}/mcp.json -o ~/.claude/.mcp.json
     '';
 
     # Install Datadog skills via pup (DD_ACCESS_TOKEN=skip bypasses keychain prompt)
-    installPupSkills = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      if command -v pup &> /dev/null; then
-        $DRY_RUN_CMD env DD_ACCESS_TOKEN=skip pup skills install --target-agent=opencode || echo "WARNING: pup skills install failed"
-      else
-        echo "NOTE: pup not installed yet -- skipping Datadog skills install"
-      fi
+    installPupSkills = config.lib.dag.entryAfter [ "injectMcpSecrets" ] ''
+      $DRY_RUN_CMD env DD_ACCESS_TOKEN=skip /opt/homebrew/bin/pup skills install --target-agent=opencode
     '';
   };
 }
