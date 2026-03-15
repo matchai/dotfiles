@@ -4,7 +4,7 @@
 - Left align the happy path. Early returns over nesting
 - Prefer small, well-scoped files
 - Be extremely concise. Sacrifice grammar for the sake of concision
-- Don't remove existing comments or docstrings when editing code
+- Never remove existing comments or docstrings when editing code, even when simplifying or refactoring
 - When asked to change a feature, consider what can be removed or simplified as a result
 - Use 'knip' to remove unused code if making large changes
 - The 'gh' CLI is installed, use it
