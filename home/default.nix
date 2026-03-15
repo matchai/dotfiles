@@ -6,7 +6,7 @@
     ./git.nix
     ./packages.nix
     ./ssh.nix
-    ./opencode.nix
+    ./agents.nix
     ./iterm2.nix
     ./karabiner.nix
     # try: removed HM module, lazy-loaded in shell config instead

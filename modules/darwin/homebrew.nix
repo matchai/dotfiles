@@ -10,11 +10,12 @@
       upgrade = true;
     };
 
-    brews = [ "macos-trash" "jnsahaj/lumen/lumen" ];
+    brews = [ "macos-trash" "jnsahaj/lumen/lumen" "datadog-labs/pack/pup" ];
 
     taps = [
       "manaflow-ai/cmux"
       "jnsahaj/lumen"
+      "datadog-labs/pack"
     ];
 
     casks = [
