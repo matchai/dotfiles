@@ -1,4 +1,9 @@
-{ pkgs, lib, npmPackages ? [], ... }:
+{
+  pkgs,
+  lib,
+  npmPackages ? [ ],
+  ...
+}:
 
 let
   commonNpmPackages = import ./npm-packages.nix;
@@ -42,11 +47,6 @@ in
     # Nix related
     nil
     nix-search-cli
-
-    (pkgs.lunarvim.override {
-      # Remove the vim background color, making it transparent
-      globalConfig = "lvim.transparent_window = true";
-    })
   ];
 
   programs = {
