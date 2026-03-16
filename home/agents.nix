@@ -9,27 +9,31 @@ let
   skills = dirNames ../files/skills;
   commands = dirNames ../files/commands;
 
-  skillLinks = builtins.listToAttrs (builtins.concatMap (name: [
-    {
-      name = ".claude/skills/${name}";
-      value.source = symlink "${filesPath}/skills/${name}";
-    }
-    {
-      name = ".config/opencode/skills/${name}";
-      value.source = symlink "${filesPath}/skills/${name}";
-    }
-  ]) skills);
+  skillLinks = builtins.listToAttrs (
+    builtins.concatMap (name: [
+      {
+        name = ".claude/skills/${name}";
+        value.source = symlink "${filesPath}/skills/${name}";
+      }
+      {
+        name = ".config/opencode/skills/${name}";
+        value.source = symlink "${filesPath}/skills/${name}";
+      }
+    ]) skills
+  );
 
-  commandLinks = builtins.listToAttrs (builtins.concatMap (name: [
-    {
-      name = ".claude/.agents/commands/${name}";
-      value.source = symlink "${filesPath}/commands/${name}";
-    }
-    {
-      name = ".config/opencode/command/${name}";
-      value.source = symlink "${filesPath}/commands/${name}";
-    }
-  ]) commands);
+  commandLinks = builtins.listToAttrs (
+    builtins.concatMap (name: [
+      {
+        name = ".claude/.agents/commands/${name}";
+        value.source = symlink "${filesPath}/commands/${name}";
+      }
+      {
+        name = ".config/opencode/command/${name}";
+        value.source = symlink "${filesPath}/commands/${name}";
+      }
+    ]) commands
+  );
 in
 {
   home.file = {
@@ -43,8 +47,11 @@ in
 
     # OpenCode-specific config
     ".config/opencode/opencode.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
-    ".config/opencode/oh-my-opencode.jsonc".source = symlink "${filesPath}/opencode/oh-my-opencode.jsonc";
-  } // skillLinks // commandLinks;
+    ".config/opencode/oh-my-opencode.jsonc".source =
+      symlink "${filesPath}/opencode/oh-my-opencode.jsonc";
+  }
+  // skillLinks
+  // commandLinks;
 
   home.activation = {
     # Inject MCP secrets via 1Password (shared via oh-my-opencode bridge)
