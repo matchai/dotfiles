@@ -49,7 +49,7 @@
       commit.template = "${config.home.homeDirectory}/.config/nixpkgs/files/git-message";
 
       core = {
-        editor = "lvim";
+        editor = "nvim";
         pager = "diff-so-fancy | less --tabs=4 -RFX";
       };
 

@@ -3,7 +3,7 @@
 let
   aliases = {
     # Apps... but better
-    v = "vim";
+    v = "nvim";
     ls = "eza";
     cat = "bat";
     tree = "eza --tree";
@@ -81,7 +81,7 @@ in
 
     shellInit = ''
       # Set editor
-      set -gx EDITOR lvim
+      set -gx EDITOR nvim
 
       # Set a PNPM home shared across versions
       set -gx PNPM_HOME "/Users/${user}/Library/pnpm"

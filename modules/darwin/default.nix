@@ -16,7 +16,7 @@
   system.stateVersion = 6;
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
-  environment.systemPackages = [ pkgs.vim ];
+  environment.systemPackages = [ pkgs.neovim ];
   environment.shells = [ pkgs.fish ];
 
   programs.fish.enable = true;
