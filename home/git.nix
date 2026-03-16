@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.git = {
@@ -6,7 +6,9 @@
     lfs.enable = true;
 
     signing = {
+      format = "ssh";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDOcOl6AP6NpB+MnMLhpEJkC2XvEEMq4aJ8j06ltily9";
+      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
       signByDefault = true;
     };
 
@@ -43,11 +45,6 @@
         browse = "!gh browse";
         cl = "!f() { gh repo clone $1; }; f";
       };
-
-      # SSH signing
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
 
       commit.template = "${config.home.homeDirectory}/.config/nixpkgs/files/git-message";
 
@@ -93,7 +90,7 @@
         whitespace = "red reverse";
       };
 
-      "credential \"https://github.com\"".helper = "!/opt/homebrew/bin/gh auth git-credential";
+      "credential \"https://github.com\"".helper = "!${pkgs.gh}/bin/gh auth git-credential";
     };
   };
 }

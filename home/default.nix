@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -7,9 +7,8 @@
     ./packages.nix
     ./ssh.nix
     ./agents.nix
-    ./iterm2.nix
+    ./app-defaults.nix
     ./karabiner.nix
-    # try: removed HM module, lazy-loaded in shell config instead
   ];
 
   home.stateVersion = "24.05";

@@ -45,11 +45,9 @@ let
 
   # Pre-generate tool init scripts at nix build time (not every shell startup).
   # Each produces a /nix/store path that changes when the package updates.
-  mkFishInit = name: cmd: pkgs.runCommand "${name}-fish-init" {
-    nativeBuildInputs = cmd.buildInputs or [];
-  } ''
+  mkFishInit = name: cmd: pkgs.runCommand "${name}-fish-init" {} ''
     export HOME=$(mktemp -d)
-    ${cmd}> $out
+    ${cmd} > $out
   '';
 
   zoxideInit  = mkFishInit "zoxide"  "${pkgs.zoxide}/bin/zoxide init fish --cmd j";

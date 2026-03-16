@@ -1,4 +1,4 @@
-{ user, ... }:
+{ config, ... }:
 
 {
   system.defaults = {
@@ -8,7 +8,7 @@
       autohide = true;
       show-recents = false;
       persistent-apps = [ ];
-      persistent-others = [ "/Users/${user}/Downloads" ];
+      persistent-others = [ "${config.users.users.${config.system.primaryUser}.home}/Downloads" ];
 
       # Disable hot corners
       wvous-bl-corner = 1;
@@ -45,29 +45,6 @@
 
       # Disable "Natural Scrolling" (i.e. scroll the page, rather than the scrollbar)
       "com.apple.swipescrolldirection" = true;
-    };
-  };
-
-  # User-specific defaults
-  home-manager.users.${user}.targets.darwin.defaults = {
-    # Display Finder in list view by default
-    "com.apple.finder" = {
-      FXPreferredViewStyle = "Nlsv";
-    };
-
-    # Hide the date from the menu bar clock. It's shown in Fantastical's icon
-    "com.apple.menuextra.clock" = {
-      ShowDate = 2;
-    };
-
-    # Disable the "reveal desktop" feature when clicking on the desktop
-    "com.apple.WindowManager" = {
-      EnableStandardClickToShowDesktop = false;
-    };
-
-    # New documents in TextEdit are plain text
-    "com.apple.TextEdit" = {
-      RichText = false;
     };
   };
 }
