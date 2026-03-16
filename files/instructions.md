@@ -9,6 +9,7 @@
 - Use 'knip' to remove unused code if making large changes
 - The 'gh' CLI is installed, use it
 - Don't use emojis
+- Always check before speculating. Read the code/config instead of asking or guessing
 - Prefer the following CLIs:
   - find -> fd
   - grep -> ripgrep

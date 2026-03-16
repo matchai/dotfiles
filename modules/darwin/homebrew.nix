@@ -12,6 +12,7 @@
 
     brews = [
       "macos-trash"
+      "worktrunk"
       "jnsahaj/lumen/lumen"
       "datadog-labs/pack/pup"
     ];
@@ -63,7 +64,6 @@
       "orbstack"
       "tableplus"
       "visual-studio-code"
-      "worktrunk"
       "yaak"
       "zed"
 
