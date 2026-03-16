@@ -43,8 +43,17 @@
       InitialKeyRepeat = 15;
       KeyRepeat = 2;
 
+      # Auto-switch between light and dark mode
+      AppleInterfaceStyleSwitchesAutomatically = true;
+
       # Disable "Natural Scrolling" (i.e. scroll the page, rather than the scrollbar)
       "com.apple.swipescrolldirection" = true;
+    };
+
+    # Keys not in nix-darwin's typed NSGlobalDomain schema
+    CustomSystemPreferences.NSGlobalDomain = {
+      # Disable "shake mouse to locate cursor"
+      CGDisableCursorLocationMagnification = true;
     };
   };
 }

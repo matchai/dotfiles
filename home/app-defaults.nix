@@ -11,11 +11,19 @@
     # Display Finder in list view by default
     "com.apple.finder".FXPreferredViewStyle = "Nlsv";
 
-    # Hide the date from the menu bar clock. It's shown in Fantastical's icon
-    "com.apple.menuextra.clock".ShowDate = 2;
+    # Menu bar clock: hide date (shown in Fantastical), show day of week and AM/PM
+    "com.apple.menuextra.clock" = {
+      ShowDate = 2;
+      ShowDayOfWeek = true;
+      ShowAMPM = true;
+    };
 
     # Disable the "reveal desktop" feature when clicking on the desktop
-    "com.apple.WindowManager".EnableStandardClickToShowDesktop = false;
+    # No gaps between tiled windows
+    "com.apple.WindowManager" = {
+      EnableStandardClickToShowDesktop = false;
+      EnableTiledWindowMargins = false;
+    };
 
     # New documents in TextEdit are plain text
     "com.apple.TextEdit".RichText = false;
