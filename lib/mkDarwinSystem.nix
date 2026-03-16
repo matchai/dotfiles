@@ -27,6 +27,8 @@ nix-darwin.lib.darwinSystem {
     {
       nix-homebrew = {
         enable = true;
+        # Already cached in home-manager fish shellInit — no need to eval at startup
+        enableFishIntegration = false;
         inherit user;
         taps = {
           "homebrew/homebrew-core" = homebrew-core;

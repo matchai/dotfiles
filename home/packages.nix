@@ -52,6 +52,7 @@ in
   programs = {
     mise = {
       enable = true;
+      enableFishIntegration = false; # cached in shell/default.nix
       globalConfig = {
         tools = {
           bun = "latest";

@@ -3,6 +3,7 @@
 {
   programs.starship = {
     enable = true;
+    enableFishIntegration = false; # cached in shell/default.nix
     settings = {
       format = "$battery$username$hostname$directory$git_branch$git_status$git_state$cmd_duration$line_break$character";
 

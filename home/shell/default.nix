@@ -1,10 +1,9 @@
-{ user, ... }:
+{ pkgs, user, ... }:
 
 let
   aliases = {
     # Apps... but better
-    v = "lvim";
-    vim = "lvim";
+    v = "vim";
     ls = "eza";
     cat = "bat";
     tree = "eza --tree";
@@ -43,26 +42,44 @@ let
     gui = "gitui";
     gsu = "git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD)";
   };
+
+  # Pre-generate tool init scripts at nix build time (not every shell startup).
+  # Each produces a /nix/store path that changes when the package updates.
+  mkFishInit = name: cmd: pkgs.runCommand "${name}-fish-init" {
+    nativeBuildInputs = cmd.buildInputs or [];
+  } ''
+    export HOME=$(mktemp -d)
+    ${cmd}> $out
+  '';
+
+  zoxideInit  = mkFishInit "zoxide"  "${pkgs.zoxide}/bin/zoxide init fish --cmd j";
+  atuinInit   = mkFishInit "atuin"   "${pkgs.atuin}/bin/atuin init fish --disable-up-arrow";
+  miseInit    = mkFishInit "mise"    "${pkgs.mise}/bin/mise activate fish";
+  starshipInit = mkFishInit "starship" "${pkgs.starship}/bin/starship init fish";
 in
 {
   imports = [ ./starship.nix ];
 
-  # Merge abbreviations with aliases for non-fish shells
+  # Git abbreviations as aliases for non-fish shells (zsh/bash)
   home.shellAliases = aliases // gitAbbrs;
 
   programs.atuin = {
     enable = true;
+    enableFishIntegration = false; # pre-generated above
     flags = [ "--disable-up-arrow" ];
   };
 
   programs.zoxide = {
     enable = true;
+    enableFishIntegration = false; # pre-generated above
     options = [ "--cmd j" ];
   };
 
   programs.fish = {
     enable = true;
+    # Fish gets abbreviations (expand inline, better for history) — not aliases
     shellAbbrs = gitAbbrs;
+    shellAliases = aliases;
 
     shellInit = ''
       # Set editor
@@ -104,6 +121,17 @@ in
       set -g fish_color_selection 'white' '--bold' '--background=brblack'
       set -g fish_color_user brgreen
       set -g fish_color_valid_path --underline
+
+      # Pre-generated at nix build time — zero subprocess cost
+      source ${zoxideInit}
+      source ${atuinInit}
+      source ${miseInit}
+      test "$TERM" != dumb; and source ${starshipInit}
+
+      # wt is via homebrew, so init at first use
+      if type -q wt; and not functions -q __wt_complete
+        command wt config shell init fish | source
+      end
     '';
 
     functions = {
