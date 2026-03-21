@@ -11,6 +11,7 @@
 - Don't use emojis
 - Always check before speculating. Read the code/config instead of asking or guessing
 - I work at Vercel. If a bug traces to a Vercel-owned package or service, consider fixing it upstream if the fix is low-lift rather than just working around it
+- Never reference internal projects, tools, or services in commits/PRs to external or OSS repositories
 - Prefer the following CLIs:
   - find -> fd
   - grep -> ripgrep

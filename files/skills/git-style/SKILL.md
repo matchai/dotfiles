@@ -157,3 +157,14 @@ For features with components/modules, use a table:
 - No screenshots unless UI change
 - Don't restate the title in the body
 - No hard line wraps in PR bodies
+
+---
+
+## PR Maintenance
+
+When a meaningful change is made to a PR after creation (new commits, scope change, added/removed features), update the PR title and body to reflect the current state.
+
+- Before editing, run `gh pr view <number>` to read the current title and body — match the existing tone and structure
+- Title should describe the full scope of the PR, not just the initial commit
+- Body should be rewritten, not appended to — the description should always read as a fresh summary of the PR's current content
+- Don't update for trivial fixups (typos, lint fixes) — only for changes that alter what the PR does
