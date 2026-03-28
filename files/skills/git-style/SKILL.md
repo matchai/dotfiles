@@ -114,16 +114,16 @@ Fixes the omniagent webhook forward URL from `/api/github/webhooks` to `/api/git
 
 ### Large (multi-system, needs subsections to stay readable)
 
-Use `###` subsections only when the PR is complex enough that prose alone would be hard to follow. Never use `##` — the smallest header in a PR body should be `###`.
+Use **bold text** for subsections, not markdown headers. Headers are too heavy for PR bodies. Only reach for `###` if the PR is exceptionally complex (5+ distinct areas).
 
 ```markdown
 Forward select GitHub webhook events for select repos to omniagent's `/api/github` endpoint.
 
-### Approach
+**Approach**
 
 Uses the existing proxy system in `src/utils/proxy/` that already forwards events to spaces, v0, grep, and code-review. Omniagent is added as another proxy target with body-aware filtering.
 
-### Changes
+**Changes**
 - `proxy-webhook-event.ts` — extends `ProxyTarget` with optional `enrichHeaders` hook
 - `filter-event.ts` — adds `issue_comment` as allowed omniagent event
 - `target-urls.ts` — adds `getOmniagentUrl()`
