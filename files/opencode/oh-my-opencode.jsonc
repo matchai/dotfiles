@@ -17,7 +17,7 @@
       },
     },
     "hephaestus": {
-      "model": "vercel/openai/gpt-5.3-codex",
+      "model": "vercel/openai/gpt-5.4",
       "variant": "medium",
     },
     "oracle": {
@@ -63,7 +63,7 @@
       "variant": "xhigh",
     },
     "deep": {
-      "model": "vercel/openai/gpt-5.3-codex",
+      "model": "vercel/openai/gpt-5.4",
       "variant": "medium",
     },
     "artistry": {

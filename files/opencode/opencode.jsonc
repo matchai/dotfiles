@@ -3,17 +3,21 @@
   "share": "disabled",
   "lsp": {
     "deno": {
-      "disabled": true
-    }
+      "disabled": true,
+    },
   },
   "model": "vercel/anthropic/claude-sonnet-4.6",
-  "plugin": ["oh-my-opencode@latest", "opencode-cmux@latest"],
+  "plugin": [
+    "opencode-cmux@latest",
+    "oh-my-openagent@latest",
+    "@plannotator/opencode@latest",
+  ],
   "experimental": {
-    "disable_paste_summary": true
+    "disable_paste_summary": true,
   },
   "formatter": {
     "prettier": {
-      "disabled": true
-    }
-  }
+      "disabled": true,
+    },
+  },
 }

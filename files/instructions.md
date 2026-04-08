@@ -6,10 +6,14 @@
 - Don't use emojis
 - Always check before speculating. Read the code/config instead of asking or guessing
 
+## Git
+- Never amend commits. Always create new commits to fix issues
+
 ## Programming
 - Only create an abstraction if it's actually needed
 - Prefer clear function/variable names over inline comments
 - Avoid helper functions when a simple inline expression would suffice
+- Intermediary variables and functions are fine if it improves declarativity and readability. Prefer intermediary variables over deep nesting
 - Left align the happy path. Early returns over nesting
 - Prefer small, well-scoped files
 - Be extremely concise. Sacrifice grammar for the sake of concision

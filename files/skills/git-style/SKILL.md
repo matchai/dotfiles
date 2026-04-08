@@ -23,6 +23,7 @@ Enforces matchai's PR title, commit message, and PR body conventions derived fro
 
 ### Rules (all styles)
 
+- Never amend commits. Always create new commits to fix issues
 - Imperative mood: "Add", "Fix", "Replace" — never "Added", "Fixes", "Replacing"
 - Lowercase after conventional prefix: `feat(agent): add ...` not `feat(agent): Add ...`
 - Sentence case for plain style: `Fix the thing` not `fix the thing`

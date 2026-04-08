@@ -88,6 +88,9 @@
       "notion"
       "obsidian"
       "voiceink"
+
+      # Personal
+      "jdownloader"
     ];
   };
 }
