@@ -147,14 +147,14 @@ For features with components/modules, use a table:
 | Stacked PR | When building on another PR | `Stacks on PR #XXXX` |
 | Companion PR | Cross-repo dependency | `Companion PR: vercel/integrations -- slug` |
 | Test results | When adding empirical validation | Table with pass rates |
-| Changes table | When PR touches many files with distinct roles | `\| File \| Role \|` table |
+
 
 ### What NOT to do
 
 - No `##` headers — use `###` at most, and only for large/complex PRs
 - No emojis
 - No "This PR..." preamble — jump straight into the substance
-- No changelog-style lists of every file touched
+- No list of changed files — don't enumerate filenames in the description
 - No screenshots unless UI change
 - Don't restate the title in the body
 - No hard line wraps in PR bodies

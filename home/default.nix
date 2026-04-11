@@ -8,6 +8,7 @@
     ./ssh.nix
     ./agents.nix
     ./app-defaults.nix
+    ./duti.nix
     ./karabiner.nix
   ];
 
