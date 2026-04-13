@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/master/assets/oh-my-opencode.schema.json",
   "browser_automation_engine": {
     "provider": "agent-browser",
   },
@@ -25,7 +25,7 @@
       "variant": "high",
     },
     "librarian": {
-      "model": "vercel/google/gemini-3-flash",
+      "model": "vercel/anthropic/claude-haiku-4.5",
     },
     "explore": {
       "model": "vercel/anthropic/claude-haiku-4.5",
@@ -77,8 +77,7 @@
       "model": "vercel/anthropic/claude-sonnet-4.6",
     },
     "unspecified-high": {
-      "model": "vercel/anthropic/claude-opus-4.6",
-      "variant": "max",
+      "model": "vercel/anthropic/claude-sonnet-4.6",
     },
     "writing": {
       "model": "vercel/google/gemini-3-flash",

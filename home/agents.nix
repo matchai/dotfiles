@@ -47,8 +47,11 @@ in
 
     # OpenCode-specific config
     ".config/opencode/opencode.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
-    ".config/opencode/oh-my-opencode.jsonc".source =
-      symlink "${filesPath}/opencode/oh-my-opencode.jsonc";
+    ".config/opencode/oh-my-openagent.jsonc".source =
+      symlink "${filesPath}/opencode/oh-my-openagent.jsonc";
+    ".cmuxterm/omo-config/openagent.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
+    ".cmuxterm/omo-config/oh-my-openagent.jsonc".source =
+      symlink "${filesPath}/opencode/oh-my-openagent.jsonc";
   }
   // skillLinks
   // commandLinks;
