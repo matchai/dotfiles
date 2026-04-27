@@ -7,80 +7,278 @@
     "commit_footer": false,
     "include_co_authored_by": false,
   },
-  "disabled_skills": ["dev-browser", "playwright"],
+  "mcp_env_allowlist": ["CONTEXT7_API_KEY"],
+  "disabled_skills": ["dev-browser"],
   "agents": {
     "sisyphus": {
       "model": "vercel/anthropic/claude-opus-4.6",
       "variant": "max",
-      "permission": {
-        "bash": "allow",
-      },
+      "fallback_models": [
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/openai/gpt-5.5",
+          "variant": "medium",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+      ],
     },
     "hephaestus": {
-      "model": "vercel/openai/gpt-5.4",
+      "model": "vercel/openai/gpt-5.5",
       "variant": "medium",
     },
     "oracle": {
-      "model": "vercel/openai/gpt-5.4",
+      "model": "vercel/openai/gpt-5.5",
       "variant": "high",
+      "fallback_models": [
+        {
+          "model": "vercel/google/gemini-3.1-pro-preview",
+          "variant": "high",
+        },
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+      ],
     },
     "librarian": {
       "model": "vercel/anthropic/claude-haiku-4.5",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5-nano",
+        },
+      ],
     },
     "explore": {
       "model": "vercel/anthropic/claude-haiku-4.5",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5-nano",
+        },
+      ],
     },
     "multimodal-looker": {
-      "model": "vercel/openai/gpt-5.4",
+      "model": "vercel/openai/gpt-5.5",
       "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/zai/glm-4.6v",
+        },
+        {
+          "model": "vercel/openai/gpt-5-nano",
+        },
+      ],
     },
     "prometheus": {
       "model": "vercel/anthropic/claude-opus-4.6",
       "variant": "max",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5.5",
+          "variant": "high",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+        {
+          "model": "vercel/google/gemini-3.1-pro-preview",
+        },
+      ],
     },
     "metis": {
       "model": "vercel/anthropic/claude-opus-4.6",
       "variant": "max",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5.5",
+          "variant": "high",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+      ],
     },
     "momus": {
-      "model": "vercel/openai/gpt-5.4",
-      "variant": "x-high",
+      "model": "vercel/openai/gpt-5.5",
+      "variant": "xhigh",
+      "fallback_models": [
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/google/gemini-3.1-pro-preview",
+          "variant": "high",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+      ],
     },
     "atlas": {
       "model": "vercel/anthropic/claude-sonnet-4.6",
+      "fallback_models": [
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/openai/gpt-5.5",
+          "variant": "medium",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+      ],
     },
     "sisyphus-junior": {
       "model": "vercel/anthropic/claude-sonnet-4.6",
+      "fallback_models": [
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/openai/gpt-5.5",
+          "variant": "medium",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+      ],
     },
   },
   "categories": {
     "visual-engineering": {
       "model": "vercel/google/gemini-3.1-pro-preview",
       "variant": "high",
+      "fallback_models": [
+        {
+          "model": "vercel/zai/glm-5",
+        },
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+      ],
     },
     "ultrabrain": {
-      "model": "vercel/openai/gpt-5.4",
+      "model": "vercel/openai/gpt-5.5",
       "variant": "xhigh",
+      "fallback_models": [
+        {
+          "model": "vercel/google/gemini-3.1-pro-preview",
+          "variant": "high",
+        },
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/zai/glm-5",
+        },
+      ],
     },
     "deep": {
-      "model": "vercel/openai/gpt-5.4",
+      "model": "vercel/openai/gpt-5.5",
       "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/google/gemini-3.1-pro-preview",
+          "variant": "high",
+        },
+      ],
     },
     "artistry": {
       "model": "vercel/google/gemini-3.1-pro-preview",
       "variant": "high",
+      "fallback_models": [
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/openai/gpt-5.5",
+        },
+      ],
     },
     "quick": {
       "model": "vercel/openai/gpt-5.4-mini",
+      "fallback_models": [
+        {
+          "model": "vercel/anthropic/claude-haiku-4.5",
+        },
+        {
+          "model": "vercel/google/gemini-3-flash",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+        {
+          "model": "vercel/openai/gpt-5-nano",
+        },
+      ],
     },
     "unspecified-low": {
       "model": "vercel/anthropic/claude-sonnet-4.6",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5.3-codex",
+          "variant": "medium",
+        },
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/google/gemini-3-flash",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+      ],
     },
     "unspecified-high": {
       "model": "vercel/anthropic/claude-sonnet-4.6",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5.3-codex",
+          "variant": "medium",
+        },
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/google/gemini-3-flash",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+      ],
     },
     "writing": {
       "model": "vercel/google/gemini-3-flash",
+      "fallback_models": [
+        {
+          "model": "vercel/moonshotai/kimi-k2.5",
+        },
+        {
+          "model": "vercel/anthropic/claude-sonnet-4.6",
+        },
+        {
+          "model": "vercel/minimax/minimax-m2.7",
+        },
+      ],
     },
   },
 }
