@@ -61,7 +61,7 @@ let
   ];
 
   dutiCmds = builtins.concatStringsSep "\n" (
-    map (ext: "${duti} -s ${bundleId} .${ext} all") extensions
+    map (ext: "${duti} -s ${bundleId} .${ext} all 2>/dev/null || true") extensions
   );
 in
 {
