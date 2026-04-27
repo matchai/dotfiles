@@ -46,14 +46,16 @@ let
 
   # Pre-generate tool init scripts at nix build time (not every shell startup).
   # Each produces a /nix/store path that changes when the package updates.
-  mkFishInit = name: cmd: pkgs.runCommand "${name}-fish-init" {} ''
-    export HOME=$(mktemp -d)
-    ${cmd} > $out
-  '';
+  mkFishInit =
+    name: cmd:
+    pkgs.runCommand "${name}-fish-init" { } ''
+      export HOME=$(mktemp -d)
+      ${cmd} > $out
+    '';
 
-  zoxideInit  = mkFishInit "zoxide"  "${pkgs.zoxide}/bin/zoxide init fish --cmd j";
-  atuinInit   = mkFishInit "atuin"   "${pkgs.atuin}/bin/atuin init fish --disable-up-arrow";
-  miseInit    = mkFishInit "mise"    "${pkgs.mise}/bin/mise activate fish";
+  zoxideInit = mkFishInit "zoxide" "${pkgs.zoxide}/bin/zoxide init fish --cmd j";
+  atuinInit = mkFishInit "atuin" "${pkgs.atuin}/bin/atuin init fish --disable-up-arrow";
+  miseInit = mkFishInit "mise" "${pkgs.mise}/bin/mise activate fish";
   starshipInit = mkFishInit "starship" "${pkgs.starship}/bin/starship init fish";
 in
 {
@@ -61,6 +63,11 @@ in
 
   # Git abbreviations as aliases for non-fish shells (zsh/bash)
   home.shellAliases = aliases // gitAbbrs;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    OMO_SEND_ANONYMOUS_TELEMETRY = "0";
+  };
 
   programs.atuin = {
     enable = true;
@@ -81,9 +88,6 @@ in
     shellAliases = aliases;
 
     shellInit = ''
-      # Set editor
-      set -gx EDITOR nvim
-
       # Set a PNPM home shared across versions
       set -gx PNPM_HOME "/Users/${user}/Library/pnpm"
 
@@ -135,7 +139,7 @@ in
 
     functions = {
       tableplus = "open -a TablePlus $argv";
-      idea = ''open -a "IntelliJ IDEA.app" $argv'';  # needs '' for embedded quotes
+      idea = ''open -a "IntelliJ IDEA.app" $argv''; # needs '' for embedded quotes
       code = "if test (count $argv) -eq 0; command zed (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command zed $argv[1]; end";
       fish_greeting = "";
 
