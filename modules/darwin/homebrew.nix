@@ -81,7 +81,6 @@
       "imageoptim"
       "keka"
       "kekaexternalhelper"
-      "mullvad-vpn"
       "replacicon"
 
       # Productivity

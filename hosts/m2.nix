@@ -14,6 +14,7 @@
           "crossover"
           "deskpad"
           "syncthing-app"
+          "mullvad-vpn"
         ];
       };
     };
