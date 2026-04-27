@@ -22,12 +22,12 @@
 - The 'gh' CLI is installed, use it
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
 
-## Bash
-- Prefer the following CLIs:
-  - find -> fd
-  - grep -> ripgrep
-
-## MCPs
-
+## Tools
+- find -> fd
+- grep -> ripgrep
 - Use `context7` for code generation and library documentation
-- If you are unsure how to do something, use `gh_grep` to search code examples from github
+- Use `gh_grep` to search code examples from github
+- Never browse node_modules to read dependency source code. Use `opensrc path <pkg>` instead — it fetches the actual repo at the installed version with full source, tests, and docs. node_modules often contains transpiled/bundled output that's harder to reason about
+- When investigating how a dependency works internally, load the `opensrc` skill first. Never read files under node_modules, vendor, or similar dependency directories
+
+@RTK.md
