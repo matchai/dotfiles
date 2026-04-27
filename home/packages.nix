@@ -32,6 +32,7 @@ in
     graphite-cli
     jujutsu
     killport
+    rtk
 
     # Git
     diff-so-fancy
