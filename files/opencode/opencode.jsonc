@@ -3,9 +3,9 @@
   "share": "disabled",
   "model": "vercel/anthropic/claude-sonnet-4.6",
   "plugin": [
-    "oh-my-openagent@latest",
     "@plannotator/opencode@latest",
     "opencode-cmux@latest",
+    "oh-my-openagent@latest"
   ],
   "experimental": {
     "disable_paste_summary": true,
