@@ -11,14 +11,6 @@
       "~/.orbstack/ssh/config"
     ];
 
-    matchBlocks."github.com" = {
-      identityFile = "~/.ssh/github";
-      identitiesOnly = true;
-      extraOptions = {
-        IdentityAgent = "none";
-      };
-    };
-
     matchBlocks."*" = {
       addKeysToAgent = "no";
       extraOptions = {
