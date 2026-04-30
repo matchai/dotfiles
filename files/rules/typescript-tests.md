@@ -6,7 +6,7 @@ description: "TypeScript testing rules"
 - Tests are in `.test.ts` files alongside their source file
 - Playwright tests are in `.spec.test.ts` files
 - Prefer integration tests
-- Mock minimally 
+- Mock minimally
 - Real fs in /tmp > mock fs
 - In-memory DBs > mock DB
 - When mocking third-party services is necessary, use msw
@@ -17,4 +17,4 @@ description: "TypeScript testing rules"
 - Keep explicit timeouts to a minimum
 - Use `resolves` and `rejects` assertions instead of try/catch
 - Use `@total-typescript/shoehorn` to pass partial data in tests
-- Pass the function or class in `describe` instead of its name as a string
+- Pass the function in `describe` instead of its name as a string

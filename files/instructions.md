@@ -16,10 +16,9 @@
 - Intermediary variables and functions are fine if it improves declarativity and readability. Prefer intermediary variables over deep nesting
 - Left align the happy path. Early returns over nesting
 - Prefer small, well-scoped files
-- Be extremely concise. Sacrifice grammar for the sake of concision
 - Never remove existing comments or docstrings when editing code, even when simplifying or refactoring
 - When asked to change a feature, consider what can be removed or simplified as a result
-- The 'gh' CLI is installed, use it
+- The `gh` CLI is installed, use it
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
 
 ## Tools
