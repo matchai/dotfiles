@@ -8,6 +8,7 @@ let
   secrets = {
     opencode = {
       CONTEXT7_API_KEY = "op://Private/Context7 API/credential";
+      EXA_API_KEY = "op://Private/Exa API/credential";
     };
   };
 
