@@ -11,7 +11,7 @@
   "disabled_skills": ["dev-browser"],
   "agents": {
     "sisyphus": {
-      "model": "vercel/anthropic/claude-opus-4.6",
+      "model": "vercel/anthropic/claude-opus-4.7",
       "variant": "max",
       "fallback_models": [
         {
@@ -39,7 +39,7 @@
           "variant": "high",
         },
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
         {
@@ -79,7 +79,7 @@
       ],
     },
     "prometheus": {
-      "model": "vercel/anthropic/claude-opus-4.6",
+      "model": "vercel/anthropic/claude-opus-4.7",
       "variant": "max",
       "fallback_models": [
         {
@@ -95,7 +95,7 @@
       ],
     },
     "metis": {
-      "model": "vercel/anthropic/claude-opus-4.6",
+      "model": "vercel/anthropic/claude-opus-4.7",
       "variant": "max",
       "fallback_models": [
         {
@@ -112,7 +112,7 @@
       "variant": "xhigh",
       "fallback_models": [
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
         {
@@ -164,7 +164,7 @@
           "model": "vercel/zai/glm-5",
         },
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
       ],
@@ -178,7 +178,7 @@
           "variant": "high",
         },
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
         {
@@ -191,7 +191,7 @@
       "variant": "medium",
       "fallback_models": [
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
         {
@@ -205,7 +205,7 @@
       "variant": "high",
       "fallback_models": [
         {
-          "model": "vercel/anthropic/claude-opus-4.6",
+          "model": "vercel/anthropic/claude-opus-4.7",
           "variant": "max",
         },
         {
