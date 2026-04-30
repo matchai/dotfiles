@@ -5,7 +5,8 @@
     { config, ... }:
     {
       homebrew = {
-        taps = builtins.attrNames config.nix-homebrew.taps;
+        taps = builtins.attrNames config.nix-homebrew.taps ++ [ "datadog-labs/pack" ];
+        brews = [ "datadog-labs/pack/pup" ];
         casks = [
           # Browsers
           "thebrowsercompany-dia"

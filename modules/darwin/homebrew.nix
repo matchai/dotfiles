@@ -14,13 +14,11 @@
       "macos-trash"
       "worktrunk"
       "jnsahaj/lumen/lumen"
-      "datadog-labs/pack/pup"
     ];
 
     taps = [
       "manaflow-ai/cmux"
       "jnsahaj/lumen"
-      "datadog-labs/pack"
     ];
 
     casks = [
