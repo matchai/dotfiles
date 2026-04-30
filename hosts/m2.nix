@@ -7,12 +7,8 @@
       homebrew = {
         taps = builtins.attrNames config.nix-homebrew.taps;
         casks = [
-          # Development
-          "zed"
-
           # Personal
           "crossover"
-          "deskpad"
           "syncthing-app"
           "mullvad-vpn"
         ];
