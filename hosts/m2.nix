@@ -9,8 +9,6 @@
         casks = [
           # Personal
           "crossover"
-          "syncthing-app"
-          "mullvad-vpn"
         ];
       };
     };
