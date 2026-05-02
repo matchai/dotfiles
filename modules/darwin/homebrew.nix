@@ -25,7 +25,7 @@
       # macOS Must-Haves
       "appcleaner"
       "flux-app"
-      "jordanbaird-ice"
+      "bartender"
       "karabiner-elements"
       "raycast"
       "yellowdot"
