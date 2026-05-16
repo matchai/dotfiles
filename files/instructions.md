@@ -8,6 +8,7 @@
 
 ## Git
 - Never amend commits. Always create new commits to fix issues
+- Never force-push (`--force`, `--force-with-lease`) unless I explicitly ask. Pushing fix-up commits on top of existing ones is the default; rewriting published history is opt-in only
 
 ## Programming
 - Only create an abstraction if it's actually needed
@@ -28,5 +29,3 @@
 - Use `gh_grep` to search code examples from github
 - Never browse node_modules to read dependency source code. Use `opensrc path <pkg>` instead — it fetches the actual repo at the installed version with full source, tests, and docs. node_modules often contains transpiled/bundled output that's harder to reason about
 - When investigating how a dependency works internally, load the `opensrc` skill first. Never read files under node_modules, vendor, or similar dependency directories
-
-@RTK.md

@@ -1,6 +1,6 @@
 ---
 name: git-style
-description: Enforce PR and commit style conventions for projects under ~/vercel. Use when creating commits, PRs, or reviewing commit messages in any ~/vercel/* repository. Triggers on "commit", "PR", "pull request", "push", "git push", "create PR", "open PR".
+description: Load before any git commit, git push, PR creation, or PR editing in ~/vercel/* repositories. Load this skill as a prerequisite, not an afterthought.
 ---
 
 # Git Style — PR and Commit Conventions
@@ -15,9 +15,9 @@ Enforces matchai's PR title, commit message, and PR body conventions derived fro
 
 | Repo Type | Style | Example |
 |-----------|-------|---------|
-| Monorepo with conventional commits (vertex) | `type(scope): message` | `feat(agent): add skill loading` |
-| Monorepo without conventional commits (api, infra) | `[scope] Message` | `[subscriber-omniagent] Add webhook forwarding` |
-| Single-package repo (omniagent) | Plain imperative | `Fix session page 404 for GitHub thread sessions` |
+| Monorepo with conventional commits | `type(scope): message` | `feat(agent): add skill loading` |
+| Monorepo without conventional commits  | `[scope] Message` | `[subscriber-omniagent] Add webhook forwarding` |
+| Single-package repo | Plain imperative | `Fix session page 404 for GitHub thread sessions` |
 
 **Detection**: Check `git log -30 --oneline` before committing. Match the dominant style.
 
@@ -55,7 +55,9 @@ Only use when the repo already uses them (check git log first):
 
 ## PR Titles
 
-### Monorepo (vertex, api, infra)
+PR titles follow the same style as commit messages. Check `git log -30 --oneline` and match the dominant style. If the repo uses conventional commits, the PR title should too.
+
+### Monorepo without conventional commits (vertex, api, infra)
 
 Format: `[scope] lowercase description`
 
@@ -70,21 +72,6 @@ Format: `[scope] lowercase description`
 - Scope = the workspace or subsystem being changed
 - Lowercase after scope bracket
 - No conventional commit prefix (no `feat:`, `fix:`)
-- Imperative mood
-
-### Single-package repo (omniagent)
-
-Format: `Sentence case description`
-
-```
-Fix session page 404 for GitHub thread sessions
-Enrich GitHub PR comment messages with file/line/diff context
-Add Omniagent signature to GitHub replies
-Isolate Slack and GitHub handlers into their own files
-```
-
-- Sentence case (capitalize first word)
-- No scope prefix needed
 - Imperative mood
 
 ### Reverts
@@ -158,6 +145,38 @@ For features with components/modules, use a table:
 - No screenshots unless UI change
 - Don't restate the title in the body
 - No hard line wraps in PR bodies
+
+---
+
+## Re-Signing Unsigned Commits
+
+Some orgs require verified (GPG/SSH-signed) commits. When a branch contains unsigned commits (from tools, collaborators, or automated workflows), the push will be rejected. Re-sign before pushing.
+
+### Re-sign all commits on a branch
+
+```bash
+git rebase --exec 'git commit --amend --no-edit -S' -i <base>
+```
+
+`<base>` is the commit where the unsigned commits start (e.g., `main`, `HEAD~5`, or a specific hash). This re-signs every commit after `<base>` using your signing key.
+
+- If conflicts occur, resolve normally (`git add` + `git rebase --continue`)
+- Push with `--force-with-lease` afterward (commits are rewritten)
+- Verify with `git log --format='%h %G? %s'` (`G` = good signature)
+
+### Re-sign during merge
+
+If you're merging an unsigned branch and want to preserve individual commits (not squash), rebase the branch onto your target first:
+
+```bash
+git rebase --exec 'git commit --amend --no-edit -S' -i <target> <unsigned-branch> --onto <target>
+```
+
+Then fast-forward merge. If you only need to sign the merge commit itself:
+
+```bash
+git merge --no-ff -S <branch>
+```
 
 ---
 

@@ -23,6 +23,7 @@
       ".pnpm-debug.log*"
       ".opencode"
       ".sisyphus"
+      "AGENTS.local.md"
     ];
 
     settings = {
@@ -94,4 +95,3 @@
     };
   };
 }
-
