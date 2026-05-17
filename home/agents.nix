@@ -19,6 +19,10 @@ let
         name = ".config/opencode/skills/${name}";
         value.source = symlink "${filesPath}/skills/${name}";
       }
+      {
+        name = ".agents/skills/${name}";
+        value.source = symlink "${filesPath}/skills/${name}";
+      }
     ]) skills
   );
 
