@@ -133,7 +133,6 @@ For features with components/modules, use a table:
 | Ticket reference | Always if ticket exists | `Closes SPE-XXXX` or `Part of SPE-XXXX` |
 | Stacked PR | When building on another PR | `Stacks on PR #XXXX` |
 | Companion PR | Cross-repo dependency | `Companion PR: vercel/integrations -- slug` |
-| Test results | When adding empirical validation | Table with pass rates |
 
 
 ### What NOT to do

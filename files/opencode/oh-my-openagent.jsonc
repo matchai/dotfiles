@@ -30,6 +30,7 @@
     "oracle": {
       "model": "vercel/openai/gpt-5.5",
       "variant": "high",
+      "prompt_append": "You have access to Context7 for looking up library and framework documentation. Use it when you need accurate, up-to-date API details rather than relying on training data.",
       "fallback_models": [
         {
           "model": "vercel/google/gemini-3.1-pro-preview",
@@ -41,14 +42,6 @@
         },
         {
           "model": "vercel/zai/glm-5",
-        },
-      ],
-    },
-    "librarian": {
-      "model": "vercel/anthropic/claude-haiku-4.5",
-      "fallback_models": [
-        {
-          "model": "vercel/openai/gpt-5-nano",
         },
       ],
     },
@@ -151,6 +144,14 @@
         },
       ],
     },
+    "librarian": {
+      "model": "vercel/anthropic/claude-haiku-4.5",
+      "fallback_models": [
+        {
+          "model": "vercel/openai/gpt-5-nano",
+        },
+      ],
+    },
   },
   "categories": {
     "visual-engineering": {
@@ -194,19 +195,6 @@
         {
           "model": "vercel/google/gemini-3.1-pro-preview",
           "variant": "high",
-        },
-      ],
-    },
-    "artistry": {
-      "model": "vercel/google/gemini-3.1-pro-preview",
-      "variant": "high",
-      "fallback_models": [
-        {
-          "model": "vercel/anthropic/claude-opus-4.6",
-          "variant": "max",
-        },
-        {
-          "model": "vercel/openai/gpt-5.5",
         },
       ],
     },
@@ -278,6 +266,19 @@
         },
       ],
     },
+    "artistry": {
+      "model": "vercel/google/gemini-3.1-pro-preview",
+      "variant": "high",
+      "fallback_models": [
+        {
+          "model": "vercel/anthropic/claude-opus-4.6",
+          "variant": "max",
+        },
+        {
+          "model": "vercel/openai/gpt-5.5",
+        },
+      ],
+    },
   },
   "browser_automation_engine": {
     "provider": "agent-browser",
@@ -287,6 +288,6 @@
     "include_co_authored_by": false,
   },
   "mcp_env_allowlist": ["CONTEXT7_API_KEY"],
-  "disabled_skills": ["dev-browser", "handoff"],
+  "disabled_skills": ["dev-browser"],
   "disabled_hooks": ["todo-continuation-enforcer"],
 }

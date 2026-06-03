@@ -24,6 +24,7 @@
       ".opencode"
       ".sisyphus"
       "AGENTS.local.md"
+      ".config/wt.toml"
     ];
 
     settings = {
