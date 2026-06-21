@@ -25,7 +25,7 @@
           # Productivity
           "chatgpt"
           "granola"
-          "linear-linear"
+          "linear"
           "loom"
           "notion-calendar"
           "slack"

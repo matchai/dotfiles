@@ -54,7 +54,6 @@
 
       # Development
       "cmux"
-      "cursor"
       "cyberduck"
       "dash"
       "ghostty"

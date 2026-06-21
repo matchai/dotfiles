@@ -11,13 +11,12 @@
       "~/.orbstack/ssh/config"
     ];
 
-    matchBlocks."*" = {
-      addKeysToAgent = "no";
-      extraOptions = {
-        # Use 1Password's SSH agent
-        # https://developer.1password.com/docs/ssh/agent/
-        IdentityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
-      };
+    settings."*" = {
+      AddKeysToAgent = "no";
+
+      # Use 1Password's SSH agent
+      # https://developer.1password.com/docs/ssh/agent/
+      IdentityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
     };
   };
 }

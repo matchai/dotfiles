@@ -23,6 +23,10 @@ let
         name = ".agents/skills/${name}";
         value.source = symlink "${filesPath}/skills/${name}";
       }
+      {
+        name = ".codex/skills/${name}";
+        value.source = symlink "${filesPath}/skills/${name}";
+      }
     ]) skills
   );
 

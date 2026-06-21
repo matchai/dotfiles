@@ -134,6 +134,16 @@ For features with components/modules, use a table:
 | Stacked PR | When building on another PR | `Stacks on PR #XXXX` |
 | Companion PR | Cross-repo dependency | `Companion PR: vercel/integrations -- slug` |
 
+### Multiline PR bodies with `gh`
+
+- Short body: use `$'...'` so `\n` becomes real newlines.
+  ```bash
+  gh pr create --body $'First paragraph\n\nSecond paragraph\n- bullet'
+  ```
+- Long body: write Markdown to a temp file and pass `--body-file`.
+
+If GitHub shows literal `\n`, the body was quoted wrong.
+
 
 ### What NOT to do
 

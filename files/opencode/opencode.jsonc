@@ -4,8 +4,29 @@
   "model": "vercel/anthropic/claude-sonnet-4.6",
   "plugin": [
     "./plugins/cmux-session.js",
-    "oh-my-openagent@latest"
+    "oh-my-openagent"
   ],
+  "provider": {
+    "vercel": {
+      "models": {
+        "openai/gpt-5.5": {
+          "options": {
+            "serviceTier": "priority",
+          },
+        },
+        "openai/gpt-5.4-mini": {
+          "options": {
+            "serviceTier": "priority",
+          },
+        },
+        "openai/gpt-5.3-codex": {
+          "options": {
+            "serviceTier": "priority",
+          },
+        },
+      },
+    },
+  },
   "experimental": {
     "disable_paste_summary": true,
   },
