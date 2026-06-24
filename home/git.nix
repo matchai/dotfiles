@@ -25,6 +25,8 @@
       ".sisyphus"
       "AGENTS.local.md"
       ".config/wt.toml"
+      ".omo"
+      ".codegraph"
     ];
 
     settings = {
