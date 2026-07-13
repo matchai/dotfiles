@@ -1,13 +1,8 @@
 {
   pkgs,
-  lib,
-  npmPackages ? [ ],
   ...
 }:
 
-let
-  commonNpmPackages = import ./npm-packages.nix;
-in
 {
   home.packages = with pkgs; [
     # CLIs but better
@@ -53,24 +48,6 @@ in
     mise = {
       enable = true;
       enableFishIntegration = false; # cached in shell/default.nix
-      globalConfig = {
-        tools = {
-          bun = "latest";
-          node = "lts";
-          deno = "latest";
-          usage = "latest";
-          python = "latest";
-          rust = "latest";
-          uv = "latest";
-          go = "latest";
-        };
-        settings = {
-          # Required for hooks to work
-          experimental = true;
-          idiomatic_version_file_enable_tools = [ "node" ];
-        };
-        hooks.postinstall = "npx corepack enable";
-      };
     };
 
     tealdeer = {
@@ -79,6 +56,5 @@ in
     };
   };
 
-  # Setup mise's default npm packages
-  home.file.".default-npm-packages".text = lib.concatLines (commonNpmPackages ++ npmPackages);
+  xdg.configFile."mise/config.toml".source = ./mise.toml;
 }

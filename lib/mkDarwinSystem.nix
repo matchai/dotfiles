@@ -5,7 +5,6 @@ hostId:
 let
   user = "matchai";
   hostConfig = import ../hosts/${hostId}.nix;
-  npmPackages = hostConfig.npmPackages or [];
   homeConfig = hostConfig.home or { };
 in
 nix-darwin.lib.darwinSystem {
@@ -19,7 +18,7 @@ nix-darwin.lib.darwinSystem {
       home-manager = {
         useGlobalPkgs = true;
         backupFileExtension = "backup";
-        extraSpecialArgs = { inherit inputs user npmPackages; };
+        extraSpecialArgs = { inherit inputs user; };
         users.${user} = {
           imports = [ ../home homeConfig ];
         };

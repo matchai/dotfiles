@@ -1,6 +1,4 @@
 {
-  npmPackages = [ ];
-
   darwin =
     { config, ... }:
     {

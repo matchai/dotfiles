@@ -1,0 +1,22 @@
+[hooks]
+postinstall = "npx corepack enable"
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["node"]
+
+[tools]
+bun = "latest"
+deno = "latest"
+go = "latest"
+node = "lts"
+python = "latest"
+rust = "latest"
+usage = "latest"
+uv = "latest"
+"npm:@antfu/ni" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@openai/codex" = "latest"
+"npm:opencode-ai" = { version = "latest", npm_args = "--ignore-scripts=false" }
+"npm:pnpm" = "latest"
+"npm:vercel" = "latest"
