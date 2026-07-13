@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -56,5 +57,7 @@
     };
   };
 
-  xdg.configFile."mise/config.toml".source = ./mise.toml;
+  xdg.configFile."mise/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/.config/nixpkgs/home/mise.toml";
 }
