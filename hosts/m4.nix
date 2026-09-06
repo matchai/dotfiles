@@ -10,6 +10,7 @@
       '';
       skillsPath = pkgs.lib.makeBinPath [
         pkgs.git
+        pkgs.nodejs
         pkgs.openssh
       ];
       skillsCli = "${pkgs.pnpm}/bin/pnpx skills";
