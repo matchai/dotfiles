@@ -1,2 +1,5 @@
 result
 .DS_Store
+
+# Generated project-scoped skills. Local skills remain tracked in files/skills/.
+.agents/

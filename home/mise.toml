@@ -18,5 +18,6 @@ uv = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:opencode-ai" = { version = "latest", npm_args = "--ignore-scripts=false" }
+"npm:skills" = "1.5.23"
 "npm:pnpm" = "latest"
 "npm:vercel" = "latest"

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "dd-pup": {
+      "source": "datadog-labs/agent-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "dd-pup/SKILL.md",
+      "computedHash": "c20040e8019986eaf9a3df00901025f5fcebf9f8205fda4ec56d2eb18c162715"
+    },
+    "slack": {
+      "source": "git@github.com:vercel/internal-agent-skills.git",
+      "sourceUrl": "git@github.com:vercel/internal-agent-skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/slack/SKILL.md",
+      "computedHash": "805584b455d874175f61e99e1d61ffddf8bca1349b72804d9eeac107612fd796"
+    }
+  }
+}

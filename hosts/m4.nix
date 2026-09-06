@@ -1,13 +1,37 @@
 {
   home =
-    { config, ... }:
+    { config, pkgs, ... }:
+    let
+      homeDirectory = config.home.homeDirectory;
+      repoPath = "${homeDirectory}/.config/nixpkgs";
+      m4SkillsProject = "${homeDirectory}/.local/share/m4-agent-skills";
+      publicNpmConfig = pkgs.writeText "public-npmrc" ''
+        registry=https://registry.npmjs.org/
+      '';
+      skillsPath = pkgs.lib.makeBinPath [
+        pkgs.git
+        pkgs.openssh
+      ];
+      skillsCli = "${pkgs.pnpm}/bin/pnpx skills";
+      symlink = config.lib.file.mkOutOfStoreSymlink;
+    in
     {
-      home.activation = {
-        # Install Datadog skills via pup (DD_ACCESS_TOKEN=skip bypasses keychain prompt)
-        installPupSkills = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-          $DRY_RUN_CMD env DD_ACCESS_TOKEN=skip /opt/homebrew/bin/pup skills install --target-agent=opencode
-        '';
+      home.file = {
+        ".local/share/m4-agent-skills/skills-lock.json".source =
+          symlink "${repoPath}/hosts/m4-skills-lock.json";
+        ".local/share/m4-agent-skills/.agents/skills".source = symlink "${homeDirectory}/.agents/skills";
+        ".agents/skills/monthly-perf-checkin".source =
+          symlink "${repoPath}/hosts/m4-skills/monthly-perf-checkin";
       };
+
+      # Restore work-machine-only skills from their separate lockfile.
+      home.activation.restoreM4Skills = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+        cd ${m4SkillsProject}
+        $DRY_RUN_CMD env \
+          PATH=${skillsPath}:$PATH \
+          NPM_CONFIG_USERCONFIG=${publicNpmConfig} \
+          ${skillsCli} experimental_install
+      '';
     };
 
   darwin =

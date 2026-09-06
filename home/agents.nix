@@ -1,33 +1,23 @@
 { config, ... }:
 
 let
-  filesPath = "${config.home.homeDirectory}/.config/nixpkgs/files";
+  repoPath = "${config.home.homeDirectory}/.config/nixpkgs";
+  filesPath = "${repoPath}/files";
   symlink = config.lib.file.mkOutOfStoreSymlink;
 
   dirNames = path: builtins.attrNames (builtins.readDir path);
 
-  skills = dirNames ../files/skills;
+  localSkillNames = dirNames ../files/skills;
+  managedSkillNames = builtins.attrNames (builtins.fromJSON (builtins.readFile ../skills-lock.json))
+    .skills;
+  skillNameCollisions = builtins.filter (name: builtins.elem name managedSkillNames) localSkillNames;
   commands = dirNames ../files/commands;
 
-  skillLinks = builtins.listToAttrs (
-    builtins.concatMap (name: [
-      {
-        name = ".claude/skills/${name}";
-        value.source = symlink "${filesPath}/skills/${name}";
-      }
-      {
-        name = ".config/opencode/skills/${name}";
-        value.source = symlink "${filesPath}/skills/${name}";
-      }
-      {
-        name = ".agents/skills/${name}";
-        value.source = symlink "${filesPath}/skills/${name}";
-      }
-      {
-        name = ".codex/skills/${name}";
-        value.source = symlink "${filesPath}/skills/${name}";
-      }
-    ]) skills
+  localSkillLinks = builtins.listToAttrs (
+    builtins.map (name: {
+      name = ".agents/skills/${name}";
+      value.source = symlink "${filesPath}/skills/${name}";
+    }) localSkillNames
   );
 
   commandLinks = builtins.listToAttrs (
@@ -44,7 +34,18 @@ let
   );
 in
 {
+  assertions = [
+    {
+      assertion = skillNameCollisions == [ ];
+      message = "Skills cannot be both local and managed: ${builtins.concatStringsSep ", " skillNameCollisions}";
+    }
+  ];
+
   home.file = {
+    # Project-scoped skills CLI state. Running `skills` from $HOME restores managed
+    # skills beside the local Home Manager links in ~/.agents/skills.
+    "skills-lock.json".source = symlink "${repoPath}/skills-lock.json";
+
     # Shared instructions (AGENTS.md convention, symlinked as CLAUDE.md for Claude Code)
     "AGENTS.md".source = symlink "${filesPath}/instructions.md";
     ".claude/CLAUDE.md".source = symlink "${filesPath}/instructions.md";
@@ -55,13 +56,9 @@ in
 
     # OpenCode-specific config
     ".config/opencode/opencode.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
-    ".config/opencode/oh-my-openagent.jsonc".source =
-      symlink "${filesPath}/opencode/oh-my-openagent.jsonc";
     ".cmuxterm/omo-config/openagent.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
-    ".cmuxterm/omo-config/oh-my-openagent.jsonc".source =
-      symlink "${filesPath}/opencode/oh-my-openagent.jsonc";
   }
-  // skillLinks
+  // localSkillLinks
   // commandLinks;
 
 }
