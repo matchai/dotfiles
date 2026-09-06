@@ -7,7 +7,6 @@ let
     ls = "eza";
     cat = "bat";
     tree = "eza --tree";
-    pi = "senpi";
 
     # ls
     l = "ls -l";

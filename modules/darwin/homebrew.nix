@@ -16,10 +16,7 @@
       "jnsahaj/lumen/lumen"
     ];
 
-    taps = [
-      "manaflow-ai/cmux"
-      "jnsahaj/lumen"
-    ];
+    taps = [ "jnsahaj/lumen" ];
 
     casks = [
       # macOS Must-Haves

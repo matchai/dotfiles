@@ -38,15 +38,24 @@
     { config, ... }:
     {
       homebrew = {
-        taps = builtins.attrNames config.nix-homebrew.taps ++ [ "datadog-labs/pack" ];
-        brews = [ "datadog-labs/pack/pup" ];
+        taps = builtins.attrNames config.nix-homebrew.taps ++ [
+          "datadog-labs/pack"
+          "nkzw-tech/tap"
+        ];
+        brews = [
+          "datadog-labs/pack/pup"
+          "awscli"
+        ];
         casks = [
           # Browsers
           "thebrowsercompany-dia"
 
+          # Development
+          "nkzw-tech/tap/codiff"
+          "session-manager-plugin"
+
           # Productivity
           "chatgpt"
-          "granola"
           "linear"
           "loom"
           "notion-calendar"
