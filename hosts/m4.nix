@@ -18,6 +18,11 @@
     in
     {
       home.file = {
+        # Keep pnpm project discovery here so it does not treat ~/.npmrc as a project-level config.
+        ".local/share/m4-agent-skills/package.json".text = builtins.toJSON {
+          name = "m4-agent-skills";
+          private = true;
+        };
         ".local/share/m4-agent-skills/skills-lock.json".source =
           symlink "${repoPath}/hosts/m4-skills-lock.json";
         ".local/share/m4-agent-skills/.agents/skills".source = symlink "${homeDirectory}/.agents/skills";
