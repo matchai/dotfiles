@@ -19,7 +19,6 @@ zig = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:opencode-ai" = { version = "next", npm_args = "--ignore-scripts=false" }
-"npm:skills" = "1.5.23"
 "npm:opensrc" = "latest"
 "npm:vercel" = "latest"
 "npm:ctx7" = "latest"

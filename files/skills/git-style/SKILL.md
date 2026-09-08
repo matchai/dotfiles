@@ -1,11 +1,11 @@
 ---
 name: git-style
-description: Load before any git commit, git push, PR creation, or PR editing in ~/vercel/* repositories. Load this skill as a prerequisite, not an afterthought.
+description: Load before any git commit, git push, PR creation, or PR editing repositories. Load this skill as a prerequisite, not an afterthought.
 ---
 
 # Git Style — PR and Commit Conventions
 
-Enforces matchai's PR title, commit message, and PR body conventions derived from Vercel repo history.
+Enforces matchai's PR title, commit message, and PR body conventions derived from repo history.
 
 ---
 
