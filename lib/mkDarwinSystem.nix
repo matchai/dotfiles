@@ -1,5 +1,17 @@
-{ self, nixpkgs, nix-darwin, home-manager, nix-homebrew
-, homebrew-core, homebrew-cask, homebrew-bundle, ... }@inputs:
+{
+  self,
+  nixpkgs,
+  nix-darwin,
+  home-manager,
+  nix-homebrew,
+  homebrew-core,
+  homebrew-cask,
+  homebrew-bundle,
+  homebrew-datadog-pack,
+  homebrew-jnsahaj-lumen,
+  homebrew-nkzw-tech,
+  ...
+}@inputs:
 
 hostId:
 let
@@ -20,7 +32,10 @@ nix-darwin.lib.darwinSystem {
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs user; };
         users.${user} = {
-          imports = [ ../home homeConfig ];
+          imports = [
+            ../home
+            homeConfig
+          ];
         };
       };
     }
@@ -36,8 +51,11 @@ nix-darwin.lib.darwinSystem {
           "homebrew/homebrew-core" = homebrew-core;
           "homebrew/homebrew-cask" = homebrew-cask;
           "homebrew/homebrew-bundle" = homebrew-bundle;
+          "datadog-labs/homebrew-pack" = homebrew-datadog-pack;
+          "jnsahaj/homebrew-lumen" = homebrew-jnsahaj-lumen;
+          "nkzw-tech/homebrew-tap" = homebrew-nkzw-tech;
         };
-        mutableTaps = true;
+        mutableTaps = false;
         autoMigrate = true;
       };
     }

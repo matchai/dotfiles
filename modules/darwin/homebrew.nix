@@ -6,7 +6,7 @@
 
     onActivation = {
       cleanup = "uninstall";
-      autoUpdate = true;
+      autoUpdate = false;
       upgrade = true;
     };
 
@@ -15,8 +15,6 @@
       "worktrunk"
       "jnsahaj/lumen/lumen"
     ];
-
-    taps = [ "jnsahaj/lumen" ];
 
     casks = [
       # macOS Must-Haves

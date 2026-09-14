@@ -15,15 +15,38 @@
     };
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-bundle = { url = "github:homebrew/homebrew-bundle"; flake = false; };
-    homebrew-core = { url = "github:homebrew/homebrew-core"; flake = false; };
-    homebrew-cask = { url = "github:homebrew/homebrew-cask"; flake = false; };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-datadog-pack = {
+      url = "github:datadog-labs/homebrew-pack";
+      flake = false;
+    };
+    homebrew-jnsahaj-lumen = {
+      url = "github:jnsahaj/homebrew-lumen";
+      flake = false;
+    };
+    homebrew-nkzw-tech = {
+      url = "github:nkzw-tech/homebrew-tap";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ nixpkgs, ... }:
+  outputs =
+    inputs@{ nixpkgs, ... }:
     let
       mkDarwinSystem = import ./lib/mkDarwinSystem.nix inputs;
-    in {
+    in
+    {
       darwinConfigurations = {
         "Matans-MacBook-Air-M2" = mkDarwinSystem "m2";
         "Matans-MacBook-Air-M4" = mkDarwinSystem "m4";
