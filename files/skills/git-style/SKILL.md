@@ -82,7 +82,7 @@ Format: `Revert "[original title] (#number)"`
 
 ## PR Bodies
 
-Keep PR descriptions focused on the problem, resulting behavior, and relevant implementation details. Omit validation details, test commands and results, CI status, and validation checklists.
+Keep PR descriptions focused on the problem, resulting behavior, and relevant implementation details. Never include validation details, test commands or results, CI status, or validation checklists.
 
 ### Default (most PRs)
 
