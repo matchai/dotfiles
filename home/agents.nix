@@ -46,6 +46,12 @@ in
     # skills beside the local Home Manager links in ~/.agents/skills.
     "skills-lock.json".source = symlink "${repoPath}/skills-lock.json";
 
+    # Keep Codex's legacy skills path on the same local and installed skill versions.
+    ".codex/skills" = {
+      source = symlink "${config.home.homeDirectory}/.agents/skills";
+      force = true;
+    };
+
     # Shared instructions (AGENTS.md convention, symlinked as CLAUDE.md for Claude Code)
     "AGENTS.md".source = symlink "${filesPath}/instructions.md";
     ".claude/CLAUDE.md".source = symlink "${filesPath}/instructions.md";

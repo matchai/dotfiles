@@ -29,13 +29,6 @@
       "skillPath": "skills/gh-stack/SKILL.md",
       "computedHash": "39b7803bf32b4ef195de76fa2d4730ac5dfc686d3d6654f93a162873febef0b1"
     },
-    "opensrc": {
-      "source": "vercel-labs/opensrc",
-      "sourceUrl": "https://github.com/vercel-labs/opensrc.git",
-      "sourceType": "github",
-      "skillPath": "skills/opensrc/SKILL.md",
-      "computedHash": "a03d4eb9013f4beaea383521b2dc432e98b71c0768bc26c37f66e9db00c859ff"
-    },
     "show-me": {
       "source": "humanlayer/skills",
       "sourceUrl": "https://github.com/humanlayer/skills.git",

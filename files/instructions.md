@@ -33,5 +33,3 @@
 - grep -> ripgrep
 - Read the `find-docs` skill for library documentation
 - Use `gh_grep` to search code examples from github
-- Never browse node_modules to read dependency source code. Use `opensrc path <pkg>` instead — it fetches the actual repo at the installed version with full source, tests, and docs. node_modules often contains transpiled/bundled output that's harder to reason about
-- When investigating how a dependency works internally, load the `opensrc` skill first. Never read files under node_modules, vendor, or similar dependency directories
