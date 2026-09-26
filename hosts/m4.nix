@@ -66,6 +66,9 @@
           symlink "${repoPath}/hosts/m4-skills/monthly-perf-checkin";
       };
 
+      # Devbox SSH hosts; devbox manages ~/.ssh/devbox.config itself.
+      programs.ssh.includes = [ "devbox.config" ];
+
       # Restore work-machine-only skills from their separate lockfile.
       home.activation.restoreM4Skills = config.lib.dag.entryAfter [ "writeBoundary" ] ''
         cd ${m4SkillsProject}
