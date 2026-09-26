@@ -33,7 +33,7 @@
       # Restore work-machine-only skills from their separate lockfile.
       home.activation.restoreM4Skills = config.lib.dag.entryAfter [ "writeBoundary" ] ''
         cd ${m4SkillsProject}
-        $DRY_RUN_CMD env \
+        run env \
           PATH=${skillsPath}:$PATH \
           NPM_CONFIG_USERCONFIG=${publicNpmConfig} \
           ${skillsCli} experimental_install
