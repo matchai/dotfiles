@@ -61,8 +61,8 @@ in
 {
   imports = [ ./starship.nix ];
 
-  # Git abbreviations as aliases for non-fish shells (zsh/bash)
-  home.shellAliases = aliases // gitAbbrs;
+  # Shared aliases for every shell (Home Manager also applies these to fish)
+  home.shellAliases = aliases;
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -85,7 +85,6 @@ in
     enable = true;
     # Fish gets abbreviations (expand inline, better for history) — not aliases
     shellAbbrs = gitAbbrs;
-    shellAliases = aliases;
 
     shellInit = ''
       # Set a PNPM home shared across versions
@@ -144,13 +143,15 @@ in
       fish_greeting = "";
 
       # Nix helpers
-      nix-switch = "darwin-rebuild switch --flake ~/.config/nixpkgs";
+      nix-switch = "sudo darwin-rebuild switch --flake ~/.config/nixpkgs $argv";
       nix-update = "nix flake update --flake ~/.config/nixpkgs";
     };
   };
 
   programs.zsh = {
     enable = true;
+    # Git abbreviations as plain aliases in zsh
+    shellAliases = gitAbbrs;
     autosuggestion.enable = true;
     enableCompletion = true;
     history.extended = true;
