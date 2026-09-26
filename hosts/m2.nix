@@ -1,13 +1,11 @@
+{ config, ... }:
+
 {
-  darwin =
-    { config, ... }:
-    {
-      homebrew = {
-        taps = builtins.attrNames config.nix-homebrew.taps;
-        casks = [
-          # Personal
-          "crossover"
-        ];
-      };
-    };
+  homebrew = {
+    taps = builtins.attrNames config.nix-homebrew.taps;
+    casks = [
+      # Personal
+      "crossover"
+    ];
+  };
 }

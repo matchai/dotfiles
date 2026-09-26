@@ -15,14 +15,12 @@
 hostId:
 let
   user = "matchai";
-  hostConfig = import ../hosts/${hostId}.nix;
-  homeConfig = hostConfig.home or { };
 in
 nix-darwin.lib.darwinSystem {
   specialArgs = { inherit self inputs user; };
   modules = [
     ../modules/darwin
-    hostConfig.darwin
+    ../hosts/${hostId}.nix
 
     home-manager.darwinModules.home-manager
     {
@@ -30,12 +28,7 @@ nix-darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs user; };
-        users.${user} = {
-          imports = [
-            ../home
-            homeConfig
-          ];
-        };
+        users.${user}.imports = [ ../home ];
       };
     }
 

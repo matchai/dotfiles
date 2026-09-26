@@ -1,5 +1,41 @@
+{ config, user, ... }:
+
 {
-  home =
+  homebrew = {
+    taps = builtins.attrNames config.nix-homebrew.taps;
+    brews = [
+      "datadog-labs/pack/pup"
+      "awscli"
+    ];
+    casks = [
+      # Browsers
+      "thebrowsercompany-dia"
+
+      # Development
+      {
+        name = "nkzw-tech/tap/codiff";
+        greedy = true;
+      }
+      "session-manager-plugin"
+
+      # Productivity
+      {
+        name = "chatgpt";
+        greedy = true;
+      }
+      {
+        name = "claude";
+        greedy = true;
+      }
+      "linear"
+      "loom"
+      "notion-calendar"
+      "slack"
+      "nordlayer"
+    ];
+  };
+
+  home-manager.users.${user} =
     { config, pkgs, ... }:
     let
       homeDirectory = config.home.homeDirectory;
@@ -38,43 +74,5 @@
           NPM_CONFIG_USERCONFIG=${publicNpmConfig} \
           ${skillsCli} experimental_install
       '';
-    };
-
-  darwin =
-    { config, ... }:
-    {
-      homebrew = {
-        taps = builtins.attrNames config.nix-homebrew.taps;
-        brews = [
-          "datadog-labs/pack/pup"
-          "awscli"
-        ];
-        casks = [
-          # Browsers
-          "thebrowsercompany-dia"
-
-          # Development
-          {
-            name = "nkzw-tech/tap/codiff";
-            greedy = true;
-          }
-          "session-manager-plugin"
-
-          # Productivity
-          {
-            name = "chatgpt";
-            greedy = true;
-          }
-          {
-            name = "claude";
-            greedy = true;
-          }
-          "linear"
-          "loom"
-          "notion-calendar"
-          "slack"
-          "nordlayer"
-        ];
-      };
     };
 }
