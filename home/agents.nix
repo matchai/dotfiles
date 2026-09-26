@@ -52,6 +52,12 @@ in
       force = true;
     };
 
+    # Keep Claude Code on the same local and installed skill versions.
+    ".claude/skills" = {
+      source = symlink "${config.home.homeDirectory}/.agents/skills";
+      force = true;
+    };
+
     # Shared instructions (AGENTS.md convention, symlinked as CLAUDE.md for Claude Code)
     "AGENTS.md".source = symlink "${filesPath}/instructions.md";
     ".claude/CLAUDE.md".source = symlink "${filesPath}/instructions.md";
