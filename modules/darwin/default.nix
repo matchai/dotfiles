@@ -52,8 +52,6 @@ in
     reattach = true; # Works in tmux/screen
   };
 
-  users.users.${user} = {
-    home = "/Users/${user}";
-    shell = pkgs.fish;
-  };
+  # Login shell is managed by macOS; nix-darwin only sets it for users.knownUsers.
+  users.users.${user}.home = home;
 }
