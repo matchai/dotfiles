@@ -15,6 +15,12 @@
       "skillPath": "skills/use-ai-sdk/SKILL.md",
       "computedHash": "da25c27a274ef2b71017c255f95a26350d2519765a75cb54ee1a37872b121dab"
     },
+    "codiff": {
+      "source": "nkzw-tech/codiff",
+      "sourceType": "github",
+      "skillPath": "claude/skills/codiff/SKILL.md",
+      "computedHash": "94de61163a6cc0c27a8fb906edb20453a6173e22d980631f3be28251155875fc"
+    },
     "find-docs": {
       "source": "upstash/context7",
       "sourceUrl": "https://github.com/upstash/context7.git",
