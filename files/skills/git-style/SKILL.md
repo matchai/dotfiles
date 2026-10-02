@@ -87,6 +87,7 @@ Keep PR descriptions focused on the problem, resulting behavior, and relevant im
 ### Default (most PRs)
 
 Plain prose. No headers. Paragraphs and bullet points are enough.
+Use code snippets for illustrating newly designed APIs.
 
 ```markdown
 Extends subscriber-omniagent's webhook enrichment to resolve the GitHub commenter to a Vercel user and mint a short-lived (15m) Vercel API token scoped to their team.

@@ -28,6 +28,11 @@
 - The `gh` CLI is installed, use it
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
 
+## Dev Flow
+- If asked to make a PR in a project, search for it by name in:
+  - Vercel repos: ~/vercel
+  - All other repos: ~/dev
+
 ## Tools
 - find -> fd
 - grep -> ripgrep
