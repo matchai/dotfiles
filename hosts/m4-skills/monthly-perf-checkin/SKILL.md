@@ -23,7 +23,7 @@ Then produce one paragraph per question. If comparing adjacent months, say wheth
 Gather all sources in parallel before drafting.
 
 1. **Slack**
-   - Load/use the `slack` skill and run its install check first.
+   - Use the Slack MCP server tools.
    - Search project channels and relevant feedback channels for the month.
    - Prefer channel IDs from Linear project metadata when names are missing from cache.
    - Read threads for launches, project updates, metrics, beta/customer feedback, and blockers.
