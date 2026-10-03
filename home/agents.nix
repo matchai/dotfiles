@@ -3,6 +3,8 @@
 let
   repoPath = "${config.home.homeDirectory}/.config/nixpkgs";
   filesPath = "${repoPath}/files";
+  # Gitignored, so flake evaluation cannot read it; activation links it instead.
+  localOnlySkillsPath = "${filesPath}/skills-local";
   symlink = config.lib.file.mkOutOfStoreSymlink;
 
   dirNames = path: builtins.attrNames (builtins.readDir path);
@@ -40,6 +42,34 @@ in
       message = "Skills cannot be both local and managed: ${builtins.concatStringsSep ", " skillNameCollisions}";
     }
   ];
+
+  # Link skills that must stay out of git, such as ones naming internal projects.
+  home.activation.linkLocalOnlySkills = config.lib.dag.entryAfter [ "linkGeneration" ] ''
+    skillsDir="$HOME/.agents/skills"
+    localOnlyDir="${localOnlySkillsPath}"
+    run mkdir -p "$skillsDir"
+
+    for link in "$skillsDir"/*; do
+      [ -L "$link" ] || continue
+      target="$(readlink "$link")"
+      case "$target" in
+        "$localOnlyDir"/*) [ -e "$target" ] || run rm "$link" ;;
+      esac
+    done
+
+    for skill in "$localOnlyDir"/*/; do
+      [ -d "$skill" ] || continue
+      name="$(basename "$skill")"
+      link="$skillsDir/$name"
+      if [ -e "$link" ] || [ -L "$link" ]; then
+        if [ "$(readlink "$link")" != "$localOnlyDir/$name" ]; then
+          errorEcho "Local-only skill $name collides with existing $link"
+          exit 1
+        fi
+      fi
+      run ln -sfn "$localOnlyDir/$name" "$link"
+    done
+  '';
 
   home.file = {
     # Project-scoped skills CLI state. Running `skills` from $HOME restores managed

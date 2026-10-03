@@ -3,3 +3,6 @@ result
 
 # Generated project-scoped skills. Local skills remain tracked in files/skills/.
 .agents/
+
+# Local-only skills that must never be committed.
+files/skills-local/

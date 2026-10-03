@@ -22,6 +22,8 @@ Put self-authored skills in `files/skills/<name>/SKILL.md`. Home Manager links e
 
 A name cannot be both local and in `skills-lock.json`; the build fails on the collision.
 
+Put skills that must stay out of git, such as ones naming internal projects, in `files/skills-local/<name>/SKILL.md`. The folder is gitignored, so the flake cannot read it; a Home Manager activation step links each one into `~/.agents/skills` on switch, removes links whose skill was deleted, and fails if the name is already taken.
+
 ## Verifying
 
 Run an agent from an unrelated directory and ask for its skill list:
