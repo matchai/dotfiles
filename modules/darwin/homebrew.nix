@@ -22,7 +22,6 @@
       "flux-app"
       "bartender"
       "karabiner-elements"
-      "raycast"
       "yellowdot"
 
       # Browsers
@@ -36,7 +35,6 @@
       "discord"
       "readdle-spark"
       "whatsapp"
-      "zoom"
 
       # Entertainment
       "iina"
@@ -61,7 +59,6 @@
 
       # Fonts
       "font-fira-code-nerd-font"
-      "1password"
       "1password-cli"
       "anki"
       "betterdisplay"

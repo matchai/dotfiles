@@ -23,10 +23,6 @@
         name = "chatgpt";
         greedy = true;
       }
-      {
-        name = "claude";
-        greedy = true;
-      }
       "linear"
       "loom"
       "notion-calendar"
