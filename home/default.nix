@@ -10,6 +10,7 @@
     ./app-defaults.nix
     ./duti.nix
     ./karabiner.nix
+    ./herdr.nix
   ];
 
   home.stateVersion = "24.05";

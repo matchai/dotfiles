@@ -1,0 +1,11 @@
+onboarding = false
+
+[ui]
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "system"
+
+[keys]
+# Hyper+F (Caps Lock held via Karabiner = ctrl+alt+shift+cmd)
+prefix = "ctrl+alt+shift+cmd+f"
