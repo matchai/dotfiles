@@ -41,6 +41,9 @@ in
   environment.shells = [ pkgs.fish ];
 
   programs.fish.enable = true;
+  # Translate the bash init snippets to fish at build time instead of spawning
+  # bash through foreign-env on every shell startup
+  programs.fish.useBabelfish = true;
 
   # GUI apps launched by launchd do not inherit interactive Fish init. Put Mise
   # shims on the launchd PATH so Codex Desktop and other apps resolve local tools.

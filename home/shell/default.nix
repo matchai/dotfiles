@@ -55,7 +55,8 @@ let
 
   zoxideInit = mkFishInit "zoxide" "${pkgs.zoxide}/bin/zoxide init fish --cmd j";
   atuinInit = mkFishInit "atuin" "${pkgs.atuin}/bin/atuin init fish --disable-up-arrow";
-  starshipInit = mkFishInit "starship" "${pkgs.starship}/bin/starship init fish";
+  # Plain `starship init fish` only emits a stub that runs starship again at startup
+  starshipInit = mkFishInit "starship" "${pkgs.starship}/bin/starship init fish --print-full-init";
 in
 {
   imports = [ ./starship.nix ];
@@ -130,11 +131,6 @@ in
       # output, so a build-time run would replace PATH with the Nix sandbox's.
       ${pkgs.mise}/bin/mise activate fish | source
       test "$TERM" != dumb; and source ${starshipInit}
-
-      # wt is via homebrew, so init at first use
-      if type -q wt; and not functions -q __wt_complete
-        command wt config shell init fish | source
-      end
     '';
 
     functions = {
@@ -142,6 +138,14 @@ in
       idea = ''open -a "IntelliJ IDEA.app" $argv''; # needs '' for embedded quotes
       code = "if test (count $argv) -eq 0; command zed (git rev-parse --show-toplevel 2>/dev/null || pwd); else; command zed $argv[1]; end";
       fish_greeting = "";
+
+      # wt is via homebrew, so init at first use: fish autoloads this on the first
+      # `wt` call, and sourcing the init replaces it with the real cd-aware wrapper
+      wt = ''
+        command -q wt; or return 127
+        command wt config shell init fish | source
+        wt $argv
+      '';
 
       # Nix helpers
       nix-switch = "sudo darwin-rebuild switch --flake ~/.config/nixpkgs $argv";
