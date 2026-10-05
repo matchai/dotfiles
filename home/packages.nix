@@ -48,7 +48,7 @@
   programs = {
     mise = {
       enable = true;
-      enableFishIntegration = false; # cached in shell/default.nix
+      enableFishIntegration = false; # activated in shell/default.nix
     };
 
     tealdeer = {

@@ -55,7 +55,6 @@ let
 
   zoxideInit = mkFishInit "zoxide" "${pkgs.zoxide}/bin/zoxide init fish --cmd j";
   atuinInit = mkFishInit "atuin" "${pkgs.atuin}/bin/atuin init fish --disable-up-arrow";
-  miseInit = mkFishInit "mise" "${pkgs.mise}/bin/mise activate fish";
   starshipInit = mkFishInit "starship" "${pkgs.starship}/bin/starship init fish";
 in
 {
@@ -127,7 +126,9 @@ in
       # Pre-generated at nix build time — zero subprocess cost
       source ${zoxideInit}
       source ${atuinInit}
-      source ${miseInit}
+      # Not cached via mkFishInit: `mise activate` bakes the current PATH into its
+      # output, so a build-time run would replace PATH with the Nix sandbox's.
+      ${pkgs.mise}/bin/mise activate fish | source
       test "$TERM" != dumb; and source ${starshipInit}
 
       # wt is via homebrew, so init at first use
