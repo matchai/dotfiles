@@ -84,6 +84,26 @@ Format: `Revert "[original title] (#number)"`
 
 Keep PR descriptions focused on the problem, resulting behavior, and relevant implementation details. Never include validation details, test commands or results, CI status, or validation checklists.
 
+### Length and density
+
+- Default to 1–3 short paragraphs, roughly 40–100 words. If a draft is longer, cut before adding structure.
+- First sentence: the problem or change, in user-visible terms. Second: the fix or resulting behavior. Stop when a reviewer knows what changed and why.
+- Describe the outcome, not the investigation. Leave out debugging stories, timestamps, run IDs, and "rerunning passed" anecdotes.
+- Give a design choice one clause of reasoning, and only when a reviewer would otherwise question it. Leave out internal reasons, like lazy init to satisfy `next build`.
+- Fold removal or cleanup lists into one sentence ("removed X along with everything that only supported it: A, B, and C"). Don't write one bullet per deleted function, flag reader, or telemetry field.
+- Leave out incidental noise: lockfile churn, client IDs, secrets setup that is already done, and follow-ups another team owns.
+- Keep at most one line of remaining action items, phrased as what's still needed ("Production still needs `VERCEL_CLIENT_SECRET`."), not a checklist.
+- For excluded scope, list what was left out, not why each item was.
+
+### Clarity
+
+- Define any term a reviewer outside the thread wouldn't know, or replace it. No internal codenames (say "evaluation agent", not "Jev") and no unexplained state names (like "hidden").
+- If prose runs past three paragraphs or covers several separate behaviors, switch to bold-labeled groups of one-line bullets (for example **Behavior** / **Unchanged**) instead of more paragraphs.
+
+### Self-check before publishing
+
+Delete any sentence that doesn't answer one of these: what changed, why, what is deliberately unchanged, or what the reviewer or deployer must do.
+
 ### Default (most PRs)
 
 Plain prose. No headers. Paragraphs and bullet points are enough.
