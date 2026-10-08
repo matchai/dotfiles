@@ -4,10 +4,35 @@ onboarding = false
 status_indicators = "symbols"
 
 [ui.toast]
-delivery = "system"
+delivery = "terminal"
+
+# fx sets its terminal title to the generated session title (same as /resume).
+# `fx` isn't a canonical agent id, so rows_by_agent can't target it; set the default rows.
+[ui.sidebar.agents]
+rows = [["state_icon", "machine", "workspace", "tab"], ["terminal_title_stripped"]]
 
 [keys]
 # Hyper+F (Caps Lock held via Karabiner = ctrl+alt+shift+cmd)
 prefix = "ctrl+alt+shift+cmd+f"
-navigate_workspace_up = "ctrl+p"
-navigate_workspace_down = "ctrl+n"
+previous_workspace = "ctrl+alt+shift+cmd+["
+next_workspace = "ctrl+alt+shift+cmd+]"
+# Prefix, then Hyper+W: prompt for a branch name, create a worktree, open it as a grouped space
+new_worktree = ["prefix+shift+g", "prefix+ctrl+alt+shift+cmd+w"]
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+# Pane movement is alt+hjkl everywhere (needs Option-as-Alt in the terminal)
+navigate_pane_left = "alt+h"
+navigate_pane_down = "alt+j"
+navigate_pane_up = "alt+k"
+navigate_pane_right = "alt+l"
+focus_pane_left = ["prefix+h", "alt+h"]
+focus_pane_down = ["prefix+j", "alt+j"]
+focus_pane_up = ["prefix+k", "alt+k"]
+focus_pane_right = ["prefix+l", "alt+l"]
+
+[ui.sound]
+enabled = false
+
+# Match worktrunk (worktree-path = "../worktrees/{{ repo }}/..." from ~/vercel/<repo>)
+[worktrees]
+directory = "~/vercel/worktrees"
