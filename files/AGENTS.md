@@ -23,11 +23,10 @@
 - Prefer intermediary variables over deep nesting
 - Left align the happy path. Early returns over nesting
 - Prefer small, well-scoped files
-- Never remove existing comments or docstrings when editing code, even when simplifying or refactoring
 - When asked to change a feature, consider what can be removed or simplified as a result
 - The `gh` CLI is installed, use it
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
-- Do not write tests for reversible, low-impact changes that mirror the implementation. If you do choose to verify your work with tests, make sure that the tests are meaningful and necessary to verify implementation.
+- Do not write tests for reversible, low-impact changes that mirror the implementation. If you do choose to verify your work with tests, make sure that the tests are meaningful and necessary to verify implementation
 
 ## Tools
 - find -> fd
