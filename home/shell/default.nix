@@ -61,9 +61,6 @@ in
 {
   imports = [ ./starship.nix ];
 
-  # Shared aliases for every shell (Home Manager also applies these to fish)
-  home.shellAliases = aliases;
-
   home.sessionVariables = {
     EDITOR = "nvim";
     OMO_SEND_ANONYMOUS_TELEMETRY = "0";
@@ -83,6 +80,8 @@ in
 
   programs.fish = {
     enable = true;
+    # Aliases live only in fish: zsh is the shell agents run, where eza/bat break output
+    shellAliases = aliases;
     # Fish gets abbreviations (expand inline, better for history) — not aliases
     shellAbbrs = gitAbbrs;
 
@@ -155,10 +154,15 @@ in
 
   programs.zsh = {
     enable = true;
-    # Git abbreviations as plain aliases in zsh
-    shellAliases = gitAbbrs;
     autosuggestion.enable = true;
     enableCompletion = true;
     history.extended = true;
+    # Agent and scripted shells (no TTY): pass unmatched globs and leading `=` through like bash
+    initContent = ''
+      if [[ ! -t 1 ]]; then
+        setopt no_nomatch no_equals
+        export NO_COLOR=1
+      fi
+    '';
   };
 }
