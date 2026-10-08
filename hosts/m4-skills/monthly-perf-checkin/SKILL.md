@@ -22,22 +22,33 @@ Then produce one paragraph per question. If comparing adjacent months, say wheth
 
 Gather all sources in parallel before drafting.
 
+0. **Previous check-ins**
+   - Read the PerfBot DM `D0B859HFUV8` (https://vercel.enterprise.slack.com/archives/D0B859HFUV8) with the Slack MCP `slack_read_channel` tool. It holds every submitted check-in with its rating, "What you shipped", and "Where you want to grow".
+   - Match the length, voice, and level of detail of recent submissions.
+   - Do not repeat wins already claimed in an earlier month.
+   - Follow through on earlier growth areas: say whether the month showed progress on them, and avoid restating the same growth theme without new evidence.
+   - Note that the form also asks for a self-rating. Show the ratings from recent months for reference, but leave the choice to the user.
+
+**Coverage is mandatory.** Read every Slack message the user sent during the month and every PR they authored during the month. Sampling, keyword searches, or titles alone do not count. Do not draft until coverage is complete. If a source cannot be read in full (access, rate limits, tool errors), stop and report exactly what is missing instead of drafting from a partial read.
+
 1. **Slack**
    - Use the Slack MCP server tools.
-   - Search project channels and relevant feedback channels for the month.
+   - Page through every message from the user for the month with `from:<@USER_ID> after:YYYY-MM-DD before:YYYY-MM-DD` (public, private, and DMs), following the pagination cursor until no pages remain. Record the total count.
+   - Read the full thread for every message that started or replied in a thread with substance: launches, project updates, design discussions, metrics, beta/customer feedback, incidents, and blockers.
+   - Also read the project channels and coordination channels where the user's work was discussed, including others' messages that credit, request, or depend on the user's work.
    - Prefer channel IDs from Linear project metadata when names are missing from cache.
-   - Read threads for launches, project updates, metrics, beta/customer feedback, and blockers.
+   - Follow links to RFCs and planning docs (for example with the Notion MCP server) when they describe the user's work.
 
 2. **Linear**
-   - Load/use the `linear` skill.
+   - Use the Linear MCP server tools (for example `list_issues`, `list_projects`, `get_status_updates`, `list_comments`).
    - Fetch project metadata, milestones, status updates, and issues updated during the month.
    - Treat Linear project updates as high-signal summaries, but verify with GitHub/Slack before making ownership claims.
 
 3. **GitHub**
    - Use `gh` read-only commands.
    - Determine the authenticated login with `gh api user --jq .login`.
-   - Search authored PRs created, merged, or updated during the month.
-   - Read full PR bodies for non-trivial PRs; titles alone are not enough.
+   - Search authored PRs created, merged, or updated during the month across all repos. `gh search` caps results at 100 per query, so split the month into date ranges until every range returns fewer than 100, and record the total count.
+   - Read the full body of every authored PR from the month, including closed and still-open ones; titles alone are not enough. For PRs with empty or thin bodies, read the diff stat and key changes.
    - Search local git history for authored commits in likely repos.
 
 4. **Repo history**
@@ -95,4 +106,4 @@ If the user asks whether to “spread wins,” recommend moving only the parts t
 
 ## Verification checklist
 
-Before finalizing, confirm sources were checked or limitations noted, month boundaries are correct, ownership is clear, shipped outcomes are concrete, growth is retrospective/forward-looking, and any attribution recommendation is explicit.
+Before finalizing, state coverage counts (Slack messages read, threads read, PR bodies read out of total authored), confirm every source was read in full or name exactly what is missing, month boundaries are correct, ownership is clear, shipped outcomes are concrete, growth is retrospective/forward-looking, and any attribution recommendation is explicit.
