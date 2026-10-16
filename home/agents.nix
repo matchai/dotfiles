@@ -92,6 +92,7 @@ in
     "AGENTS.md".source = symlink "${filesPath}/instructions.md";
     ".claude/CLAUDE.md".source = symlink "${filesPath}/instructions.md";
     ".config/opencode/AGENTS.md".source = symlink "${filesPath}/instructions.md";
+    ".fx/AGENTS.md".source = symlink "${filesPath}/instructions.md";
 
     # Shared rules (deployed to .claude/rules/, read by both via oh-my-opencode)
     ".claude/rules".source = symlink "${filesPath}/rules";

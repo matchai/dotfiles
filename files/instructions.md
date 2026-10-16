@@ -13,6 +13,7 @@
 ## Programming
 - Only create an abstraction if it's actually needed
 - Prefer clear function/variable names over inline comments
+- Use `/** */` only for what callers of a declaration need to know. Explain why a line or block does something with a `//` comment beside it
 - Avoid helper functions when a simple inline expression would suffice
 - Intermediary variables and functions are fine if it improves declarativity and readability. For example:
   ```ts
@@ -29,12 +30,11 @@
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
 
 ## Dev Flow
-- If asked to make a PR in a project, search for it by name in:
-  - Vercel repos: ~/vercel
-  - All other repos: ~/dev
+- Repos are cloned at `~/vercel/<repo>` (Vercel) and `~/dev/<repo>` (others). Look there first to read a repo's source or make a PR. Checkouts are often stale, so `git fetch` and read via `git show origin/main:<path>` or a tag
 
 ## Tools
 - find -> fd
 - grep -> ripgrep
 - Read the `find-docs` skill for library documentation
 - Use `gh_grep` to search code examples from github
+- Instead of browsing `node_modules` to read dependency source code, use `opensrc path <pkg>`
