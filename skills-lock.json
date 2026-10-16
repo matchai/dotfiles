@@ -109,6 +109,12 @@
       "skillPath": "skills/misc/migrate-to-shoehorn/SKILL.md",
       "computedHash": "6397731ced114f3657aa88b55ed13d1344a56d77ca449c568e3200c21740fa99"
     },
+    "opensrc": {
+      "source": "vercel-labs/opensrc",
+      "sourceType": "github",
+      "skillPath": "skills/opensrc/SKILL.md",
+      "computedHash": "20d4395d64cae1e0de62053e1084c0ef58fbf573326a38fbd04f4bb677f0d729"
+    },
     "prototype": {
       "source": "mattpocock/skills",
       "sourceType": "github",
