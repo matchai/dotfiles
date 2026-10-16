@@ -11,6 +11,7 @@
     ./duti.nix
     ./karabiner.nix
     ./herdr.nix
+    ./worktrunk.nix
   ];
 
   home.stateVersion = "24.05";

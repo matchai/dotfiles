@@ -1,0 +1,4 @@
+worktree-path = "../worktrees/{{ repo }}/{{ branch | sanitize }}"
+
+[commit.generation]
+command = "opencode run -m anthropic/claude-haiku-4.5 --variant fast"

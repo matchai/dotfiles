@@ -16,8 +16,9 @@ rows = [["state_icon", "machine", "workspace", "tab"], ["terminal_title_stripped
 prefix = "ctrl+alt+shift+cmd+f"
 previous_workspace = "ctrl+alt+shift+cmd+["
 next_workspace = "ctrl+alt+shift+cmd+]"
-# Prefix, then Hyper+W: prompt for a branch name, create a worktree, open it as a grouped space
-new_worktree = ["prefix+shift+g", "prefix+ctrl+alt+shift+cmd+w"]
+# Prefix, then Shift+G: built-in new worktree (only works from the repo's parent row).
+# Prefix, then Hyper+W is bound under [[keys.command]] to the worktree-from-main plugin.
+new_worktree = "prefix+shift+g"
 navigate_workspace_up = "k"
 navigate_workspace_down = "j"
 # Pane movement is alt+hjkl everywhere (needs Option-as-Alt in the terminal)
@@ -36,3 +37,15 @@ enabled = false
 # Match worktrunk (worktree-path = "../worktrees/{{ repo }}/..." from ~/vercel/<repo>)
 [worktrees]
 directory = "~/vercel/worktrees"
+
+# Prefix, then Hyper+W: new worktree from the repo's main branch, from any workspace in the repo
+# (including linked worktrees). Plugin source: home/herdr-plugins/worktree-from-main
+[[keys.command]]
+key = "prefix+ctrl+alt+shift+cmd+w"
+type = "plugin_action"
+command = "local.worktree-from-main.new"
+description = "new worktree from main"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
