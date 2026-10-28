@@ -9,6 +9,7 @@
 ## Git
 - Never amend commits. Always create new commits to fix issues
 - Never force-push (`--force`, `--force-with-lease`) unless I explicitly ask. Pushing fix-up commits on top of existing ones is the default; rewriting published history is opt-in only
+- Never `git checkout`/`git switch` branches in a repo's main checkout. It may hold my in-progress work or be used by another agent. To work on another branch, create or switch to a worktree with `wt switch <branch>` (add `-c` to create a new branch; see the `worktrunk` skill), then work from that worktree's path
 
 ## Programming
 - Only create an abstraction if it's actually needed
@@ -26,11 +27,13 @@
 - Prefer small, well-scoped files
 - Never remove existing comments or docstrings when editing code, even when simplifying or refactoring
 - When asked to change a feature, consider what can be removed or simplified as a result
+- When the approach changes partway through, reread the diff as a first-time reviewer before finishing, and delete anything vestigial: types, wrappers, optional fields, and helpers that only an earlier approach needed
 - The `gh` CLI is installed, use it
 - Never edit dependency files by hand. Use the package manager CLI (e.g. `pnpm add`, `cargo add`)
 
 ## Dev Flow
-- Repos are cloned at `~/vercel/<repo>` (Vercel) and `~/dev/<repo>` (others). Look there first to read a repo's source or make a PR. Checkouts are often stale, so `git fetch` and read via `git show origin/main:<path>` or a tag
+- Repos are all in `~/vercel/<repo>` (Vercel) and `~/dev/<repo>` (others). Look there first to read a repo's source or make a PR. Checkouts are often stale, so `git fetch` and read via `git show origin/main:<path>` or a tag
+- Avoid writing files with python + heredocs
 
 ## Tools
 - find -> fd

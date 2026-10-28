@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+# Copy the calling fx session up to its last finished turn into a new session,
+# then resume that copy in a Rex split pane. See ../SKILL.md.
+set -euo pipefail
+# fx keeps session files private to the user.
+umask 077
+
+usage() {
+  cat <<'EOF'
+Usage: fork [options]
+
+Copies the fx session that is running this command into a new session that
+ends at its last finished turn, then opens `fx session resume <new-id>` in a
+Rex split beside the calling pane.
+
+Options:
+  --session ID         Fork this session id instead of detecting the caller's
+  --split DIR          Where the new pane goes: right (default), left, above, below
+  --no-open            Create the forked session and print its id; open no pane
+  -h, --help           Show this help
+
+Prints the new session id and, when a pane opens, its Rex block id.
+EOF
+}
+
+die() {
+  echo "fork: $*" >&2
+  exit 1
+}
+
+sessions_root="$HOME/.fx/sessions"
+source_id=""
+split_direction="right"
+open_pane=1
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --session) source_id="${2:?--session needs an id}"; shift 2 ;;
+    --split) split_direction="${2:?--split needs a direction}"; shift 2 ;;
+    --no-open) open_pane=0; shift ;;
+    -h | --help) usage; exit 0 ;;
+    *) usage >&2; exit 1 ;;
+  esac
+done
+
+command -v jq >/dev/null 2>&1 || die "jq is required"
+[[ -d "$sessions_root" ]] || die "no fx sessions directory at $sessions_root"
+
+# Each live fx process writes its pid to <session>/owner.live. The caller's
+# session is the one whose owner pid is an ancestor of this script.
+find_caller_session() {
+  local -A owner_session=()
+  local file pid
+  for file in "$sessions_root"/*/owner.live; do
+    [[ -s "$file" ]] || continue
+    pid=$(jq -r '.pid // empty' "$file" 2>/dev/null) || continue
+    [[ -n "$pid" ]] && owner_session[$pid]="$(basename "$(dirname "$file")")"
+  done
+  pid=$$
+  while [[ -n "$pid" && "$pid" -gt 1 ]]; do
+    if [[ -n "${owner_session[$pid]:-}" ]]; then
+      echo "${owner_session[$pid]}"
+      return 0
+    fi
+    pid=$(ps -o ppid= -p "$pid" 2>/dev/null | tr -d ' ')
+  done
+  return 1
+}
+
+if [[ -z "$source_id" ]]; then
+  source_id=$(find_caller_session) ||
+    die "could not find the fx session running this command; pass --session ID"
+fi
+source_dir="$sessions_root/$source_id"
+[[ -f "$source_dir/session.json" ]] || die "no session.json in $source_dir"
+
+events="$source_dir/events.jsonl"
+[[ -s "$events" ]] || die "session $source_id has no finished turns to fork"
+
+# Keep events through the last finished turn so an in-flight turn, such as the
+# one that asked for this fork, is left out.
+last_line=$(grep -n -E '"event":\{"(turn_completed|interrupted)"' "$events" | tail -1 | cut -d: -f1)
+[[ -n "$last_line" ]] || die "session $source_id has no finished turns to fork"
+
+new_id=""
+for _ in 1 2 3 4 5; do
+  candidate=$(head -c 9 /dev/urandom | base64 | tr '+/' '-_')
+  [[ -e "$sessions_root/$candidate" ]] || { new_id="$candidate"; break; }
+done
+[[ -n "$new_id" ]] || die "could not pick an unused session id"
+
+new_dir="$sessions_root/$new_id"
+staging="$sessions_root/.fork-$new_id.tmp"
+trap 'rm -rf "$staging"' EXIT
+mkdir -m 700 "$staging"
+
+head -n "$last_line" "$events" >"$staging/events.jsonl"
+now_ms=$(($(date +%s) * 1000))
+jq --arg id "$new_id" --argjson now "$now_ms" \
+  '.id = $id | .created_at_ms = $now | .updated_at_ms = $now
+   | .title = ("Fork: " + (.title // "untitled"))' \
+  "$source_dir/session.json" >"$staging/session.json"
+[[ -f "$source_dir/permissions.json" ]] && cp "$source_dir/permissions.json" "$staging/"
+# Tool results back the handles in the copied history. Clone them on APFS so
+# large sessions fork instantly; fall back to a plain copy elsewhere.
+if [[ -d "$source_dir/tool-results" ]]; then
+  cp -Rc "$source_dir/tool-results" "$staging/" 2>/dev/null ||
+    cp -R "$source_dir/tool-results" "$staging/"
+fi
+# Locks, owner, recovery checkpoint, logs, subagent links, and history caches
+# belong to the source process and are rebuilt by fx for the fork.
+
+mv "$staging" "$new_dir"
+trap - EXIT
+
+fx session --id "$new_id" >/dev/null 2>&1 ||
+  echo "fork: warning: 'fx session --id $new_id' could not read the fork" >&2
+
+echo "session $new_id (forked from $source_id at event line $last_line)"
+[[ "$open_pane" -eq 1 ]] || exit 0
+
+if [[ -z "${REX_SESSION:-}" || -z "${REX_BLOCK:-}" ]]; then
+  echo "fork: not inside a Rex pane; resume with: fx session resume $new_id" >&2
+  exit 2
+fi
+if [[ -n "${REX_BIN_DIR:-}" && -x "$REX_BIN_DIR/rex" ]]; then
+  rex="$REX_BIN_DIR/rex"
+else
+  rex=$(command -v rex) || die "rex CLI not found; resume with: fx session resume $new_id"
+fi
+
+workspace=$(jq -r '.workspace_root // empty' "$new_dir/session.json")
+[[ -d "$workspace" ]] || workspace="$PWD"
+
+"$rex" split -s "$REX_SESSION" -b "$REX_BLOCK" --split="$split_direction" \
+  -c "$workspace" -- fx session resume "$new_id"

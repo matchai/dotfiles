@@ -8,8 +8,17 @@ delivery = "terminal"
 
 # fx sets its terminal title to the generated session title (same as /resume).
 # `fx` isn't a canonical agent id, so rows_by_agent can't target it; set the default rows.
+# [ui.sidebar.agents]
+# rows = [
+# ]
+
 [ui.sidebar.agents]
-rows = [["state_icon", "machine", "workspace", "tab"], ["terminal_title_stripped"]]
+rows = [
+    ["state_icon", { token = "terminal_title_stripped", fg = "#a6aac8" }],
+    [{ token = "workspace", fg = "#6b7088", bold = false }, { token = "tab", fg = "#6b7088", bold = false }],
+    ["$gh_pr", "$gh_review", { token = "$gh_failed", fg = "#ff6b6b" }, { token = "$gh_pending", fg = "#c4b28a" }, { token = "$gh_passed", fg = "#8a9a7b" }, { token = "$gh_canceled", fg = "#c0c0c0" }, { token = "$gh_skipped", fg = "#c0c0c0" }, { token = "$gh_unknown", fg = "#c0c0c0" }],
+]
+# rows = [["state_icon", "machine", "workspace", "tab"], ["terminal_title_stripped"]]
 
 [keys]
 # Hyper+F (Caps Lock held via Karabiner = ctrl+alt+shift+cmd)
@@ -46,6 +55,44 @@ type = "plugin_action"
 command = "local.worktree-from-main.new"
 description = "new worktree from main"
 
+# Prefix, then F: search fx sessions with fz. Focuses an open session's pane, or resumes a
+# closed one in a new workspace. Plugin source: ~/dev/fz/herdr-plugin
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "local.fz.search"
+description = "search fx sessions"
+
 [theme]
 name = "catppuccin"
 auto_switch = false
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "plugin_action"
+command = "gh.menu"
+description = "GitHub - open menu"
+
+[[keys.command]]
+key = "prefix+alt+o"
+type = "plugin_action"
+command = "gh.open"
+description = "GitHub - open or create PR"
+
+[[keys.command]]
+key = "prefix+alt+a"
+type = "plugin_action"
+command = "gh.refresh"
+description = "GitHub - Force refresh"
+
+[[keys.command]]
+key = "prefix+alt+v"
+type = "plugin_action"
+command = "gh.open-checks"
+description = "GitHub - View Checks"
+
+[[keys.command]]
+key = "prefix+alt+s"
+type = "plugin_action"
+command = "gh.copy-slack"
+description = "GitHub - copy PR for Slack"
