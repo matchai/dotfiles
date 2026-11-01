@@ -22,7 +22,7 @@ Put self-authored skills in `files/skills/<name>/SKILL.md`. Home Manager links e
 
 A name cannot be both local and in `skills-lock.json`; the build fails on the collision.
 
-Put skills that must stay out of git, such as ones naming internal projects, in `files/skills-local/<name>/SKILL.md`. The folder is gitignored, so the flake cannot read it; a Home Manager activation step links each one into `~/.agents/skills` on switch, removes links whose skill was deleted, and fails if the name is already taken.
+Put skills that must stay out of the public repo, such as ones naming internal projects, in `files/skills-private/<name>/SKILL.md`. The folder is a submodule of the private `matchai/skills-private` repo: commit and push skill changes there, then commit the updated submodule here. Flakes don't fetch submodules, so the flake cannot read it; a Home Manager activation step links each one into `~/.agents/skills` on switch, removes links whose skill was deleted, and fails if the name is already taken.
 
 ## Verifying
 
