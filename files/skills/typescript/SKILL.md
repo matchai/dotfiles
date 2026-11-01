@@ -1,6 +1,6 @@
 ---
-globs: ["*.ts", "*.tsx", "*.js", "*.jsx"]
-description: "TypeScript/JavaScript coding rules"
+name: typescript
+description: TypeScript/JavaScript, React, Next.js, and Tailwind coding rules. Use when writing, editing, or reviewing .ts, .tsx, .js, or .jsx files.
 ---
 
 ## React

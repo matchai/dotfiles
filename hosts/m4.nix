@@ -4,7 +4,6 @@
   homebrew = {
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [
-      "datadog-labs/pack/pup"
       "awscli"
     ];
     casks = [

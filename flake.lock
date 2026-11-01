@@ -69,22 +69,6 @@
         "type": "github"
       }
     },
-    "homebrew-datadog-pack": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792528613,
-        "narHash": "sha256-EU8D3zcx0Q2t2MukILGDN7FGdUZC4cDFeOOM3Os0rso=",
-        "owner": "datadog-labs",
-        "repo": "homebrew-pack",
-        "rev": "be8c73c9c870f851ac6cdf3217e9704613f54d92",
-        "type": "github"
-      },
-      "original": {
-        "owner": "datadog-labs",
-        "repo": "homebrew-pack",
-        "type": "github"
-      }
-    },
     "homebrew-jnsahaj-lumen": {
       "flake": false,
       "locked": {
@@ -176,7 +160,6 @@
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
-        "homebrew-datadog-pack": "homebrew-datadog-pack",
         "homebrew-jnsahaj-lumen": "homebrew-jnsahaj-lumen",
         "homebrew-nkzw-tech": "homebrew-nkzw-tech",
         "nix-darwin": "nix-darwin",

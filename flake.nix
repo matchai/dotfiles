@@ -23,10 +23,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-datadog-pack = {
-      url = "github:datadog-labs/homebrew-pack";
-      flake = false;
-    };
     homebrew-jnsahaj-lumen = {
       url = "github:jnsahaj/homebrew-lumen";
       flake = false;

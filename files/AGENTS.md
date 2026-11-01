@@ -33,4 +33,3 @@
 - grep -> ripgrep
 - Read the `find-docs` skill for library documentation
 - Use `gh_grep` to search code examples from github
-- If trying to query Datadog, use `pup` instead

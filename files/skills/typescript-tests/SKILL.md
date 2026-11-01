@@ -1,6 +1,6 @@
 ---
-globs: ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"]
-description: "TypeScript testing rules"
+name: typescript-tests
+description: TypeScript testing rules. Use when writing, editing, or reviewing test files (*.test.ts, *.test.tsx, *.spec.ts, *.spec.tsx).
 ---
 
 - Tests are in `.test.ts` files alongside their source file

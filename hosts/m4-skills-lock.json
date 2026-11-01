@@ -1,12 +1,4 @@
 {
   "version": 1,
-  "skills": {
-    "dd-pup": {
-      "source": "datadog-labs/agent-skills",
-      "ref": "main",
-      "sourceType": "github",
-      "skillPath": "dd-pup/SKILL.md",
-      "computedHash": "c20040e8019986eaf9a3df00901025f5fcebf9f8205fda4ec56d2eb18c162715"
-    }
-  }
+  "skills": {}
 }

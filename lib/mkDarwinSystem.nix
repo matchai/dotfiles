@@ -6,7 +6,6 @@
   nix-homebrew,
   homebrew-core,
   homebrew-cask,
-  homebrew-datadog-pack,
   homebrew-jnsahaj-lumen,
   homebrew-nkzw-tech,
   ...
@@ -42,7 +41,6 @@ nix-darwin.lib.darwinSystem {
         taps = {
           "homebrew/homebrew-core" = homebrew-core;
           "homebrew/homebrew-cask" = homebrew-cask;
-          "datadog-labs/homebrew-pack" = homebrew-datadog-pack;
           "jnsahaj/homebrew-lumen" = homebrew-jnsahaj-lumen;
           "nkzw-tech/homebrew-tap" = homebrew-nkzw-tech;
         };

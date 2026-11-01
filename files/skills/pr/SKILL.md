@@ -105,3 +105,5 @@ In a real body, write each `<diff>...</diff>` as a fenced `diff` code block.
 ## Publishing with `gh`
 
 Write the body to a temp file and pass `--body-file`. After a change to what the PR does, read the current body with `gh pr view` and rewrite it to describe the PR as it is now.
+
+After creating a PR, follow the `share-prs` skill's "After creating a PR" steps when that skill is installed.
