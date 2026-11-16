@@ -9,6 +9,8 @@
       # Allow for `ssh orb` to work with OrbStack
       # https://docs.orbstack.dev/machines/ssh
       "~/.orbstack/ssh/config"
+      # t-rex's boxes, so Zed on this Mac can open folders in them over SSH
+      "~/.local/state/t-rex/ssh_config"
     ];
 
     settings."*" = {
