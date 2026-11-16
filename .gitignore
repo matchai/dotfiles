@@ -1,5 +1,5 @@
 result
 .DS_Store
 
-# Generated project-scoped skills. Local skills remain tracked in files/skills/.
+# Generated project-scoped skills. Your own skills are in ~/skills and ~/second-brain/skills.
 .agents/

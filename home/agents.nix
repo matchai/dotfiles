@@ -3,24 +3,11 @@
 let
   repoPath = "${config.home.homeDirectory}/.config/nixpkgs";
   filesPath = "${repoPath}/files";
-  # A private submodule, which flakes don't fetch, so evaluation cannot read it; activation links it instead.
-  privateSkillsPath = "${filesPath}/skills-private";
   symlink = config.lib.file.mkOutOfStoreSymlink;
 
   dirNames = path: builtins.attrNames (builtins.readDir path);
 
-  localSkillNames = dirNames ../files/skills;
-  managedSkillNames = builtins.attrNames (builtins.fromJSON (builtins.readFile ../skills-lock.json))
-    .skills;
-  skillNameCollisions = builtins.filter (name: builtins.elem name managedSkillNames) localSkillNames;
   commands = dirNames ../files/commands;
-
-  localSkillLinks = builtins.listToAttrs (
-    builtins.map (name: {
-      name = ".agents/skills/${name}";
-      value.source = symlink "${filesPath}/skills/${name}";
-    }) localSkillNames
-  );
 
   commandLinks = builtins.listToAttrs (
     builtins.concatMap (name: [
@@ -36,44 +23,20 @@ let
   );
 in
 {
-  assertions = [
-    {
-      assertion = skillNameCollisions == [ ];
-      message = "Skills cannot be both local and managed: ${builtins.concatStringsSep ", " skillNameCollisions}";
-    }
-  ];
-
-  # Link skills that must stay out of the public repo, such as ones naming internal projects.
-  home.activation.linkPrivateSkills = config.lib.dag.entryAfter [ "linkGeneration" ] ''
-    skillsDir="$HOME/.agents/skills"
-    privateDir="${privateSkillsPath}"
-    run mkdir -p "$skillsDir"
-
-    for link in "$skillsDir"/*; do
-      [ -L "$link" ] || continue
-      target="$(readlink "$link")"
-      case "$target" in
-        "$privateDir"/*) [ -e "$target" ] || run rm "$link" ;;
-      esac
-    done
-
-    for skill in "$privateDir"/*/; do
-      [ -d "$skill" ] || continue
-      name="$(basename "$skill")"
-      link="$skillsDir/$name"
-      if [ -e "$link" ] || [ -L "$link" ]; then
-        if [ "$(readlink "$link")" != "$privateDir/$name" ]; then
-          errorEcho "Private skill $name collides with existing $link"
-          exit 1
-        fi
-      fi
-      run ln -sfn "$privateDir/$name" "$link"
-    done
+  # Your skills live in two checkouts outside this repo: ~/skills (matchai/skills, public) and
+  # ~/second-brain/skills (matchai/second-brain, private). Their own script links them into
+  # ~/.agents/skills, so a skill added there appears without a switch.
+  home.activation.linkSkills = config.lib.dag.entryAfter [ "linkGeneration" ] ''
+    if [ -x "$HOME/skills/link-skills.sh" ]; then
+      run "$HOME/skills/link-skills.sh"
+    else
+      warnEcho "Clone matchai/skills to ~/skills and matchai/second-brain to ~/second-brain for your skills"
+    fi
   '';
 
   home.file = {
     # Project-scoped skills CLI state. Running `skills` from $HOME restores managed
-    # skills beside the local Home Manager links in ~/.agents/skills.
+    # skills beside the links ~/skills/link-skills.sh makes in ~/.agents/skills.
     "skills-lock.json".source = symlink "${repoPath}/skills-lock.json";
 
     # Keep Codex's legacy skills path on the same local and installed skill versions.
@@ -97,7 +60,6 @@ in
     # OpenCode-specific config
     ".config/opencode/opencode.jsonc".source = symlink "${filesPath}/opencode/opencode.jsonc";
   }
-  // localSkillLinks
   // commandLinks;
 
 }

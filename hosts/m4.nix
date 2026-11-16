@@ -57,8 +57,6 @@
         ".local/share/m4-agent-skills/skills-lock.json".source =
           symlink "${repoPath}/hosts/m4-skills-lock.json";
         ".local/share/m4-agent-skills/.agents/skills".source = symlink "${homeDirectory}/.agents/skills";
-        ".agents/skills/monthly-perf-checkin".source =
-          symlink "${repoPath}/hosts/m4-skills/monthly-perf-checkin";
       };
 
       # Devbox SSH hosts; devbox manages ~/.ssh/devbox.config itself.

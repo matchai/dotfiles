@@ -18,11 +18,7 @@ cd ~ && npx -y skills add <owner>/<repo> --skill <name> -y
 
 ## Adding a local skill
 
-Put self-authored skills in `files/skills/<name>/SKILL.md`. Home Manager links each one into `~/.agents/skills`, so a new skill appears after `sudo darwin-rebuild switch --flake ~/.config/nixpkgs`. Edits to an existing local skill are live immediately.
-
-A name cannot be both local and in `skills-lock.json`; the build fails on the collision.
-
-Put skills that must stay out of the public repo, such as ones naming internal projects, in `files/skills-private/<name>/SKILL.md`. The folder is a submodule of the private `matchai/skills-private` repo: commit and push skill changes there, then commit the updated submodule here. Flakes don't fetch submodules, so the flake cannot read it; a Home Manager activation step links each one into `~/.agents/skills` on switch, removes links whose skill was deleted, and fails if the name is already taken.
+Self-authored skills live outside this repo: in `~/skills/<name>/SKILL.md`, a checkout of the public `matchai/skills`, or in `~/second-brain/skills/<name>/SKILL.md`, a checkout of the private `matchai/second-brain`, for skills that name internal projects. Commit and push skill changes in those repos. `~/skills/link-skills.sh` links each one into `~/.agents/skills`, removes links whose skill was deleted, and refuses a name a skill installed from `skills-lock.json` already has. A Home Manager activation step runs it on every switch; run it yourself after adding, renaming, or removing a skill to see it without a switch. Edits to an existing skill are live immediately.
 
 ## Verifying
 
