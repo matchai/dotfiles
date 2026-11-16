@@ -1,0 +1,313 @@
+#!/usr/bin/env bash
+# Run `fx ask` workers in Rex split panes beside the calling pane, then collect
+# their answers. See ../SKILL.md for how agents use it.
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: fan-out <command> [args]
+
+Commands:
+  new                         Start a new run for this pane (spawn does this when none exists)
+  spawn [opts] LABEL          Start a worker; the prompt is read from stdin
+      --code                  The worker writes code: its pane stays open and it
+                              runs with --auto unless --full-access is given.
+                              Without it, the worker is research: its pane closes
+                              after it succeeds (a failed worker's pane stays open).
+      --cwd DIR               Working directory (default: current directory)
+      --auto | --full-access  fx permission mode for the worker (default: fx's default)
+      --model ID              Model override
+      --effort LEVEL          Reasoning effort override
+  wait [--timeout SEC]        Block until every worker exits, then print each answer
+                              (default timeout 900; exits 124 on timeout)
+  status                      List workers and whether they are running or done
+  show LABEL                  Print one worker's answer so far
+  close                       Close every worker pane in the current run
+  path                        Print the current run directory
+
+Workers run in a column to the right of the calling pane, sized evenly.
+Each worker's answer is saved to <run>/workers/<label>/output.md.
+EOF
+}
+
+die() {
+  echo "fan-out: $*" >&2
+  exit 1
+}
+
+rex_bin() {
+  if [[ -n "${REX_BIN_DIR:-}" && -x "$REX_BIN_DIR/rex" ]]; then
+    echo "$REX_BIN_DIR/rex"
+  elif command -v rex >/dev/null 2>&1; then
+    command -v rex
+  else
+    return 1
+  fi
+}
+
+require_rex() {
+  if [[ -z "${REX_SESSION:-}" || -z "${REX_BLOCK:-}" ]]; then
+    echo "fan-out: not running inside a Rex pane (REX_SESSION/REX_BLOCK unset); use built-in subagents instead" >&2
+    exit 2
+  fi
+  REX="$(rex_bin)" || die "rex CLI not found in \$REX_BIN_DIR or PATH"
+}
+
+state_root="${XDG_STATE_HOME:-$HOME/.local/state}/fan-out"
+
+current_link() {
+  echo "$state_root/current-${REX_BLOCK//[^A-Za-z0-9]/_}"
+}
+
+new_run() {
+  mkdir -p "$state_root"
+  local run
+  run="$state_root/$(date +%Y%m%d-%H%M%S)-$$"
+  mkdir -p "$run/workers"
+  echo "$REX_SESSION" >"$run/session"
+  echo "$REX_BLOCK" >"$run/orchestrator_block"
+  echo "$REX" >"$run/rex"
+  ln -sfn "$run" "$(current_link)"
+  echo "$run"
+}
+
+current_run() {
+  local link
+  link="$(current_link)"
+  [[ -d "$link" ]] || die "no run for this pane; spawn a worker or run 'fan-out new'"
+  readlink "$link"
+}
+
+worker_dirs() {
+  local run="$1"
+  find "$run/workers" -mindepth 1 -maxdepth 1 -type d | sort
+}
+
+is_open() {
+  local session="$1" block="$2"
+  "$REX" block ls -s "$session" --json 2>/dev/null |
+    jq -e --arg b "$block" '[.. | strings | select(. == $b)] | length > 0' >/dev/null
+}
+
+new_pane() {
+  local anchor="$1" direction="$2" ratio="$3" label="$4" cwd="$5" self="$6" dir="$7"
+  jq -n \
+    --arg session "$REX_SESSION" --arg anchor "$anchor" --arg direction "$direction" \
+    --argjson ratio "$ratio" --arg label "$label" --arg cwd "$cwd" \
+    --arg self "$self" --arg dir "$dir" \
+    '{session_id: $session, anchor_id: $anchor, direction: $direction, side: "after",
+      ratio: $ratio, focus: false,
+      layout: {block: {flavor: "com.superlogical.terminal.shell", label: $label,
+        options: {cwd: $cwd, command: [$self, "_run", $dir],
+                  exit: {on_completion: false}}}}}' |
+    "$REX" api call -s "$REX_SESSION" session.new_split -
+}
+
+cmd_spawn() {
+  require_rex
+  local cwd="$PWD" model="" effort="" mode="" kind="research"
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --code) kind="code"; shift ;;
+      --cwd) cwd="$2"; shift 2 ;;
+      --auto) mode="--auto"; shift ;;
+      --full-access) mode="--full-access"; shift ;;
+      --model) model="$2"; shift 2 ;;
+      --effort) effort="$2"; shift 2 ;;
+      -*) die "unknown option: $1" ;;
+      *) break ;;
+    esac
+  done
+  [[ $# -eq 1 ]] || die "spawn takes exactly one LABEL"
+  local label="$1"
+  [[ "$label" =~ ^[a-z0-9][a-z0-9-]*$ ]] || die "label must be lowercase letters, digits, and hyphens"
+  [[ -d "$cwd" ]] || die "--cwd is not a directory: $cwd"
+  cwd="$(cd "$cwd" && pwd)"
+
+  # Join the current run while any of its workers is still going; once every
+  # worker has finished, a new spawn starts a fresh run and column.
+  local run="" d
+  if [[ -d "$(current_link)" ]]; then
+    run="$(current_run)"
+    local active=0
+    while IFS= read -r d; do [[ -f "$d/exit" ]] || active=1; done < <(worker_dirs "$run")
+    [[ "$active" -eq 1 ]] || run=""
+  fi
+  [[ -n "$run" ]] || run="$(new_run)"
+  local dir="$run/workers/$label"
+  [[ ! -e "$dir" ]] || die "worker '$label' already exists in this run"
+  mkdir -p "$dir"
+
+  cat >"$dir/prompt"
+  [[ -s "$dir/prompt" ]] || { rm -rf "$dir"; die "empty prompt; pipe the worker brief on stdin"; }
+  echo "$cwd" >"$dir/cwd"
+  echo "$kind" >"$dir/kind"
+  # Code workers edit files unattended, so they get --auto unless told otherwise.
+  [[ "$kind" == "code" && -z "$mode" ]] && mode="--auto"
+  {
+    echo "--no-save"
+    echo "--no-color"
+    [[ -n "$mode" ]] && echo "$mode"
+    [[ -n "$model" ]] && printf '%s\n%s\n' --model "$model"
+    [[ -n "$effort" ]] && printf '%s\n%s\n' --effort "$effort"
+  } >"$dir/fx_args"
+
+  # Workers stack in one column right of the orchestrator. The first worker
+  # splits the orchestrator pane; each later one splits beside the whole column
+  # so every worker keeps an equal share of its height.
+  local count anchor direction ratio
+  count=$(worker_dirs "$run" | wc -l | tr -d ' ')
+  if [[ "$count" -le 1 || ! -s "$run/column" ]]; then
+    anchor="$(cat "$run/orchestrator_block")"
+    direction="horizontal"
+    ratio="0.5"
+  else
+    anchor="$(cat "$run/column")"
+    direction="vertical"
+    ratio=$(awk -v n="$count" 'BEGIN { printf "%.4f", (n - 1) / n }')
+  fi
+
+  local self result block
+  self="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+  if ! result=$(new_pane "$anchor" "$direction" "$ratio" "$label" "$cwd" "$self" "$dir" 2>/dev/null); then
+    # Research panes close themselves, which can collapse the column's split.
+    # Fall back to splitting the newest open worker, or the orchestrator.
+    local fallback=""
+    while IFS= read -r d; do
+      [[ -s "$d/block" ]] && is_open "$REX_SESSION" "$(cat "$d/block")" && fallback="$(cat "$d/block")"
+    done < <(worker_dirs "$run")
+    if [[ -n "$fallback" ]]; then
+      anchor="$fallback" direction="vertical"
+    else
+      anchor="$(cat "$run/orchestrator_block")" direction="horizontal"
+    fi
+    result=$(new_pane "$anchor" "$direction" 0.5 "$label" "$cwd" "$self" "$dir") ||
+      { rm -rf "$dir"; die "rex could not create the pane"; }
+  fi
+  block=$(echo "$result" | jq -r '.block_ids[0]')
+  echo "$block" >"$dir/block"
+
+  if [[ "$direction" == "horizontal" ]]; then
+    echo "$block" >"$run/column"
+  else
+    echo "$result" | jq -r '.split_ids[0]' >"$run/column"
+  fi
+  echo "$label $block"
+}
+
+# Runs inside the worker pane.
+cmd_run() {
+  local dir="$1" label args=() status
+  label="$(basename "$dir")"
+  while IFS= read -r line; do args+=("$line"); done <"$dir/fx_args"
+  printf '\033[1m[fan-out] %s\033[0m  %s\n\n' "$label" "$(head -c 200 "$dir/prompt" | tr '\n' ' ')"
+  set +e
+  fx ask "${args[@]}" <"$dir/prompt" | tee "$dir/output.md"
+  status=${PIPESTATUS[0]}
+  set -e
+  echo "$status" >"$dir/exit.tmp" && mv "$dir/exit.tmp" "$dir/exit"
+  printf '\n\033[1m[fan-out] %s finished (exit %s)\033[0m\n' "$label" "$status"
+
+  # Research panes close once they succeed; their answer lives in output.md.
+  # Code panes, and any failed worker, stay open for the user to review.
+  if [[ "$(cat "$dir/kind" 2>/dev/null)" == "research" && "$status" -eq 0 ]]; then
+    local run
+    run="$(dirname "$(dirname "$dir")")"
+    sleep 2
+    "$(cat "$run/rex")" block close -s "$(cat "$run/session")" "$(cat "$dir/block")" >/dev/null 2>&1 || true
+  fi
+}
+
+cmd_status() {
+  require_rex
+  local run d label state session
+  run="$(current_run)"
+  session="$(cat "$run/session")"
+  printf '%-20s %-14s %s\n' LABEL STATE BLOCK
+  while IFS= read -r d; do
+    label="$(basename "$d")"
+    if [[ -f "$d/exit" ]]; then
+      state="done (exit $(cat "$d/exit"))"
+    elif is_open "$session" "$(cat "$d/block")"; then
+      state="running"
+    else
+      state="pane closed"
+    fi
+    printf '%-20s %-14s %s\n' "$label" "$state" "$(cat "$d/block")"
+  done < <(worker_dirs "$run")
+}
+
+print_answers() {
+  local run="$1" d
+  while IFS= read -r d; do
+    printf '## %s (exit %s)\n\n' "$(basename "$d")" "$(cat "$d/exit" 2>/dev/null || echo '?')"
+    cat "$d/output.md" 2>/dev/null || echo "(no output)"
+    printf '\n\n'
+  done < <(worker_dirs "$run")
+}
+
+cmd_wait() {
+  require_rex
+  local timeout=900
+  [[ "${1:-}" == "--timeout" ]] && timeout="$2"
+  local run session start pending d
+  run="$(current_run)"
+  session="$(cat "$run/session")"
+  start=$(date +%s)
+  while :; do
+    pending=0
+    while IFS= read -r d; do
+      [[ -f "$d/exit" ]] && continue
+      # A pane closed before its worker finished counts as done.
+      if ! is_open "$session" "$(cat "$d/block")"; then
+        echo "closed" >"$d/exit"
+        continue
+      fi
+      pending=$((pending + 1))
+    done < <(worker_dirs "$run")
+    [[ "$pending" -eq 0 ]] && break
+    if (($(date +%s) - start >= timeout)); then
+      echo "fan-out: $pending worker(s) still running after ${timeout}s" >&2
+      cmd_status >&2
+      exit 124
+    fi
+    sleep 3
+  done
+  print_answers "$run"
+}
+
+cmd_show() {
+  require_rex
+  [[ $# -eq 1 ]] || die "show takes one LABEL"
+  local f
+  f="$(current_run)/workers/$1/output.md"
+  [[ -f "$f" ]] || die "no output for '$1'"
+  cat "$f"
+}
+
+cmd_close() {
+  require_rex
+  local run session d block
+  run="$(current_run)"
+  session="$(cat "$run/session")"
+  while IFS= read -r d; do
+    block="$(cat "$d/block" 2>/dev/null)" || continue
+    if is_open "$session" "$block"; then
+      "$REX" block close -s "$session" "$block" >/dev/null && echo "closed $(basename "$d")"
+    fi
+  done < <(worker_dirs "$run")
+  rm -f "$(current_link)"
+}
+
+case "${1:-}" in
+  new) require_rex; new_run ;;
+  spawn) shift; cmd_spawn "$@" ;;
+  _run) shift; cmd_run "$@" ;;
+  wait) shift; cmd_wait "$@" ;;
+  status) cmd_status ;;
+  show) shift; cmd_show "$@" ;;
+  close) cmd_close ;;
+  path) require_rex; current_run ;;
+  -h | --help | help | "") usage ;;
+  *) usage >&2; exit 1 ;;
+esac

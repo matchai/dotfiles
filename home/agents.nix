@@ -23,20 +23,17 @@ let
   );
 in
 {
-  # Your skills live in two checkouts outside this repo: ~/skills (matchai/skills, public) and
-  # ~/second-brain/skills (matchai/second-brain, private). Their own script links them into
-  # ~/.agents/skills, so a skill added there appears without a switch.
+  # Your skills live in files/skills (public) and in ~/second-brain/skills, a checkout of the
+  # private matchai/second-brain. link-skills.sh links both into ~/.agents/skills, so a skill
+  # added to either appears without a switch.
   home.activation.linkSkills = config.lib.dag.entryAfter [ "linkGeneration" ] ''
-    if [ -x "$HOME/skills/link-skills.sh" ]; then
-      run "$HOME/skills/link-skills.sh"
-    else
-      warnEcho "Clone matchai/skills to ~/skills and matchai/second-brain to ~/second-brain for your skills"
-    fi
+    [ -d "$HOME/second-brain" ] || warnEcho "Clone matchai/second-brain to ~/second-brain for your private skills"
+    run "${filesPath}/link-skills.sh"
   '';
 
   home.file = {
     # Project-scoped skills CLI state. Running `skills` from $HOME restores managed
-    # skills beside the links ~/skills/link-skills.sh makes in ~/.agents/skills.
+    # skills beside the links files/link-skills.sh makes in ~/.agents/skills.
     "skills-lock.json".source = symlink "${repoPath}/skills-lock.json";
 
     # Keep Codex's legacy skills path on the same local and installed skill versions.

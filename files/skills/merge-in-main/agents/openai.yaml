@@ -1,0 +1,4 @@
+interface:
+  display_name: "Merge in Main"
+  short_description: "Update your branch with the latest main"
+  default_prompt: "Use $merge-in-main to merge the latest default branch into the current branch and resolve conflicts."

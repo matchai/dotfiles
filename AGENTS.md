@@ -18,7 +18,7 @@ cd ~ && npx -y skills add <owner>/<repo> --skill <name> -y
 
 ## Adding a local skill
 
-Self-authored skills live outside this repo: in `~/skills/<name>/SKILL.md`, a checkout of the public `matchai/skills`, or in `~/second-brain/skills/<name>/SKILL.md`, a checkout of the private `matchai/second-brain`, for skills that name internal projects. Commit and push skill changes in those repos. `~/skills/link-skills.sh` links each one into `~/.agents/skills`, removes links whose skill was deleted, and refuses a name a skill installed from `skills-lock.json` already has. A Home Manager activation step runs it on every switch; run it yourself after adding, renaming, or removing a skill to see it without a switch. Edits to an existing skill are live immediately.
+Put self-authored skills in `files/skills/<name>/SKILL.md`, or in `~/second-brain/skills/<name>/SKILL.md`, a checkout of the private `matchai/second-brain`, for skills that name internal projects. Commit and push skill changes in the repo that holds them. `files/link-skills.sh` links each one into `~/.agents/skills`, removes links whose skill was deleted, and refuses a name a skill installed from `skills-lock.json` already has. A Home Manager activation step runs it on every switch; run it yourself after adding, renaming, or removing a skill to see it without a switch. Edits to an existing skill are live immediately.
 
 ## Verifying
 
