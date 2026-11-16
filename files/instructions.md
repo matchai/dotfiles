@@ -9,7 +9,7 @@
 ## Git
 - Never amend commits. Always create new commits to fix issues
 - Never force-push (`--force`, `--force-with-lease`) unless I explicitly ask. Pushing fix-up commits on top of existing ones is the default; rewriting published history is opt-in only
-- Never `git checkout`/`git switch` branches in a repo's main checkout. It may hold my in-progress work or be used by another agent. To work on another branch, create or switch to a worktree with `wt switch <branch>` (add `-c` to create a new branch; see the `worktrunk` skill), then work from that worktree's path
+- Never `git checkout`/`git switch` branches in a repo's main checkout. It may hold my in-progress work or be used by another agent. To work on another branch, switch to its worktree with `wt switch <branch>` (add `-c` to create a new branch; see the `worktrunk-agents` skill), then work from that worktree's path. In a t-rex box (`$HOME` is `/vercel`), each checkout is the box's own, so switch branches in it directly.
 
 ## Programming
 - Only create an abstraction if it's actually needed
