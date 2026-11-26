@@ -1,13 +1,15 @@
 ---
-name: review-pr
-description: "Review a GitHub PR by asking how to simplify it, stage the findings as comments in a pending review, and ask before submitting. Use when asked to review a PR or leave review comments on one."
+name: pr-review
+description: "Review a GitHub PR by asking how to simplify it, stage the findings as comments in a pending review, and ask before submitting. On Matan's own PR, write the findings in chat instead. Use when asked to review a PR or leave review comments on one."
 ---
 
 Every review answers one question: **how can we simplify this PR?** Simplification surfaces bugs: when the simpler shape behaves differently from the PR's, that difference is usually a bug, so name it in the comment.
 
 ## Steps
 
-1. **Read the PR.** Fetch its metadata, base branch, head SHA, and diff (`gh pr view <n> --json ...`, `gh pr diff <n>`). Read the touched files at the head SHA, plus their callers and the conventions nearby (`AGENTS.md`, sibling code the PR is modelled on). Done when you can say why each touched area is shaped the way it is.
+1. **Read the PR.** Fetch its metadata, author, base branch, head SHA, and diff (`gh pr view <n> --json author,...`, `gh pr diff <n>`). Read the touched files at the head SHA, plus their callers and the conventions nearby (`AGENTS.md`, sibling code the PR is modelled on). Done when you can say why each touched area is shaped the way it is.
+
+   When the author is you (`gh api user -q .login`), the review is for Matan's own PR: run steps 2–4, then follow [Your own PR](#your-own-pr) instead of steps 5–8.
 
 2. **Simplify.** Load `make-native` and run its steps 1–4 as a read-only lens: each redesign it finds becomes a candidate comment instead of a commit. Done when every piece the PR adds (step, branch, flag, file, test, duplicated logic) is either already native or has a candidate.
 
@@ -45,3 +47,14 @@ Every review answers one question: **how can we simplify this PR?** Simplificati
 8. **Submit only on a yes.** Call `submitPullRequestReview(input:{pullRequestReviewId:..., event:COMMENT|APPROVE|REQUEST_CHANGES})` with the chosen event and no `body`: the inline comments are the whole review, and GitHub accepts an empty body for a review that has them. Report the returned review URL and state. On **Keep pending**, leave the review untouched and report its link.
 
 Done when the user has answered, and the review is submitted as chosen or left pending.
+
+## Your own PR
+
+GitHub won't let a PR's author approve or request changes, and the comments are for Matan to act on, so write them in chat and stage nothing on GitHub.
+
+- Lead with a table of the comments (file, lines, one-line gist, whether it's a suggestion), then each comment under its `file:line`, quoted as it would read on GitHub.
+- Leave out the praise summary line and the `<sub>Drafted by fx…</sub>` footer; they're for other authors and other readers.
+- When a suggestion needs a change outside its range, such as an import, say so under the comment.
+- End by offering to apply any of them as new commits on the PR's branch.
+
+Done when the review is in chat.
