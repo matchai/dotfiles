@@ -1,11 +1,11 @@
 ---
 name: pr-checks
-description: Use when creating a PR or pushing updates to an existing PR. Monitors CI status checks and handles failures.
+description: Use when creating a PR or pushing updates to an existing PR. Monitors CI status checks and handles failures, then reads and handles the reviews and comments posted since the push.
 ---
 
 # PR Status Checks
 
-After creating a PR or pushing updates to an existing PR, you MUST monitor status checks and attempt to fix failures.
+After creating a PR or pushing updates to an existing PR, you MUST monitor status checks and attempt to fix failures, then check for new reviews and comments. Watching checks doesn't notice comments, so look for them once the checks settle.
 
 ## Workflow
 
@@ -20,7 +20,12 @@ After creating a PR or pushing updates to an existing PR, you MUST monitor statu
    - Only "fix" a check if there is a clear correction in line with the author's obvious intent (especially as documented in specs or comments). Where ambiguity exists, note it for later rather than guessing
 4. **Push the fix(es)** and monitor checks again (repeat from step 1)
 5. **Do not continue** with further actions until all non-deployment checks either pass, or are too ambiguous to be confidently resolved
-6. **Report** the final check status to the user. If any failures were ambiguous and could not be confidently resolved, ask about the intended behaviour
+6. **Check for new reviews and comments** posted since your push, from people and bots such as Vercel Agent: reviews, inline review comments, and conversation comments (see Commands below). For each one:
+   - Fix what's right and in scope as a new commit, then reply saying what changed, with the commit, and resolve the thread
+   - Reply with why when it's wrong or out of scope
+   - Ask the user first when it would change the design or the PR's scope
+   - After pushing fixes, go back to step 1, since the push starts new checks and can draw new comments
+7. **Report** the final check status and the comments you handled to the user. If any failures were ambiguous and could not be confidently resolved, ask about the intended behaviour
 
 ## Commands
 
@@ -36,7 +41,18 @@ gh run view <RUN_ID> --log-failed
 
 # View a specific job's full log
 gh run view --job <JOB_ID> --log
+
+# Reviews, inline review comments, and conversation comments since a time, such as the push
+gh api repos/OWNER/REPO/pulls/<PR_NUMBER>/reviews --jq '.[] | select(.submitted_at > "<SINCE>")'
+gh api repos/OWNER/REPO/pulls/<PR_NUMBER>/comments --jq '.[] | select(.created_at > "<SINCE>")'
+gh api repos/OWNER/REPO/issues/<PR_NUMBER>/comments --jq '.[] | select(.created_at > "<SINCE>")'
+
+# Reply to an inline review comment, then resolve its thread
+gh api repos/OWNER/REPO/pulls/<PR_NUMBER>/comments/<COMMENT_ID>/replies -F body=@reply.md
+gh api graphql -f query='mutation{resolveReviewThread(input:{threadId:"<THREAD_ID>"}){thread{isResolved}}}'
 ```
+
+A reply fails with `user_id can only have one pending review per pull request` while you have a pending review on the PR. Submit or delete that review first.
 
 ### When to Escalate
 
@@ -53,3 +69,4 @@ gh run view --job <JOB_ID> --log
 
 - Some checks run only on specific file changes - if your change doesn't trigger a check, that's expected
 - If a test check has been "in progress" for more than 10 minutes, investigate for hanging tests rather than waiting for the full CI timeout
+- Bot status comments, such as preview tables and OpenAPI diffs, need action only when they report a problem the PR caused
